@@ -28,6 +28,9 @@ Branch names should have the following prefixes:
 - `docs/`: a branch that adds documentation
 - `fix/`: a branch that resolves bugs
 
+## Commit messages
+We like to apply to the Angular JS commit message conventions. You can find the docs [here](https://gist.github.com/stephenparish/9941e89d80e2bc58a153).
+
 ## Pull Requests
 I've written a PR template for this project, you should use that at all times. Right now it's written in Dutch, you can also translate it to English.
 
