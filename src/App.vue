@@ -1,15 +1,14 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Pointer project"/>
+    <hello-world msg="Pointer project"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/hello-world'
 
 export default {
-  name: 'app',
   components: {
     HelloWorld
   }
