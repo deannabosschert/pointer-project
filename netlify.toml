@@ -1,2 +1,2 @@
 [build]
-  command = "nuxt build"
+  command = "nuxt generate"
