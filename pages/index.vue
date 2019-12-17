@@ -6,8 +6,12 @@
 </template>
 
 <script>
-export default {
+import data from '../static/data'
 
+export default {
+  created() {
+    console.log(data)
+  }
 }
 </script>
 
