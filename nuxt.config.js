@@ -43,6 +43,10 @@ export default {
     '@nuxtjs/style-resources'
   ],
 
+  styleResources: {
+    scss: './assets/scss/_variables.scss'
+  },
+
   /*
   ** Build configuration
   */
