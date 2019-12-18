@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="`/assets/icons/${name}`"
+    :src="`/assets/icons/${name}.svg`"
     alt=""
     class="app-icon"
   />
