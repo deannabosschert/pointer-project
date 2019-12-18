@@ -42,7 +42,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .app-icon-with-counter {
     position: relative;
     margin-right: 5px;

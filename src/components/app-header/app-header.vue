@@ -29,7 +29,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   button {
     padding: 0;
     color: inherit;
