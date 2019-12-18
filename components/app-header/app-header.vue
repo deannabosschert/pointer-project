@@ -1,0 +1,82 @@
+<template>
+  <header class="app-header">
+    <div class="app-header__logo-container">
+      <nuxt-link to="/">
+        <img src="~/assets/images/pointer-logo.svg" class="app-header__logo" alt="Logo van Pointer"/>
+      </nuxt-link>
+    </div>
+    <div class="app-header__triangle"></div>
+    <div class="app-header__icons">
+      <button class="app-header__button">
+        <img class="app-header__icon" src="~/assets/icons/search-icon.svg" alt=""/>
+        <span class="sr-only">Zoek een zorginstelling</span>
+      </button>
+      <button class="app-header__button">
+        <img class="app-header__icon" src="~/assets/icons/menu-icon.svg" alt=""/>
+        <span class="sr-only">Open het menu</span>
+      </button>
+      <!-- <app-icon name="menu-icon" />
+      <app-icon name="search-icon" /> -->
+    </div>
+  </header>
+</template>
+
+<script>
+  import AppIcon from '../app-icon/app-icon'
+
+  export default {
+    components: {
+      AppIcon
+    }
+  }
+</script>
+
+<style>
+  button {
+    padding: 0;
+    color: inherit;
+    background-color: inherit;
+    border: 0px;
+  }
+
+  .app-header__button {
+    margin-left: 0.625rem;
+  }
+
+  .app-header {
+    background-color: var(--color-darkest);
+    display: flex;
+  }
+
+  .app-header__logo-container {
+    background-color: var(--color-dimmed-purple);
+    flex: 0 0 100px;
+    padding: 0.625rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .app-header__logo {
+    width: 100%;
+  }
+
+  .app-header__icons {
+    display: flex;
+    margin-left: auto;
+    padding: 1rem;
+  }
+
+  .app-header__icon {
+    width: 1em;
+    height: 1em;
+    font-size: 1.725rem;
+  }
+
+  .app-header__triangle{
+      width: 0;
+      height: 0;
+      border-bottom: 64px solid var(--color-highlight-yellow);
+      border-right: 64px solid transparent;
+  }
+
+</style>
