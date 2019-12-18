@@ -17,15 +17,15 @@
 
 <style>
   :root {
-      --color-darkest: #1D2939;
-      --color-lightest: #F2F2F2;
-      --color-gray: #E6E6E6;
-      --color-highlight-yellow: #FAFF2E;
-      --color-highlight-red: #F65645;
-      --color-highlight-green: #1BEAAE;
-      --color-highlight-purple: #6B38E8;
-      --color-dimmed-purple: #D8CEDB;
-    }
+    --color-darkest: #1D2939;
+    --color-lightest: #F2F2F2;
+    --color-gray: #E6E6E6;
+    --color-highlight-yellow: #FAFF2E;
+    --color-highlight-red: #F65645;
+    --color-highlight-green: #1BEAAE;
+    --color-highlight-purple: #6B38E8;
+    --color-dimmed-purple: #D8CEDB;
+  }
 
   /*
     CSS Reset
@@ -76,17 +76,5 @@
   table {
     border-collapse: collapse;
     border-spacing: 0;
-  }
-
-  /* Utilities */
-  .sr-only {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    overflow: hidden;
   }
 </style>
