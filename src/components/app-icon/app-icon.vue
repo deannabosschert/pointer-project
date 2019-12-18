@@ -17,7 +17,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .app-icon {
     height: 1em;
     width: 1em;

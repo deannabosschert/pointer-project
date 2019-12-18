@@ -1,6 +1,7 @@
 
 export default {
   mode: 'universal',
+  srcDir: 'src',
   /*
   ** Headers of the page
   */
@@ -23,6 +24,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -38,7 +40,13 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: './assets/scss/_variables.scss'
+  },
+
   /*
   ** Build configuration
   */

@@ -29,7 +29,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .fixed-ratio {
     display: block;
     position: relative;
