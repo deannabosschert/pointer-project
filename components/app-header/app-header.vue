@@ -15,8 +15,6 @@
         <img class="app-header__icon" src="~/assets/icons/menu-icon.svg" alt=""/>
         <span class="sr-only">Open het menu</span>
       </button>
-      <!-- <app-icon name="menu-icon" />
-      <app-icon name="search-icon" /> -->
     </div>
   </header>
 </template>
@@ -72,7 +70,7 @@
     font-size: 1.725rem;
   }
 
-  .app-header__triangle{
+  .app-header__triangle {
       width: 0;
       height: 0;
       border-bottom: 64px solid var(--color-highlight-yellow);
