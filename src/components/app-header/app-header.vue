@@ -30,24 +30,17 @@
 </script>
 
 <style lang="scss">
-  button {
-    padding: 0;
-    color: inherit;
-    background-color: inherit;
-    border: 0px;
-  }
-
   .app-header__button {
     margin-left: 0.625rem;
   }
 
   .app-header {
-    background-color: var(--color-darkest);
+    background-color: $color-darkest;
     display: flex;
   }
 
   .app-header__logo-container {
-    background-color: var(--color-dimmed-purple);
+    background-color: $color-dimmed-purple;
     flex: 0 0 100px;
     padding: 0.625rem;
     display: flex;
@@ -73,8 +66,7 @@
   .app-header__triangle {
       width: 0;
       height: 0;
-      border-bottom: 64px solid var(--color-highlight-yellow);
+      border-bottom: 64px solid $color-highlight-yellow;
       border-right: 64px solid transparent;
   }
-
 </style>
