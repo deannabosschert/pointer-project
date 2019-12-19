@@ -1,9 +1,11 @@
 import * as types from './mutation-types'
+import data from '../static/data'
 
 // The default state
 export const state = () => ({
   selectedCareCompany: {},
-  shoppingBag: []
+  shoppingBag: [],
+  careCompanies: data
 })
 
 // Things you want to get out of the state, you can also use
