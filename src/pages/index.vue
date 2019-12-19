@@ -2,16 +2,24 @@
   <main>
     <h1>Pointer! Homepage</h1>
     <company-search />
+    <p v-if="selectedCareCompany">Jij hebt {{ selectedCareCompany.naam }} geselecteed :D</p>
     <nuxt-link to="/shop">To the shop</nuxt-link>
   </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import CompanySearch from '~/components/company-search/company-search'
 
 export default {
   components: {
     CompanySearch
+  },
+  computed: {
+    ...mapGetters({
+      selectedCareCompany: 'selectedCareCompany'
+    })
   }
 }
 </script>
