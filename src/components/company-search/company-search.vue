@@ -51,6 +51,7 @@
     },
     methods: {
       onCompanyClick(company) {
+        this.input = company.naam
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
         this.autocompleteIsEnabled = false
       },
