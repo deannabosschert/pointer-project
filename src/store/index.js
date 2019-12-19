@@ -16,6 +16,9 @@ export const getters = {
   },
   shoppingBag(state) {
     return state.shoppingBag
+  },
+  careCompanies(state) {
+    return state.careCompanies
   }
 }
 
@@ -24,7 +27,7 @@ export const actions = {}
 
 // State you want to change (synchronously)
 export const mutations = {
-  [types.SET_SELECTED_CARECOMPANY](state, payload) {
+  [types.SET_CURRENT_CARECOMPANY](state, payload) {
     state.selectedCareCompany = payload.careCompany
   },
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
