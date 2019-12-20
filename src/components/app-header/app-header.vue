@@ -2,7 +2,7 @@
   <header class="app-header">
     <div class="app-header__logo-container">
       <nuxt-link to="/">
-        <img src="~/assets/images/pointer-logo.svg" class="app-header__logo" alt="Logo van Pointer"/>
+        <img src="/images/pointer-logo.svg" class="app-header__logo" alt="Logo van Pointer"/>
       </nuxt-link>
     </div>
     <div class="app-header__triangle"></div>
