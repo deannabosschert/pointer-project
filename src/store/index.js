@@ -41,5 +41,8 @@ export const mutations = {
     // Find product
 
     // Set amount to ++ or --
+  },
+  [types.SET_CARECOMPANIES](state, payload) {
+    state.careCompanies = payload.careCompanies
   }
 }
