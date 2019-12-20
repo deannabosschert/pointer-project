@@ -29,7 +29,6 @@ export default {
     })
   },
   created() {
-    // TODO: add data to localStorage?
     this.$store.commit(SET_CARECOMPANIES, {
       careCompanies: this.data
     })
