@@ -16,6 +16,12 @@ export default {
   components: {
     CompanySearch
   },
+  async asyncData() {
+    const module = await import('../static/data')
+    const data = module.default
+
+    return { data }
+  },
   computed: {
     ...mapGetters({
       selectedCareCompany: 'selectedCareCompany'
