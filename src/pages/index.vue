@@ -9,6 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { SET_CARECOMPANIES } from '~/store/mutation-types'
 
 import CompanySearch from '~/components/company-search/company-search'
 
@@ -25,6 +26,12 @@ export default {
   computed: {
     ...mapGetters({
       selectedCareCompany: 'selectedCareCompany'
+    })
+  },
+  created() {
+    // TODO: add data to localStorage?
+    this.$store.commit(SET_CARECOMPANIES, {
+      careCompanies: this.data
     })
   }
 }
