@@ -1,7 +1,7 @@
 <template>
   <figure class="app-icon-with-counter">
     <img
-      :src="`~/assets/icons/${name}`"
+      :src="`/icons/${name}.svg`"
       alt=""
     >
     <transition name="fade">
