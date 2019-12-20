@@ -8,11 +8,17 @@
     <div class="app-header__triangle"></div>
     <div class="app-header__icons">
       <button class="app-header__button">
-        <img class="app-header__icon" src="~/assets/icons/search-icon.svg" alt=""/>
+        <app-icon
+          class="app-header__icon"
+          name="search-icon"
+        />
         <span class="sr-only">Zoek een zorginstelling</span>
       </button>
       <button class="app-header__button">
-        <img class="app-header__icon" src="~/assets/icons/menu-icon.svg" alt=""/>
+        <app-icon
+          class="app-header__icon"
+          name="menu-icon"
+        />
         <span class="sr-only">Open het menu</span>
       </button>
     </div>
