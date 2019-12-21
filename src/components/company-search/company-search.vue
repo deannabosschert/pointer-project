@@ -52,8 +52,13 @@
     methods: {
       onCompanyClick(company) {
         this.input = company.naam
+
+        /*
+          We also add the selectedCompany to localStorage. If a user refreshes
+          the page the selected company won't be lost this way.
+        */
+        addToLocalStorage('careCompany', company)
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
-        this.autocompleteIsEnabled = false
       },
       enableAutocomplete() {
         this.autocompleteIsEnabled = true
@@ -62,6 +67,17 @@
         this.autocompleteIsEnabled = false
       }
     }
+  }
+
+  function addToLocalStorage(key, data) {
+    const storage = window.localStorage
+    const dataIsRightType = typeof data === 'object' || typeof data === 'array'
+
+    if (!dataIsRightType) {
+      throw new Error('Data should be of type object or array')
+    }
+
+    return storage.setItem(key, JSON.stringify(data))
   }
 </script>
 
