@@ -17,11 +17,10 @@ export default {
   components: {
     CompanySearch
   },
-  async asyncData() {
-    const module = await import('../static/data')
-    const data = module.default
-
-    return { data }
+  data() {
+    return {
+      rawCompanies: require('../static/data')
+    }
   },
   computed: {
     ...mapGetters({
@@ -31,7 +30,7 @@ export default {
   },
   mounted() {
     if (!this.careCompanies) {
-      this.$store.commit(SET_CARECOMPANIES, { careCompanies: this.data })
+      this.$store.commit(SET_CARECOMPANIES, { careCompanies: this.rawCompanies })
     }
   }
 }
