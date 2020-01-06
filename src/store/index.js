@@ -2,9 +2,10 @@ import * as types from './mutation-types'
 
 // The default state
 export const state = () => ({
-  selectedCareCompany: {},
+  selectedCareCompany: null,
   shoppingBag: [],
-  careCompanies: null
+  careCompanies: null,
+  selectedData: null
 })
 
 // Things you want to get out of the state, you can also use
@@ -18,6 +19,9 @@ export const getters = {
   },
   careCompanies(state) {
     return state.careCompanies
+  },
+  selectedData(state) {
+    return state.selectedData
   }
 }
 
@@ -44,5 +48,8 @@ export const mutations = {
   },
   [types.SET_CARECOMPANIES](state, payload) {
     state.careCompanies = payload.careCompanies
+  },
+  [types.SET_SELECTED_DATA](state, payload) {
+    state.selectedData = payload.selectedData
   }
 }
