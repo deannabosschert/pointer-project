@@ -42,9 +42,9 @@
         careCompanies: 'careCompanies'
       }),
       matchingCompanies() {
-        return this.careCompanies
-          .filter(company => {
-            return company.naam.includes(this.input)
+        return Object.values(this.careCompanies)
+          .filter(item => {
+            return item.naam.includes(this.input)
           })
           .slice(0, 10)
       }
