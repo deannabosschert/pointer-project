@@ -28,10 +28,8 @@ export default {
       selectedCareCompany: 'selectedCareCompany'
     })
   },
-  created() {
-    this.$store.commit(SET_CARECOMPANIES, {
-      careCompanies: this.data
-    })
+  mounted() {
+    console.log(data)
   }
 }
 </script>
