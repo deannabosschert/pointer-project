@@ -4,7 +4,7 @@ import * as types from './mutation-types'
 export const state = () => ({
   selectedCareCompany: {},
   shoppingBag: [],
-  careCompanies: []
+  careCompanies: null
 })
 
 // Things you want to get out of the state, you can also use
