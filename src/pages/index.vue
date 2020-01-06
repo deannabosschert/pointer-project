@@ -25,11 +25,14 @@ export default {
   },
   computed: {
     ...mapGetters({
+      careCompanies: 'careCompanies',
       selectedCareCompany: 'selectedCareCompany'
     })
   },
   mounted() {
-    console.log(data)
+    if (!this.careCompanies) {
+      this.$store.commit(SET_CARECOMPANIES, { careCompanies: this.data })
+    }
   }
 }
 </script>
