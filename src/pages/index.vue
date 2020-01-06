@@ -9,7 +9,7 @@
 import data from '../static/data'
 
 export default {
-  created() {
+  mounted() {
     console.log(data)
   }
 }
