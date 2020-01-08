@@ -2,8 +2,10 @@ import * as types from './mutation-types'
 
 // The default state
 export const state = () => ({
-  selectedCareCompany: {},
-  shoppingBag: []
+  selectedCareCompany: null,
+  shoppingBag: [],
+  careCompanies: null,
+  selectedData: null
 })
 
 // Things you want to get out of the state, you can also use
@@ -14,6 +16,12 @@ export const getters = {
   },
   shoppingBag(state) {
     return state.shoppingBag
+  },
+  careCompanies(state) {
+    return state.careCompanies
+  },
+  selectedData(state) {
+    return state.selectedData
   }
 }
 
@@ -22,7 +30,7 @@ export const actions = {}
 
 // State you want to change (synchronously)
 export const mutations = {
-  [types.SET_SELECTED_CARECOMPANY](state, payload) {
+  [types.SET_CURRENT_CARECOMPANY](state, payload) {
     state.selectedCareCompany = payload.careCompany
   },
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
@@ -37,5 +45,11 @@ export const mutations = {
     // Find product
 
     // Set amount to ++ or --
+  },
+  [types.SET_CARECOMPANIES](state, payload) {
+    state.careCompanies = payload.careCompanies
+  },
+  [types.SET_SELECTED_DATA](state, payload) {
+    state.selectedData = payload.selectedData
   }
 }
