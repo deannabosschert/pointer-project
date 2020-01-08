@@ -34,7 +34,7 @@
       return {
         input: '',
         autocompleteIsEnabled: false,
-        selectedCarecompany: {}
+        selectedCarecompany: null
       }
     },
     computed: {
@@ -42,11 +42,13 @@
         careCompanies: 'careCompanies'
       }),
       matchingCompanies() {
-        return Object.values(this.careCompanies)
-          .filter(item => {
-            return item.naam.includes(this.input)
-          })
-          .slice(0, 10)
+        return this.careCompanies &&
+          typeof this.careCompanies === 'object' &&
+          Object.values(this.careCompanies)
+              .filter(item => {
+                return item.naam.includes(this.input)
+              })
+              .slice(0, 10)
       }
     },
     methods: {
