@@ -31,7 +31,7 @@ export default {
       selectedData: 'selectedData'
     }),
     async rawCompanies() {
-      const module = await import('~/static/data')
+      const module = await import('~/static/data/pointer-raw')
 
       return module.default
     }
