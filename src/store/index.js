@@ -3,7 +3,6 @@ import * as types from './mutation-types'
 // The default state
 export const state = () => ({
   selectedCareCompany: null,
-  shoppingBag: [],
   careCompanies: null,
   selectedData: null
 })
