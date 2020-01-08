@@ -35,16 +35,6 @@ export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
     state.shoppingBag = [...state.shoppingBag, payload.product]
   },
-  [types.REMOVE_FROM_SHOPPING_BAG](state, payload) {
-    // Find payload's product
-
-    // Set state to shoppingBag without that product
-  },
-  [types.CHANGE_AMOUNT_OF_PRODUCT](state, payload) {
-    // Find product
-
-    // Set amount to ++ or --
-  },
   [types.SET_CARECOMPANIES](state, payload) {
     state.careCompanies = payload.careCompanies
   },
