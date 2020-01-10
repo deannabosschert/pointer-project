@@ -11,7 +11,7 @@
       <figcaption class="product-card__price">
         <dl>
           <dt class="sr-only">Prijs:</dt>
-          <dd>{{ product.prijs }}</dd>
+          <dd>{{ formattedPrice }}</dd>
         </dl>
       </figcaption>
     </figure>
@@ -25,13 +25,18 @@
 
   export default {
     components: {
-      AppIcon,
+      FixedRatio,
       ProductDetails
     },
     props: {
       product: {
         type: Object,
         required: true
+      }
+    },
+    computed: {
+      formattedPrice() {
+        return `${this.product.prijs.toLocaleString()} EUR`
       }
     }
   }
@@ -40,6 +45,7 @@
 <style lang="scss">
   .product-card__image-container {
     width: 100%;
+    position: relative;
   }
 
   .product-card__image {
@@ -47,5 +53,12 @@
     height: 100%;
     object-fit: cover;
     background: $color-gray;
+  }
+
+  .product-card__price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1rem 1.625rem;
   }
 </style>
