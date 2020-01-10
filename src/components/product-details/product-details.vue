@@ -1,6 +1,6 @@
 <template>
   <div class="product-details">
-    <component :is="nameTag">{{ product.naam }}</component>
+    <h2>{{ product.naam }}</h2>
     <button
       @click="$emit('add-to-cart-click')"
       class="product-details__button"
@@ -43,10 +43,6 @@
         type: Object,
         required: true
       },
-      nameTag: {
-        type: String,
-        default: 'h2'
-      }
     },
     computed: {
       ...mapState({
