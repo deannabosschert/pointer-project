@@ -35,8 +35,20 @@
       }
     },
     computed: {
+      ...mapState({
+        shoppingBag: state => state.shop.shoppingBag
+      }),
       formattedPrice() {
         return `${this.product.prijs.toLocaleString()} EUR`
+      },
+      amount() {
+        const foundProduct = this.shoppingBag.find(product => {
+          return product.naam === this.product.naam
+        })
+
+        return foundProduct && foundProduct.amount
+      }
+    },
       }
     }
   }
