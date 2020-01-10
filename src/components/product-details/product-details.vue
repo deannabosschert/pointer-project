@@ -33,8 +33,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   import AppIcon from '../app-icon/app-icon'
 
   export default {
@@ -46,19 +44,11 @@
         type: Object,
         required: true
       },
-    },
-    computed: {
-      ...mapState({
-        shoppingBag: state => state.shop.shoppingBag,
-      }),
-      amount() {
-        const foundProduct = this.shoppingBag.find(product => {
-          return product.naam === this.product.naam
-        })
-
-        return foundProduct && foundProduct.amount
+      amount: {
+        type: Number,
+        default: 0
       }
-    }
+    },
   }
 </script>
 
