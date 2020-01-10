@@ -10,8 +10,8 @@
     </button>
 
     <div
-      v-if="amountIsActive"
-      class="product-details__amount"
+      v-if="amount > 0"
+      class="product-details__controls"
     >
       <button
         @click="$emit('remove-from-cart-click')"
@@ -64,7 +64,7 @@
 
 <style lang="scss">
   .product-details,
-  .product-details__amount {
+  .product-details__controls {
     display: flex;
   }
 </style>
