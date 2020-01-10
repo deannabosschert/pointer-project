@@ -20,7 +20,7 @@
         <span class="sr-only">Verwijder één uit winkelmandje</span>
         <app-icon name="min" />
       </button>
-      <p>{{ amount }}</p>
+      <p>{{ amount || 'onbekend' }}</p>
       <button
         @click="$emit('add-to-cart-click')"
         class="product-details__button"
@@ -50,14 +50,15 @@
     },
     computed: {
       ...mapState({
-        shoppingBag: state => state.shop.shoppingBag
+        shoppingBag: state => state.shop.shoppingBag,
       }),
       amount() {
-        const foundProduct = this.shoppingBag
-          .find(product => product.naam === this.product.naam)
+        const foundProduct = this.shoppingBag.find(product => {
+          return product.naam === this.product.naam
+        })
 
-        return foundProduct.amount
-      },
+        return foundProduct && foundProduct.amount
+      }
     }
   }
 </script>
