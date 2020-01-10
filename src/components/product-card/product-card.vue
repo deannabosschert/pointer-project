@@ -15,11 +15,18 @@
         </dl>
       </figcaption>
     </figure>
-    <product-details :product="product" />
+    <product-details
+      :product="product"
+      :amount="amount || 0"
+      @add-to-cart-click="addToCart"
+      @remove-from-cart-click="removeFromCart"
+    />
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   import FixedRatio from '../fixed-ratio/fixed-ratio'
   import ProductDetails from '../product-details/product-details'
 
@@ -49,6 +56,12 @@
         return foundProduct && foundProduct.amount
       }
     },
+    methods: {
+      addToCart() {
+        // Add to shopping bag
+      },
+      removeFromCart() {
+        // Remove from shopping bag
       }
     }
   }
