@@ -38,6 +38,9 @@
   import AppIcon from '../app-icon/app-icon'
 
   export default {
+    components: {
+      AppIcon
+    },
     props: {
       product: {
         type: Object,
