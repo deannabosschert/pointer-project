@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 
 export const state = () => ({
-  shoppingBag: [],
+  shoppingBag: {},
   shopItems: [
     {
       mediaLink: '/static/images/aston-martin.jpg',
@@ -66,27 +66,29 @@ export const actions = {
 
 export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
-    state.shoppingBag = [...state.shoppingBag, { ...payload.item, amount: payload.amount }]
+    const items = state.shoppingBag
+    items[payload.item.naam] = 1
+
+    state.shoppingBag = { ...items }
   },
   [types.REMOVE_FROM_SHOPPING_BAG](state, payload) {
-    state.shoppingBag = state.shoppingBag.filter(item => item.naam === payload.item.naam)
+    const items = state.shoppingBag
+    delete items[payload.item.naam]
+
+    state.shoppingBag = { ...items }
   },
   [types.INCREMENT_ITEM_AMOUNT](state, payload) {
-    state.shoppingBag = state.shoppingBag.map(item => {
-      if (item.naam === payload.item.naam) {
-        return { ...item, amount: item.amount++ }
-      }
+    const items = state.shoppingBag
+    const amount = items[payload.item.naam]
+    items[payload.item.naam] = amount++
 
-      return item
-    })
+    state.shoppingBag = { ...items }
   },
   [types.DECREMENT_ITEM_AMOUNT](state, payload) {
-    state.shoppingBag = state.shoppingBag.map(item => {
-      if (item.naam === payload.item.naam) {
-        return { ...item, amount: item.amount-- }
-      }
+    const items = state.shoppingBag
+    const amount = items[payload.item.naam]
+    items[payload.item.naam] = amount--
 
-      return item
-    })
+    state.shoppingBag = { ...items }
   }
 }
