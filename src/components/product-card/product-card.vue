@@ -17,9 +17,9 @@
     </figure>
     <product-details
       :product="product"
-      :amount="amount || 0"
-      @add-to-cart-click="addToCart"
-      @remove-from-cart-click="removeFromCart"
+      :amount="amount"
+      @add-to-cart-click="addToShoppingBag"
+      @remove-from-cart-click="removeFromShoppingBag"
     />
   </div>
 </template>
@@ -49,19 +49,21 @@
         return `${this.product.prijs.toLocaleString()} EUR`
       },
       amount() {
-        const foundProduct = this.shoppingBag.find(product => {
-          return product.naam === this.product.naam
-        })
-
-        return foundProduct && foundProduct.amount
+        return this.shoppingBag[this.product.naam] || 0
       }
     },
     methods: {
-      addToCart() {
-        // Add to shopping bag
+      addToShoppingBag() {
+        this.$store.dispatch('shop/addToShoppingBag', {
+          item: this.product,
+          amount: this.amount
+        })
       },
-      removeFromCart() {
-        // Remove from shopping bag
+      removeFromShoppingBag() {
+        this.$store.dispatch('shop/removeFromShoppingBag', {
+          item: this.product,
+          amount: this.amount
+        })
       }
     }
   }
