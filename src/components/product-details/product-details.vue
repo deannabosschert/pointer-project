@@ -2,22 +2,23 @@
   <div class="product-details">
     <h2>{{ product.naam }}</h2>
     <button
+      v-if="amount === 0"
       @click="$emit('add-to-cart-click')"
       class="product-details__button"
     >
-      <span class="sr-only">Voeg toe aan winkelmandje</span>
+      <span>Voeg toe aan winkelmandje</span>
       <app-icon name="plus" />
     </button>
 
     <div
-      v-if="amount > 0"
+      v-else
       class="product-details__controls"
     >
       <button
         @click="$emit('remove-from-cart-click')"
         class="product-details__button"
       >
-        <span class="sr-only">Verwijder één uit winkelmandje</span>
+        <span>Verwijder één uit winkelmandje</span>
         <app-icon name="min" />
       </button>
       <p>{{ amount || 'onbekend' }}</p>
@@ -25,7 +26,7 @@
         @click="$emit('add-to-cart-click')"
         class="product-details__button"
       >
-        <span class="sr-only">Voeg één toe aan winkelmandje</span>
+        <span>Voeg één toe aan winkelmandje</span>
         <app-icon name="plus" />
       </button>
     </div>
