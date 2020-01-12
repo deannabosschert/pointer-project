@@ -4,32 +4,32 @@ export const state = () => ({
   shoppingBag: {},
   shopItems: [
     {
-      mediaLink: '/static/images/aston-martin.jpg',
+      mediaLink: '/images/aston-martin.jpg',
       naam: 'Aston Martin',
       prijs: 228000.00
     },
     {
-      mediaLink: '/static/images/moet.jpg',
+      mediaLink: '/images/moet.jpg',
       naam: 'Moët',
       prijs: 349.00
     },
     {
-      mediaLink: '/static/images/prive-jet.jpg',
+      mediaLink: '/images/prive-jet.jpg',
       naam: 'Privé jet',
       prijs: 12750000.00
     },
     {
-      mediaLink: '/static/images/balenciaga.jpg',
+      mediaLink: '/images/balenciaga.jpg',
       naam: 'Balenciaga',
       prijs: 795.00
     },
     {
-      mediaLink: '/static/images/diamantring.jpg',
+      mediaLink: '/images/diamantring.jpg',
       naam: 'Diamantring',
       prijs: 55600.00
     },
     {
-      mediaLink: '/static/images/luxe-jacht.jpg',
+      mediaLink: '/images/luxe-jacht.jpg',
       naam: 'Luxe jacht',
       prijs: 2000000.00
     }
