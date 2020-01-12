@@ -6,8 +6,8 @@
       @click="$emit('add-to-cart-click')"
       class="product-details__button"
     >
-      <span>Voeg toe aan winkelmandje</span>
-      <app-icon name="plus" />
+      <span class="sr-only">Voeg toe aan winkelmandje</span>
+      <app-icon name="plus_black" />
     </button>
 
     <div
@@ -18,16 +18,16 @@
         @click="$emit('remove-from-cart-click')"
         class="product-details__button"
       >
-        <span>Verwijder één uit winkelmandje</span>
-        <app-icon name="min" />
+        <span class="sr-only">Verwijder één uit winkelmandje</span>
+        <app-icon name="min_black" />
       </button>
       <p>{{ amount || 'onbekend' }}</p>
       <button
         @click="$emit('add-to-cart-click')"
         class="product-details__button"
       >
-        <span>Voeg één toe aan winkelmandje</span>
-        <app-icon name="plus" />
+        <span class="sr-only">Voeg één toe aan winkelmandje</span>
+        <app-icon name="plus_black" />
       </button>
     </div>
   </div>
@@ -57,5 +57,9 @@
   .product-details,
   .product-details__controls {
     display: flex;
+  }
+
+  .product-details__button {
+    font-size: 1rem;
   }
 </style>
