@@ -38,13 +38,10 @@ export const state = () => ({
 
 export const getters = {
   shoppingBagItemsQuantity(state) {
-    return state.shoppingBag.length
+    return Object.values(state.shoppingBag).reduce((total, current) => {
+      return total + current
+    })
   },
-  shoppingBagTotalPrice(state) {
-    return state.shoppingBag.reduce((total, currentItem) => {
-      return total + currentItem.prijs
-    }, 0)
-  }
 }
 
 export const actions = {
@@ -80,14 +77,14 @@ export const mutations = {
   [types.INCREMENT_ITEM_AMOUNT](state, payload) {
     const items = state.shoppingBag
     const amount = items[payload.item.naam]
-    items[payload.item.naam] = amount++
+    items[payload.item.naam] = amount + 1
 
     state.shoppingBag = { ...items }
   },
   [types.DECREMENT_ITEM_AMOUNT](state, payload) {
     const items = state.shoppingBag
     const amount = items[payload.item.naam]
-    items[payload.item.naam] = amount--
+    items[payload.item.naam] = amount - 1
 
     state.shoppingBag = { ...items }
   }
