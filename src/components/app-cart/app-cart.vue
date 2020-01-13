@@ -11,8 +11,8 @@
       <p class="app-cart__place">{{  }}</p>
       <ul class="app-cart__caretypes">
         <li
-          v-for="caretype in selectedCareCompany.soortenZorg"
-          :key="caretype"
+          v-for="careType in selectedCareCompany.soortenZorg"
+          :key="careType"
         >{{ careType }}</li>
       </ul>
     </header>
