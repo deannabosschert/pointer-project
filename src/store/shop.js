@@ -53,9 +53,16 @@ export const state = () => ({
 export const getters = {
   shoppingBagItemsQuantity(state) {
     return Object.values(state.shoppingBag).reduce((total, current) => {
-      return total + current
-    })
+      return total + current.amount
+    }, 0)
   },
+  shoppingBagTotalPrice(state) {
+    return Object.values(state.shoppingBag).reduce((total, current) => {
+      const { prijs, amount } = current
+
+      return total + (prijs * amount)
+    }, 0)
+  }
 }
 
 export const actions = {
