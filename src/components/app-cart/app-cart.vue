@@ -1,20 +1,30 @@
 <template>
   <aside class="app-cart">
-    <header class="app-cart__header">
+    <header
+      v-if="selectedCareCompany"
+      class="app-cart__header"
+    >
       <h2 class="app-cart__title">
         <span class="sr-only">Bonnetje van: </span>
-        Selected company name
+        {{ selectedCareCompany.naam }}
       </h2>
-      <p class="app-cart__place">Plaats</p>
+      <p class="app-cart__place">{{  }}</p>
       <ul class="app-cart__caretypes">
-        <li>Soort zorg</li>
+        <li
+          v-for="caretype in selectedCareCompany.soortenZorg"
+          :key="caretype"
+        >{{ careType }}</li>
       </ul>
     </header>
 
     <p class="app-cart__date">{{ formattedDate }}</p>
-    <p class="app-cart__payment-company">Company name</p>
+    <p
+      v-if="selectedCareCompany"
+      class="app-cart__payment-company"
+    >{{ selectedCareCompany.naam }}</p>
 
     <app-table
+      v-if="shoppingBagProducts.length"
       :products="shoppingBagProducts"
       :total="shoppingBagTotalPrice"
     />
@@ -43,7 +53,7 @@
     },
     computed: {
       ...mapState({
-        selectedCompany: state => state.selectedCompany,
+        selectedCareCompany: state => state.selectedCareCompany,
         shoppingBag: state => state.shop.shoppingBag,
         substituteItems: state => state.shop.substituteItems
       }),
