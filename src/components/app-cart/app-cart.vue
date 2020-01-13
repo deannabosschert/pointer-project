@@ -72,6 +72,16 @@
             }
           })
       },
+      // TODO: fix this:
+      /**
+       * We have to find a more valuable solution here,
+       * right now we just divide the total by the number of
+       * substitutes which is not ideal.
+       *
+       * For now it works but we have to find a more solid
+       * solution for v2.0
+       */
+
       substituteProducts() {
         return this.substituteItems.map((item, index, self) => {
           const part = this.shoppingBagTotalPrice / self.length
