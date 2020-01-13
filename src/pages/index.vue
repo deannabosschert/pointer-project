@@ -1,8 +1,8 @@
 <template>
   <main class="shop-page">
     <h1>This is the shop</h1>
-    <nuxt-link to="/stats">To stats</nuxt-link>
     <product-list :products="shopItems" />
+    <nuxt-link to="/stats">Bekijk de cijfers</nuxt-link>
   </main>
 </template>
 
