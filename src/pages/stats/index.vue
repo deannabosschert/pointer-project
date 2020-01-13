@@ -4,6 +4,7 @@
 
     <company-search />
     <year-selection :selected-company="selectedCareCompany" />
+    <bar-chart />
 
     <p>You selected this data:</p>
     <pre>{{ selectedData }}</pre>
@@ -18,11 +19,13 @@ import { SET_CARECOMPANIES } from '~/store/mutation-types'
 
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
+import BarChart from '../components/bar-chart/bar-chart'
 
 export default {
   components: {
     CompanySearch,
-    YearSelection
+    YearSelection,
+    BarChart
   },
   computed: {
     ...mapGetters({
