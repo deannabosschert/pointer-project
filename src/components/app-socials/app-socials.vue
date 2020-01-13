@@ -45,6 +45,8 @@
         console.log('sharing to twitter')
       },
       shareToFacebook() {
+        // TODO: find a solid FB solution
+
         console.log('sharing to facebook')
       }
     }
