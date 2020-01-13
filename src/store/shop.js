@@ -33,6 +33,20 @@ export const state = () => ({
       naam: 'Luxe jacht',
       prijs: 2000000.00
     }
+  ],
+  substituteItems: [
+    {
+      naam: 'Injecties',
+      prijs: 2.00
+    },
+    {
+      naam: 'Uur fysio',
+      prijs: 90
+    },
+    {
+      naam: 'Jaar ouderenzorg',
+      prijs: 100.000
+    }
   ]
 })
 
