@@ -2,13 +2,13 @@
   <section class="app-socials">
     <h2 class="app-socials__title">Deel je ervaring en aankopen!</h2>
     <div class="app-socials__buttons">
-      <button
-        @click="shareToTwitter"
-        class="app-socials__button"
+      <a
+        class="twitter-share-button"
+        :href="twitterLink"
       >
-        <app-icon name="twitter" />
-        <span class="sr-only">Deel op Twitter</span>
-      </button>
+        <app-icon name="facebook" />
+        <span>Deel op Twitter</span>
+      </a>
       <button
         @click="shareToFacebook"
         class="app-socials__button"
@@ -31,6 +31,21 @@
       content: {
         type: Object,
         default: null
+      }
+    },
+    computed: {
+      twitterLink() {
+        // TODO: add text with link to our site
+
+        return `https://twitter.com/intent/tweet`
+      },
+    },
+    methods: {
+      shareToTwitter() {
+        console.log('sharing to twitter')
+      },
+      shareToFacebook() {
+        console.log('sharing to facebook')
       }
     }
   }
