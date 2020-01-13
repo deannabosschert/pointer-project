@@ -20,7 +20,7 @@
     <tfoot class="app-table__footer">
       <tr>
         <td>Totaal:</td>
-        <td>{{ totalPrice }}</td>
+        <td>{{ total }}</td>
       </tr>
     </tfoot>
   </table>
@@ -30,17 +30,14 @@
   export default {
     props: {
       products: {
-        type: Object,
+        type: Array,
+        required: true
+      },
+      total: {
+        type: Number,
         required: true
       }
     },
-    computed: {
-      totalPrice() {
-        return this.products.reduce((totalPrice, currentItem) => {
-          return totalPrice + currentItem.prijs
-        }, 0)
-      }
-    }
   }
 </script>
 
