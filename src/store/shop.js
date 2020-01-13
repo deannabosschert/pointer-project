@@ -1,35 +1,35 @@
 import * as types from './mutation-types'
 
 export const state = () => ({
-  shoppingBag: [],
+  shoppingBag: {},
   shopItems: [
     {
-      mediaLink: '/static/images/aston-martin.jpg',
+      mediaLink: '/images/aston-martin.jpg',
       naam: 'Aston Martin',
       prijs: 228000.00
     },
     {
-      mediaLink: '/static/images/moet.jpg',
+      mediaLink: '/images/moet.jpg',
       naam: 'Moët',
       prijs: 349.00
     },
     {
-      mediaLink: '/static/images/prive-jet.jpg',
+      mediaLink: '/images/prive-jet.jpg',
       naam: 'Privé jet',
       prijs: 12750000.00
     },
     {
-      mediaLink: '/static/images/balenciaga.jpg',
+      mediaLink: '/images/balenciaga.jpg',
       naam: 'Balenciaga',
       prijs: 795.00
     },
     {
-      mediaLink: '/static/images/diamantring.jpg',
+      mediaLink: '/images/diamantring.jpg',
       naam: 'Diamantring',
       prijs: 55600.00
     },
     {
-      mediaLink: '/static/images/luxe-jacht.jpg',
+      mediaLink: '/images/luxe-jacht.jpg',
       naam: 'Luxe jacht',
       prijs: 2000000.00
     }
@@ -38,13 +38,10 @@ export const state = () => ({
 
 export const getters = {
   shoppingBagItemsQuantity(state) {
-    return state.shoppingBag.length
+    return Object.values(state.shoppingBag).reduce((total, current) => {
+      return total + current
+    })
   },
-  shoppingBagTotalPrice(state) {
-    return state.shoppingBag.reduce((total, currentItem) => {
-      return total + currentItem.prijs
-    }, 0)
-  }
 }
 
 export const actions = {
@@ -66,27 +63,29 @@ export const actions = {
 
 export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
-    state.shoppingBag = [...state.shoppingBag, { ...payload.item, amount: payload.amount }]
+    const items = state.shoppingBag
+    items[payload.item.naam] = 1
+
+    state.shoppingBag = { ...items }
   },
   [types.REMOVE_FROM_SHOPPING_BAG](state, payload) {
-    state.shoppingBag = state.shoppingBag.filter(item => item.naam === payload.item.naam)
+    const items = state.shoppingBag
+    delete items[payload.item.naam]
+
+    state.shoppingBag = { ...items }
   },
   [types.INCREMENT_ITEM_AMOUNT](state, payload) {
-    state.shoppingBag = state.shoppingBag.map(item => {
-      if (item.naam === payload.item.naam) {
-        return { ...item, amount: item.amount++ }
-      }
+    const items = state.shoppingBag
+    const amount = items[payload.item.naam]
+    items[payload.item.naam] = amount + 1
 
-      return item
-    })
+    state.shoppingBag = { ...items }
   },
   [types.DECREMENT_ITEM_AMOUNT](state, payload) {
-    state.shoppingBag = state.shoppingBag.map(item => {
-      if (item.naam === payload.item.naam) {
-        return { ...item, amount: item.amount-- }
-      }
+    const items = state.shoppingBag
+    const amount = items[payload.item.naam]
+    items[payload.item.naam] = amount - 1
 
-      return item
-    })
+    state.shoppingBag = { ...items }
   }
 }
