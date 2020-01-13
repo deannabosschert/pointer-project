@@ -78,7 +78,7 @@ export const actions = {
 export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
     const items = state.shoppingBag
-    items[payload.item.naam] = 1
+    items[payload.item.naam] = { amount: 1, prijs: payload.item.prijs }
 
     state.shoppingBag = { ...items }
   },
@@ -90,15 +90,17 @@ export const mutations = {
   },
   [types.INCREMENT_ITEM_AMOUNT](state, payload) {
     const items = state.shoppingBag
-    const amount = items[payload.item.naam]
-    items[payload.item.naam] = amount + 1
+    const currentItem = items[payload.item.naam]
+    const { amount } = currentItem
+    items[payload.item.naam] = { ...currentItem, amount: amount + 1 }
 
     state.shoppingBag = { ...items }
   },
   [types.DECREMENT_ITEM_AMOUNT](state, payload) {
     const items = state.shoppingBag
-    const amount = items[payload.item.naam]
-    items[payload.item.naam] = amount - 1
+    const currentItem = items[payload.item.naam]
+    const { amount } = currentItem
+    items[payload.item.naam] = { ...currentItem, amount: amount - 1 }
 
     state.shoppingBag = { ...items }
   }
