@@ -46,7 +46,7 @@
         shoppingBag: state => state.shop.shoppingBag
       }),
       formattedPrice() {
-        return `${this.product.prijs.toLocaleString()} EUR`
+        return `€ ${this.product.prijs.toLocaleString()}`
       },
       amount() {
         return this.shoppingBag[this.product.naam] || 0
