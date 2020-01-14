@@ -49,7 +49,8 @@
         return `€ ${this.product.prijs.toLocaleString()}`
       },
       amount() {
-        return this.shoppingBag[this.product.naam] || 0
+        return this.shoppingBag[this.product.naam] &&
+          this.shoppingBag[this.product.naam].amount || 0
       }
     },
     methods: {
