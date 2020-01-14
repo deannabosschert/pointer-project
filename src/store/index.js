@@ -5,7 +5,8 @@ export const state = () => ({
   selectedCareCompany: null,
   shoppingBag: [],
   careCompanies: null,
-  selectedData: null
+  selectedData: null,
+  selectedDutchData: null
 })
 
 // Things you want to get out of the state, you can also use
@@ -22,6 +23,9 @@ export const getters = {
   },
   selectedData(state) {
     return state.selectedData
+  },
+  selectedDutchData(state) {
+    return state.selectedDutchData
   }
 }
 
@@ -51,5 +55,8 @@ export const mutations = {
   },
   [types.SET_SELECTED_DATA](state, payload) {
     state.selectedData = payload.selectedData
+  },
+  [types.SET_SELECTED_DUTCH_DATA](state, payload) {
+    state.selectedDutchData = payload.data
   }
 }
