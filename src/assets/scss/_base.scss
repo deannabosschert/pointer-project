@@ -31,6 +31,7 @@ h2,
 input,
 select {
   // Remove default styles
+  appearance: none;
   --webkit-appearance: none;
 
   // Add our own styles
