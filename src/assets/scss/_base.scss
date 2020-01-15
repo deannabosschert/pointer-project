@@ -10,6 +10,10 @@ p {
   line-height: 1.25;
 }
 
+p + p {
+  margin-top: $spacing-default;
+}
+
 h1,
 .h1 {
   font-family: $font-stack-headings;
