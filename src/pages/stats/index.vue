@@ -8,11 +8,13 @@
       :dutch-data="dutchData"
     />
 
-    <p>You selected this data:</p>
-    <pre>{{ selectedData }}</pre>
-
-    <p>And this dutch data:</p>
-    <pre>{{ selectedDutchData }}</pre>
+    <bar-chart
+      v-if="selectedData"
+      :selected-data="selectedData"
+      :dutch-data="selectedDutchData"
+      property="omzet"
+      title="My awesome bar chart"
+    />
 
     <nuxt-link to="/">To the shop</nuxt-link>
   </main>
@@ -26,11 +28,14 @@ import dutchDataJson from '~/static/data/dutch-stats'
 
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
+import BarChart from '~/components/bar-chart/bar-chart.vue'
+
 
 export default {
   components: {
     CompanySearch,
     YearSelection,
+    BarChart
   },
   data() {
     return {
