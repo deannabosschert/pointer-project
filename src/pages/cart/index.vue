@@ -31,4 +31,8 @@
   .cart-page {
     padding: $spacing-default $spacing-medium;
   }
+
+  .cart-page .app-cart {
+    margin-bottom: $spacing-large;
+  }
 </style>
