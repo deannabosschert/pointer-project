@@ -4,24 +4,36 @@
       v-if="selectedCareCompany"
       class="app-cart__header"
     >
-      <h2 class="app-cart__title">
+      <h2 class="app-cart__title correct-casing">
         <span class="sr-only">Bonnetje van: </span>
         {{ selectedCareCompany.naam }}
       </h2>
-      <p class="app-cart__place">{{  }}</p>
+      <p class="app-cart__place correct-casing">{{ selectedCareCompany.plaatsen[0] }}</p>
       <ul class="app-cart__caretypes">
         <li
+          class="app-cart__caretype correct-casing"
           v-for="careType in selectedCareCompany.soortenZorg"
           :key="careType"
         >{{ careType }}</li>
       </ul>
+      <button
+        class="app-cart__close-button"
+        @click="redirectToPreviousPage"
+      >
+        <span class="sr-only">Terug naar vorige pagina</span>
+        <app-icon name="cross_black" />
+      </button>
     </header>
 
-    <p class="app-cart__date">{{ formattedDate }}</p>
-    <p
-      v-if="selectedCareCompany"
-      class="app-cart__payment-company"
-    >{{ selectedCareCompany.naam }}</p>
+    <div class="app-cart__payment-data">
+      <p class="app-cart__date">{{ formattedDate }}</p>
+      <p
+        v-if="selectedCareCompany"
+        class="app-cart__payment-company"
+      >
+        Betaling: <span class="correct-casing">{{ selectedCareCompany.naam }}</span>
+      </p>
+    </div>
 
     <app-table
       v-if="shoppingBagProducts.length"
@@ -43,11 +55,13 @@
 <script>
   import { mapState, mapGetters } from 'vuex'
 
+  import AppIcon from '../app-icon/app-icon'
   import AppTable from '../app-table/app-table'
   import AppSocials from '../app-socials/app-socials'
 
   export default {
     components: {
+      AppIcon,
       AppTable,
       AppSocials
     },
@@ -105,6 +119,11 @@
 
         return `${day}-${month}-${year}`
       }
+    },
+    methods: {
+      redirectToPreviousPage() {
+        return this.$router.back()
+      }
     }
   }
 
@@ -114,5 +133,44 @@
 </script>
 
 <style lang="scss">
+  .app-cart {
+    background: $color-white;
+    padding: $spacing-large $spacing-medium;
+  }
 
+  .app-cart__header {
+    position: relative;
+    border-bottom: 2px dashed $color-darkest;
+    padding: $spacing-medium 0;
+    padding-top: $spacing-small;
+    margin-bottom: $spacing-medium;
+  }
+
+  .app-cart__title,
+  .app-cart__place,
+  .app-cart__caretype {
+    margin-bottom: $spacing-tiny;
+    line-height: 1;
+  }
+
+  .app-cart__title {
+    font-size: $font-size-medium;
+    line-height: 1.10;
+    padding-right: $font-size-medium;
+  }
+
+  .app-cart__close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: $font-size-medium;
+  }
+
+  .app-cart__payment-data {
+    margin-bottom: $spacing-medium;
+  }
+
+  .app-cart__date + p {
+    margin-top: 0;
+  }
 </style>

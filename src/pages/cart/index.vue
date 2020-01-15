@@ -28,5 +28,7 @@
 </script>
 
 <style lang="scss">
-
+  .cart-page {
+    padding: $spacing-default $spacing-medium;
+  }
 </style>
