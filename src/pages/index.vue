@@ -2,7 +2,7 @@
   <main class="home-page">
     <section class="home-page__intro">
       <h1 class="home-page__title">Shoppen met zorggeld</h1>
-      <p>Zorgcoyboys zijn achterbakse ondernemers, gierige consultants en rijke managers. Dit zijn zorginstellingen die de afgelopen vijf jaar misbruik hebben gemaakt van het gebrek aan toezicht en de zorg alleen maar duurder maken.</p>
+      <p>Zorgcowboys zijn achterbakse ondernemers, gierige consultants en rijke managers. Dit zijn zorginstellingen die de afgelopen vijf jaar misbruik hebben gemaakt van het gebrek aan toezicht en de zorg alleen maar duurder maken.</p>
     </section>
     <section class="home-page__actions">
       <h2 class="home-page__actions-title">Zoek jouw zorginstelling</h2>
