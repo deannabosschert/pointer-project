@@ -10,7 +10,7 @@
       <button class="app-header__button app-header__button--search">
         <app-icon
           class="app-header__icon"
-          name="search"
+          name="search-icon"
         />
         <span class="sr-only">Zoek een zorginstelling</span>
       </button>
