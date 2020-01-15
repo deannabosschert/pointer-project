@@ -36,25 +36,32 @@
 </script>
 
 <style lang="scss">
-  .app-header__button {
-    margin-left: 0.625rem;
-  }
+  $app-header-height: 60px;
 
   .app-header {
+    height: $app-header-height;
     background-color: $color-darkest;
     display: flex;
+    margin-bottom: $spacing-medium;
   }
 
   .app-header__logo-container {
     background-color: $color-dimmed-purple;
     flex: 0 0 100px;
-    padding: 0.625rem;
+    padding: 0 0.625rem;
     display: flex;
     align-items: center;
   }
 
   .app-header__logo {
     width: 100%;
+  }
+
+  .app-header__triangle {
+    width: 0;
+    height: 0;
+    border-bottom: $app-header-height solid $color-highlight-yellow;
+    border-right: $app-header-height solid transparent;
   }
 
   .app-header__icons {
@@ -69,10 +76,8 @@
     font-size: 1.725rem;
   }
 
-  .app-header__triangle {
-      width: 0;
-      height: 0;
-      border-bottom: 64px solid $color-highlight-yellow;
-      border-right: 64px solid transparent;
+  .app-header__button {
+    margin-left: 0.625rem;
   }
+
 </style>
