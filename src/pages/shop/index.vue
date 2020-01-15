@@ -21,6 +21,7 @@
     <button
       type="button"
       class="button button--secondary"
+      :disabled="!shoppingBagItemsQuantity"
       @click="openCart"
     >
       Afrekenen
@@ -46,7 +47,8 @@
     },
     computed: {
       ...mapGetters({
-        selectedData: 'selectedData'
+        selectedData: 'selectedData',
+        shoppingBagItemsQuantity: 'shop/shoppingBagItemsQuantity'
       }),
       ...mapState({
         shopItems: state => state.shop.shopItems
