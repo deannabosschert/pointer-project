@@ -33,6 +33,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   import AppIcon from '../app-icon/app-icon'
   import AppIconWithCounter from '../app-icon-with-counter/app-icon-with-counter'
 
@@ -40,6 +42,11 @@
     components: {
       AppIcon,
       AppIconWithCounter
+    },
+    computed: {
+      ...mapGetters({
+        shoppingBagItemsQuantity: 'shop/shoppingBagItemsQuantity'
+      })
     }
   }
 </script>
