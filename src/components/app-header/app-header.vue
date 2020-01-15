@@ -7,12 +7,19 @@
     </div>
     <div class="app-header__triangle"></div>
     <div class="app-header__icons">
-      <button class="app-header__button">
+      <button class="app-header__button app-header__button--search">
         <app-icon
           class="app-header__icon"
-          name="search-icon"
+          name="search"
         />
         <span class="sr-only">Zoek een zorginstelling</span>
+      </button>
+      <button class="app-header__button app-header__button--shop">
+        <app-icon-with-counter
+          name="shop_white"
+          :amount="shoppingBagItemsQuantity"
+          message="Aantal producten in winkelmandje"
+        />
       </button>
       <button class="app-header__button">
         <app-icon
@@ -27,10 +34,12 @@
 
 <script>
   import AppIcon from '../app-icon/app-icon'
+  import AppIconWithCounter from '../app-icon-with-counter/app-icon-with-counter'
 
   export default {
     components: {
-      AppIcon
+      AppIcon,
+      AppIconWithCounter
     }
   }
 </script>
@@ -80,4 +89,11 @@
     margin-left: 0.625rem;
   }
 
+  .app-header__button--search {
+    display: block;
+  }
+
+  .app-header__button--shop {
+    display: none;
+  }
 </style>

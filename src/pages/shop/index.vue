@@ -56,6 +56,18 @@
       openCart() {
         this.cartIsOpen = true
       }
+    },
+    head() {
+      /*
+        We have to swap around the icons in the header,
+        therefore we add a `is-shop-page` to the html and
+        fix it in the scss.
+      */
+      return {
+        htmlAttrs: {
+          class: 'is-shop-page'
+        }
+      }
     }
   }
 </script>
@@ -93,5 +105,14 @@
 
   .shop-page .button {
     margin-bottom: $spacing-small;
+  }
+
+  // Swap search icon with shop icon with counter
+  .is-shop-page .app-header__button--search {
+    display: none;
+  }
+
+  .is-shop-page .app-header__button--shop {
+    display: block;
   }
 </style>
