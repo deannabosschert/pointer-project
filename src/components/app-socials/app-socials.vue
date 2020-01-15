@@ -67,6 +67,7 @@
     display: flex;
     justify-content: center;
     flex-direction:column;
+    margin-right: $spacing-small;
   }
 
   .app-socials__intro-text {
