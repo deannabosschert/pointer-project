@@ -140,14 +140,6 @@
     position: relative;
   }
 
-  .app-cart::before {
-    // Zig zag line before
-  }
-
-  .app-cart::after {
-    // Zig zag line after
-  }
-
   .app-cart__header {
     position: relative;
     border-bottom: 2px dashed $color-darkest;
