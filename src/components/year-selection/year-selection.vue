@@ -33,11 +33,15 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import { SET_SELECTED_DATA } from '~/store/mutation-types'
+  import { SET_SELECTED_DATA, SET_SELECTED_DUTCH_DATA } from '~/store/mutation-types'
 
   export default {
     props: {
       selectedCompany: {
+        type: Object,
+        default: null
+      },
+      dutchData: {
         type: Object,
         default: null
       }
@@ -62,6 +66,10 @@
 
         this.$store.commit(SET_SELECTED_DATA, {
           selectedData: this.selectedCompany.jaarVerslagen[year]
+        })
+
+        this.$store.commit(SET_SELECTED_DUTCH_DATA, {
+          data: this.dutchData[year]
         })
       }
     }
