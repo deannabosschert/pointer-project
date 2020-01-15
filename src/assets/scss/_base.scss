@@ -1,4 +1,18 @@
-h1 {
-  font-family: "Tenso";
-  
+body {
+  color: $color-darkest;
+  background: $color-lightest;
+  background-image: radial-gradient($color-gray 10%, transparent 0);
+  background-size: 20px 20px;
+}
+
+h1,
+.h1 {
+  font-family: $font-stack-headings;
+  font-size: $font-size-large;
+  font-weight: 600;
+}
+
+h2,
+.h2 {
+  font-family: $font-stack-headings;
 }
