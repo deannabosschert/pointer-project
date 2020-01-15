@@ -12,3 +12,8 @@
 .correct-casing {
   text-transform: capitalize;
 }
+
+.pull-right {
+  display: flex;
+  justify-content: flex-end;
+}

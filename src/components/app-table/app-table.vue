@@ -22,7 +22,10 @@
       v-if="total"
       class="app-table__footer"
     >
-      <div class="app-table__row app-table__row--highlighted">
+      <div
+        class="app-table__row app-table__row--is-total"
+        :class="{ 'app-table__row--highlighted': hasHighlightedTotal }"
+      >
         <p class="app-table__cell">Totaal:</p>
         <p class="app-table__cell app-table__cell--right">€{{ total.toLocaleString() }}</p>
       </div>
@@ -40,6 +43,10 @@
       total: {
         type: Number,
         required: true
+      },
+      hasHighlightedTotal: {
+        type: Boolean,
+        default: false
       }
     },
   }
@@ -48,10 +55,16 @@
 <style lang="scss">
   .app-table {
     display: block;
+    padding-bottom: $spacing-small;
   }
 
+  .app-table,
   .app-table__header {
     border-bottom: 2px dashed $color-darkest;
+  }
+
+  .app-table__body {
+    margin-bottom: $spacing-large;
   }
 
   .app-table__row {
@@ -61,6 +74,9 @@
 
   .app-table__row--highlighted {
     background: rgba($color-highlight-yellow, .67);
+  }
+
+  .app-table__row--is-total {
     padding: 0 $spacing-default;
     text-transform: uppercase;
     font-weight: $font-weight-bold;
@@ -84,6 +100,7 @@
   .app-table__row .app-table__cell:first-child {
     width: 25%;
   }
+
 
   .app-table__cell--right {
     justify-content: flex-end;

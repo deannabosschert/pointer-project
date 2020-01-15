@@ -39,6 +39,7 @@
       v-if="shoppingBagProducts.length"
       :products="shoppingBagProducts"
       :total="shoppingBagTotalPrice"
+      has-highlighted-total
     />
 
     <h3 class="app-cart__title--special">Wow hiervan zou je ook...</h3>
@@ -46,7 +47,7 @@
       :products="substituteProducts"
       :total="totalSubstitutePrice"
     />
-    <p class="app-cart__title--special">... kunnen betalen</p>
+    <p class="app-cart__title--special pull-right">... kunnen betalen</p>
 
     <app-socials />
   </section>
@@ -136,6 +137,15 @@
   .app-cart {
     background: $color-white;
     padding: $spacing-large $spacing-medium;
+    position: relative;
+  }
+
+  .app-cart::before {
+    // Zig zag line before
+  }
+
+  .app-cart::after {
+    // Zig zag line after
   }
 
   .app-cart__header {
@@ -159,6 +169,13 @@
     padding-right: $font-size-medium;
   }
 
+  .app-cart__title--special {
+    color: $color-highlight-purple;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-medium;
+    margin-bottom: $spacing-small;
+  }
+
   .app-cart__close-button {
     position: absolute;
     top: 0;
@@ -176,5 +193,9 @@
 
   .app-cart .app-table {
     margin-bottom: $spacing-large;
+  }
+
+  .app-cart .app-table:last-child {
+    margin-bottom: $spacing-default;
   }
 </style>
