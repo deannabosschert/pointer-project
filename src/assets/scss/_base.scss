@@ -43,6 +43,13 @@ select {
   font-family: $font-stack-body;
 }
 
+select {
+  background-image: url('~static/icons/year-dropdown.svg');
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  padding-right: $spacing-large;
+}
+
 .button {
   display: block;
   padding: $spacing-default 0;
