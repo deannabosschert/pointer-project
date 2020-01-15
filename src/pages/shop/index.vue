@@ -18,14 +18,13 @@
     >
       Naar winkelmandje
     </nuxt-link>
-    <nuxt-link
-      to="/cart"
+    <button
+      @click="redirectToCart"
       class="button button--secondary"
       :disabled="!shoppingBagItemsQuantity"
-      @click="openCart"
     >
       Afrekenen
-    </nuxt-link>
+    </button>
   </main>
 </template>
 
@@ -55,8 +54,10 @@
       })
     },
     methods: {
-      openCart() {
-        this.cartIsOpen = true
+      redirectToCart() {
+        this.$router.push({
+          path: '/cart'
+        })
       }
     },
     head() {

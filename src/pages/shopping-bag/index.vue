@@ -15,13 +15,13 @@
       <p>Ga naar de webshop om producten in je winkelmandje te stoppen</p>
     </div>
 
-    <nuxt-link
-      to="/cart"
+    <button
+      @click="redirectToCart"
       class="button"
       :disabled="!correctedShoppingBag.length"
     >
       Afrekenen
-    </nuxt-link>
+    </button>
     <nuxt-link
       to="/shop"
       class="button button--secondary"
@@ -47,6 +47,13 @@
       correctedShoppingBag() {
         return Object.entries(this.shoppingBag).map(([key, value]) => {
           return { naam: key, ...value }
+        })
+      }
+    },
+    methods: {
+      redirectToCart() {
+        return this.$router.push({
+          path: '/cart'
         })
       }
     }
