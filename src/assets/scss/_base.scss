@@ -37,7 +37,7 @@ select {
 
 .button {
   display: block;
-  padding: $spacing-default $spacing-large;
+  padding: $spacing-default 0;
   width: 200px;
   margin: 0 auto;
   border-radius: 0;
@@ -58,6 +58,10 @@ select {
     background: rgba($color-darkest, .6);
     color: rgba($color-lightest, .8)
   }
+}
+
+a.button {
+  text-decoration: none;
 }
 
 .button--secondary {
