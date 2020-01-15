@@ -30,6 +30,10 @@ h2,
 
 input,
 select {
+  // Remove default styles
+  --webkit-appearance: none;
+
+  // Add our own styles
   width: 100%;
   padding: $spacing-small $spacing-default;
   border: 2px solid $color-darkest;
