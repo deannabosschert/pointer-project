@@ -1,5 +1,5 @@
 <template>
-  <aside class="app-cart">
+  <section class="app-cart">
     <header
       v-if="selectedCareCompany"
       class="app-cart__header"
@@ -37,7 +37,7 @@
     <p class="app-cart__title--special">... kunnen betalen</p>
 
     <app-socials />
-  </aside>
+  </section>
 </template>
 
 <script>
