@@ -1,7 +1,12 @@
 <template>
   <main class="shop-page">
     <h1 class="sr-only">Shop met de winst</h1>
-    <p class="shop-page__intro-text">Wat koop jij met de winst van {{ selectedData.naam }}?</p>
+    <p
+      v-if="selectedData"
+      class="shop-page__intro-text"
+    >
+      Wat koop jij met de winst van {{ selectedData.naam }}?
+    </p>
     <p class="shop-page__budget" v-if="selectedData">
       <span class="shop-page__budget-intro">Jouw budget:</span>
       <span class="shop-page__budget-budget">€{{ selectedData.winst.toLocaleString() }}</span>
