@@ -12,7 +12,19 @@
       <span class="shop-page__budget-budget">€{{ selectedData.winst.toLocaleString() }}</span>
     </p>
     <product-list :products="shopItems" />
-    <nuxt-link to="/stats">Bekijk de cijfers</nuxt-link>
+    <nuxt-link
+      to="/shopping-bag"
+      class="button"
+    >
+      Naar winkelmandje
+    </nuxt-link>
+    <button
+      type="button"
+      class="button button--secondary"
+      @click="openCart"
+    >
+      Afrekenen
+    </button>
   </main>
 </template>
 
@@ -27,6 +39,11 @@
       AppCart,
       ProductList
     },
+    data() {
+      return {
+        cartIsOpen: false
+      }
+    },
     computed: {
       ...mapGetters({
         selectedData: 'selectedData'
@@ -34,6 +51,11 @@
       ...mapState({
         shopItems: state => state.shop.shopItems
       })
+    },
+    methods: {
+      openCart() {
+        this.cartIsOpen = true
+      }
     }
   }
 </script>
@@ -63,5 +85,13 @@
   .shop-page__budget-budget {
     font-size: $font-size-large;
     font-weight: $font-weight-bold;
+  }
+
+  .shop-page .product-list {
+    margin-bottom: $spacing-large;
+  }
+
+  .shop-page .button {
+    margin-bottom: $spacing-small;
   }
 </style>
