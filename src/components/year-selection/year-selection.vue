@@ -10,13 +10,16 @@
       id="year-selection"
       @change="setSelectedData"
       :required="required"
+      :class="{ 'year-selection--default-color' : !hasYearResults }"
     >
       <option
         v-if="!hasYearResults"
+        value=""
         disabled
         selected
+        class="year-selection__default"
       >
-        2019
+        Jaar
       </option>
 
       <option
@@ -74,5 +77,7 @@
 </script>
 
 <style lang="scss">
-
+  .year-selection--default-color {
+    color: #888;
+  }
 </style>

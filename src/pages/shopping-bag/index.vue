@@ -75,4 +75,8 @@
     text-align: center;
     margin-bottom: $spacing-medium;
   }
+
+  .shopping-bag-page .button + .button {
+    margin-top: $spacing-small;
+  }
 </style>

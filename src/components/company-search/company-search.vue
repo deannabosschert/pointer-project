@@ -5,6 +5,7 @@
       type="search"
       id="company-search-input"
       class="company-search__input"
+      placeholder="Vul een zorginstelling in..."
       @focus="enableAutocomplete"
       v-model="input"
       :required="required"
