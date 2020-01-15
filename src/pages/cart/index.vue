@@ -1,6 +1,6 @@
 <template>
   <main class="cart-page">
-    <app-cart :selectedCompany="selectedCareCompany" />
+    <app-cart />
     <nuxt-link
       to="/stats"
       class="button"

@@ -13,7 +13,7 @@
         v-for="product in products"
         :key="product.naam"
       >
-        <p class="app-table__cell app-table__cell--right">{{ product.amount }}</p>
+        <p class="app-table__cell app-table__cell--right">{{ product.amount.toLocaleString() }}</p>
         <p class="app-table__cell">{{ product.naam }}</p>
         <p class="app-table__cell app-table__cell--right">€{{ product.prijs.toLocaleString() }}</p>
       </div>

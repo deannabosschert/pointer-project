@@ -26,7 +26,7 @@
     </header>
 
     <div class="app-cart__payment-data">
-      <p class="app-cart__date">{{ formattedDate }}</p>
+      <p class="app-cart__date">Datum: {{ formattedDate }}</p>
       <p
         v-if="selectedCareCompany"
         class="app-cart__payment-company"
@@ -42,7 +42,7 @@
       has-highlighted-total
     />
 
-    <h3 class="app-cart__title--special">Wow hiervan zou je ook...</h3>
+    <h3 class="app-cart__title--special">Wow! Hiervan zou je ook...</h3>
     <app-table
       :products="substituteProducts"
       :total="totalSubstitutePrice"
