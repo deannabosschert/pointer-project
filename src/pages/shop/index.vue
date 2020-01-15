@@ -5,7 +5,7 @@
       v-if="selectedData"
       class="shop-page__intro-text"
     >
-      Wat koop jij met de winst van {{ selectedData.naam }}?
+      Wat koop jij met de winst van <span>{{ selectedData.naam }}</span>?
     </p>
     <p class="shop-page__budget" v-if="selectedData">
       <span class="shop-page__budget-intro">Jouw budget:</span>
@@ -74,12 +74,16 @@
 
 <style lang="scss">
   .shop-page {
-    padding: $spacing-default $spacing-medium;
+    padding: $spacing-small $spacing-medium;
   }
 
   .shop-page__intro-text {
     margin-bottom: $spacing-small;
     text-align: center;
+
+    & > span {
+      text-transform: capitalize;
+    }
   }
 
   .shop-page__budget {
