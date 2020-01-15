@@ -1,5 +1,5 @@
 <template>
-  <form class="year-selection">
+  <div class="year-selection">
     <label
       for="year-selection"
       class="sr-only"
@@ -9,6 +9,7 @@
     <select
       id="year-selection"
       @change="setSelectedData"
+      :required="required"
     >
       <option
         v-if="!hasYearResults"
@@ -28,7 +29,7 @@
         {{ year }}
       </option>
     </select>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -40,6 +41,10 @@
       selectedCompany: {
         type: Object,
         default: null
+      },
+      required: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {

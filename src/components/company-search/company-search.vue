@@ -1,12 +1,13 @@
 <template>
-  <form class="company-search">
-    <label for="company-search-input" class="company-search__label">Zoek je zorgstichting</label>
+  <div class="company-search">
+    <label for="company-search-input" class="sr-only">Zoek je zorgstichting</label>
     <input
       type="search"
       id="company-search-input"
       class="company-search__input"
       @focus="enableAutocomplete"
       v-model="input"
+      :required="required"
     />
     <div
       v-if="autocompleteIsEnabled"
@@ -22,7 +23,7 @@
         {{ company.naam }}
       </button>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -30,6 +31,12 @@
   import { SET_CURRENT_CARECOMPANY } from '~/store/mutation-types'
 
   export default {
+    props: {
+      required: {
+        type: Boolean,
+        default: false
+      }
+    },
     data() {
       return {
         input: '',
