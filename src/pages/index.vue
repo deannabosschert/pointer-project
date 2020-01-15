@@ -12,6 +12,22 @@
           required
           :selected-company="selectedCareCompany"
         />
+        <div class="home-page__buttons">
+          <button
+            type="submit"
+            :disabled="!selectedCareCompany"
+            class="button"
+          >
+            Shop met de winst
+          </button>
+          <button
+            @click="onNumbersButtonClick"
+            :disabled="!selectedCareCompany"
+            class="button button--secondary"
+          >
+            Check de cijfers
+          </button>
+        </div>
       </form>
     </section>
   </main>
@@ -47,7 +63,16 @@
       }
     },
     methods: {
-
+      onSubmit() {
+        return this.$router.push({
+          path: '/shop'
+        })
+      },
+      onNumbersButtonClick() {
+        return this.$router.push({
+          path: '/stats'
+        })
+      }
     }
   }
 </script>
