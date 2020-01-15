@@ -173,4 +173,8 @@
   .app-cart__date + p {
     margin-top: 0;
   }
+
+  .app-cart .app-table {
+    margin-bottom: $spacing-large;
+  }
 </style>
