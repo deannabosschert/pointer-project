@@ -3,6 +3,7 @@ body {
   background: $color-lightest;
   background-image: radial-gradient($color-gray 10%, transparent 0);
   background-size: 20px 20px;
+  font-family: $font-stack-body;
 }
 
 h1,
