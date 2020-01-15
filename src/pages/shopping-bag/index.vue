@@ -19,7 +19,6 @@
       to="/cart"
       class="button"
       :disabled="!correctedShoppingBag.length"
-      @click="openCart"
     >
       Afrekenen
     </nuxt-link>
