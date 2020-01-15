@@ -18,14 +18,14 @@
     >
       Naar winkelmandje
     </nuxt-link>
-    <button
-      type="button"
+    <nuxt-link
+      to="/cart"
       class="button button--secondary"
       :disabled="!shoppingBagItemsQuantity"
       @click="openCart"
     >
       Afrekenen
-    </button>
+    </nuxt-link>
   </main>
 </template>
 

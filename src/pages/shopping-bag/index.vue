@@ -15,14 +15,14 @@
       <p>Ga naar de webshop om producten in je winkelmandje te stoppen</p>
     </div>
 
-    <button
-      type="button"
+    <nuxt-link
+      to="/cart"
       class="button"
       :disabled="!correctedShoppingBag.length"
       @click="openCart"
     >
       Afrekenen
-    </button>
+    </nuxt-link>
     <nuxt-link
       to="/shop"
       class="button button--secondary"
