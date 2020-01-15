@@ -34,5 +34,9 @@
   .product-list .product-card {
     flex: 0 0 100%;
     margin-bottom: 1rem;
+
+    @media (min-width: $layout-tiny) {
+      flex: 0 0 calc(50% - #{$spacing-small})
+    }
   }
 </style>
