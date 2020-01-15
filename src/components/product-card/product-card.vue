@@ -71,6 +71,10 @@
 </script>
 
 <style lang="scss">
+  .product-card {
+    overflow: hidden;
+  }
+
   .product-card__image-container {
     width: 100%;
     position: relative;
@@ -87,6 +91,9 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 1rem 1.625rem;
+    padding: $spacing-tiny $spacing-default;
+    color: $color-highlight-purple;
+    font-weight: $font-weight-bold;
+    background: $color-gray;
   }
 </style>
