@@ -2,6 +2,7 @@
   <div class="product-details">
     <h2 class="product-details__title">{{ product.naam }}</h2>
     <button
+      :disabled="!hasEnoughBudget"
       @click="$emit('add-to-cart-click')"
       class="product-details__button"
     >
@@ -24,6 +25,7 @@
       <button
         @click="$emit('add-to-cart-click')"
         class="product-details__button"
+        :disabled="!hasEnoughBudget"
       >
         <span class="sr-only">Voeg één toe aan winkelmandje</span>
         <app-icon name="plus_black" />
@@ -47,8 +49,17 @@
       amount: {
         type: Number,
         default: 0
+      },
+      budget: {
+        type: Number,
+        required: true
       }
     },
+    computed: {
+      hasEnoughBudget() {
+        return this.budget > this.product.prijs
+      }
+    }
   }
 </script>
 
@@ -103,5 +114,9 @@
     border-radius: 50%;
     font-size: $font-size-default;
     background: $color-highlight-yellow;
+  }
+
+  .product-details__button:disabled {
+    background: grey;
   }
 </style>

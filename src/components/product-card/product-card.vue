@@ -19,6 +19,7 @@
     <product-details
       :product="product"
       :amount="amount"
+      :budget="budget"
       @add-to-cart-click="addToShoppingBag"
       @remove-from-cart-click="removeFromShoppingBag"
     />
