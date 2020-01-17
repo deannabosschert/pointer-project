@@ -53,12 +53,14 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--color-lightest);
+    height: 15px;
+    width: 15px;
+    top: 0px;
+    right: -2px;
+    background-color: $color-highlight-yellow;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
-
+    color: $color-darkest;
+    font-family: $font-stack-headings;
+    font-size: $font-size-small;
   }
 </style>

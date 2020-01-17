@@ -5,6 +5,7 @@ export const state = () => ({
   selectedCareCompany: null,
   careCompanies: null,
   selectedData: null,
+  autoCompleteIsEnabled: false,
   selectedDutchData: null
 })
 
@@ -14,9 +15,6 @@ export const getters = {
   selectedCareCompany(state) {
     return state.selectedCareCompany
   },
-  shoppingBag(state) {
-    return state.shoppingBag
-  },
   careCompanies(state) {
     return state.careCompanies
   },
@@ -25,6 +23,14 @@ export const getters = {
   },
   selectedDutchData(state) {
     return state.selectedDutchData
+  },
+  budget(state, getters) {
+    return state.selectedData && state.selectedData.winst
+      ? state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
+      : 0
+  },
+  autoCompleteIsEnabled(state) {
+    return state.autoCompleteIsEnabled
   }
 }
 
@@ -44,6 +50,9 @@ export const mutations = {
   },
   [types.SET_SELECTED_DATA](state, payload) {
     state.selectedData = payload.selectedData
+  },
+  [types.TOGGLE_AUTOCOMPLETE](state, payload) {
+    state.autoCompleteIsEnabled = payload.autoCompleteIsEnabled
   },
   [types.SET_SELECTED_DUTCH_DATA](state, payload) {
     state.selectedDutchData = payload.data

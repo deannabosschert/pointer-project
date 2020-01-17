@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card">
+  <div
+    class="product-card"
+    :class="{ 'product-card--is-disabled': !hasEnoughBudget }"
+  >
     <figure class="product-card__image-container">
       <fixed-ratio :height="1" :width="1">
         <img
@@ -18,6 +21,7 @@
     <product-details
       :product="product"
       :amount="amount"
+      :budget="budget"
       @add-to-cart-click="addToShoppingBag"
       @remove-from-cart-click="removeFromShoppingBag"
     />
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
 
   import FixedRatio from '../fixed-ratio/fixed-ratio'
   import ProductDetails from '../product-details/product-details'
@@ -45,12 +49,18 @@
       ...mapState({
         shoppingBag: state => state.shop.shoppingBag
       }),
+      ...mapGetters({
+        budget: 'budget'
+      }),
       formattedPrice() {
         return `€ ${this.product.prijs.toLocaleString()}`
       },
       amount() {
         return this.shoppingBag[this.product.naam] &&
           this.shoppingBag[this.product.naam].amount || 0
+      },
+      hasEnoughBudget() {
+        return this.budget > this.product.prijs
       }
     },
     methods: {
@@ -71,9 +81,14 @@
 </script>
 
 <style lang="scss">
+  .product-card {
+    overflow: hidden;
+  }
+
   .product-card__image-container {
     width: 100%;
     position: relative;
+    background: $color-white;
   }
 
   .product-card__image {
@@ -87,6 +102,19 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 1rem 1.625rem;
+    padding: $spacing-tiny $spacing-default;
+    color: $color-highlight-purple;
+    font-weight: $font-weight-bold;
+    background: $color-gray;
+  }
+
+  .product-card--is-disabled .product-card__image {
+    filter: blur(3px);
+  }
+
+  .product-card--is-disabled .product-card__price,
+  .product-card--is-disabled .product-details__button:last-child,
+  .product-card--is-disabled .product-details__title {
+    opacity: .6;
   }
 </style>

@@ -88,7 +88,11 @@ export const actions = {
 export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
     const items = state.shoppingBag
-    items[payload.item.naam] = { amount: 1, prijs: payload.item.prijs }
+    items[payload.item.naam] = {
+      amount: 1,
+      prijs: payload.item.prijs,
+      mediaLink: payload.item.mediaLink
+    }
 
     state.shoppingBag = { ...items }
   },

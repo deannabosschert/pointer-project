@@ -1,5 +1,5 @@
 <template>
-  <form class="year-selection">
+  <div class="year-selection">
     <label
       for="year-selection"
       class="sr-only"
@@ -9,13 +9,17 @@
     <select
       id="year-selection"
       @change="setSelectedData"
+      :required="required"
+      :class="{ 'year-selection--default-color' : !hasYearResults }"
     >
       <option
         v-if="!hasYearResults"
+        value=""
         disabled
         selected
+        class="year-selection__default"
       >
-        2019
+        Jaar
       </option>
 
       <option
@@ -28,7 +32,7 @@
         {{ year }}
       </option>
     </select>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -40,6 +44,10 @@
       selectedCompany: {
         type: Object,
         default: null
+      },
+      required: {
+        type: Boolean,
+        default: false
       },
       dutchData: {
         type: Object,
@@ -77,5 +85,7 @@
 </script>
 
 <style lang="scss">
-
+  .year-selection--default-color {
+    color: #888;
+  }
 </style>

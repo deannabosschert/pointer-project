@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="50px" viewBox="0 0 52 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>facebook_purple</title>
+    <desc>Created with Sketch.</desc>
+    <g id="facebook_purple" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-11" transform="translate(6.000000, 8.000000)" stroke="#FFFFFF" stroke-linecap="square" stroke-width="3">
+            <path d="M1.5,5.5 L4.5,13.5" id="Line-Copy-3"></path>
+            <path d="M0.5,4.5 L17.5,4.5" id="Line-Copy-4"></path>
+            <path d="M4.5,14.5 L13.5,14.5" id="Line-Copy-5"></path>
+            <path d="M7,2.5 L11.5,2.5" id="Line-Copy-7" transform="translate(9.500000, 2.500000) rotate(90.000000) translate(-9.500000, -2.500000) "></path>
+        </g>
+        <g id="iconmonstr-facebook-6" transform="translate(3.000000, 2.000000)" fill="#6B38E8">
+            <path d="M42.446875,0 L4.553125,0 C2.14045833,0 0,2.14045833 0,4.553125 L0,42.4488333 C0,44.8595417 2.14045833,47 4.553125,47 L25.1058333,47 L25.1058333,28.79925 L18.9801667,28.79925 L18.9801667,21.7061667 L25.1058333,21.7061667 L25.1058333,16.4754583 C25.1058333,10.404625 28.8129583,7.09895833 34.2297083,7.09895833 C36.8245,7.09895833 39.0530833,7.29283333 39.70325,7.379 L39.70325,13.724 L35.9471667,13.7259583 C33.0018333,13.7259583 32.4319583,15.1261667 32.4319583,17.1785 L32.4319583,21.708125 L39.4565,21.708125 L38.5419583,28.8012083 L32.4319583,28.8012083 L32.4319583,47 L42.4507917,47 C44.8595417,47 47,44.8595417 47,42.446875 L47,4.553125 C47,2.14045833 44.8595417,0 42.446875,0 Z" id="Path"></path>
+        </g>
+    </g>
+</svg>
