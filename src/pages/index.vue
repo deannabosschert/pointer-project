@@ -23,7 +23,7 @@
         >
           Jouw budget:
           <s
-            v-if="!hasEnoughProfitPercentageAndProfit"
+            v-if="!hasEnoughProfit"
             class="home-page__budget-text"
           >
             €{{ selectedData.winst.toLocaleString() }}
@@ -35,11 +35,11 @@
             €{{ selectedData.winst.toLocaleString() }}
           </span>
         </p>
-        <error-message v-if="selectedData && !hasEnoughProfitPercentageAndProfit" />
+        <error-message v-if="selectedData && !hasEnoughProfit" />
         <div class="home-page__buttons">
           <button
             type="submit"
-            :disabled="!selectedCareCompany || !hasEnoughProfitPercentageAndProfit"
+            :disabled="!selectedCareCompany || !hasEnoughProfit"
             class="button"
           >
             Shop met de winst
@@ -89,10 +89,8 @@
 
         return module.default
       },
-      hasEnoughProfitPercentageAndProfit() {
+      hasEnoughProfit() {
         return this.selectedData &&
-          this.selectedData.percentageWinst &&
-          this.selectedData.percentageWinst > 10 &&
           this.selectedData.winst &&
           this.selectedData.winst >= 1000
       }

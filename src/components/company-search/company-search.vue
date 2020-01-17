@@ -65,8 +65,8 @@
                 return item.naam.includes(this.input)
               })
               .sort((currentItem, nextItem) => {
-                const currentItemFirstProfit = getFirstProfitPercentage(currentItem.jaarVerslagen)
-                const nextItemFirstProfit = getFirstProfitPercentage(nextItem.jaarVerslagen)
+                const currentItemFirstProfit = getLatestProfit(currentItem.jaarVerslagen)
+                const nextItemFirstProfit = getLatestProfit(nextItem.jaarVerslagen)
 
                 return currentItemFirstProfit > nextItemFirstProfit
                   ? -1
@@ -91,7 +91,7 @@
         addToLocalStorage('careCompany', company)
 
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
-        this.$store.commit(SET_SELECTED_DATA, { selectedData: getFirstYearData(company.jaarVerslagen) })
+        this.$store.commit(SET_SELECTED_DATA, { selectedData: getLatestYearData(company.jaarVerslagen) })
 
         this.isPending = false
 
@@ -121,12 +121,16 @@
     return storage.setItem(key, JSON.stringify(data))
   }
 
-  function getFirstProfitPercentage(yearReport) {
-    return Object.values(yearReport)[0].percentageWinst || 0
+  function getLatestProfit(yearReport) {
+    const correctedYearReport = Object.values(yearReport)
+
+    return correctedYearReport[correctedYearReport.length - 1].winst || 0
   }
 
-  function getFirstYearData(yearReport) {
-    return Object.values(yearReport)[0]
+  function getLatestYearData(yearReport) {
+    const correctedYearReport = Object.values(yearReport)
+
+    return correctedYearReport[correctedYearReport.length - 1]
   }
 </script>
 
