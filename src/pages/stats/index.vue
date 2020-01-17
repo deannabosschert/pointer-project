@@ -28,7 +28,7 @@ import dutchDataJson from '~/static/data/dutch-stats'
 
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
-import BarChart from '~/components/bar-chart/bar-chart.vue'
+import BarChart from '~/components/bar-chart/bar-chart'
 
 
 export default {
