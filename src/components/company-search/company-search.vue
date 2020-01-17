@@ -16,7 +16,7 @@
     >
       <button
         type="button"
-        class="company-search__matching-company"
+        class="company-search__autocomplete-item"
         v-for="(company, i) in matchingCompanies"
         :key="`${company.id}-${i}`"
         @click="onCompanyClick(company)"
@@ -39,15 +39,17 @@
       }
     },
     data() {
+      const selectedCompanyName = this.$store.getters.selectedCareCompany &&
+        this.$store.getters.selectedCareCompany.naam
+
       return {
-        input: '',
+        input: selectedCompanyName || '',
         autocompleteIsEnabled: false,
-        selectedCarecompany: null
       }
     },
     computed: {
       ...mapGetters({
-        careCompanies: 'careCompanies'
+        careCompanies: 'careCompanies',
       }),
       matchingCompanies() {
         return this.careCompanies &&
@@ -56,7 +58,7 @@
               .filter(item => {
                 return item.naam.includes(this.input)
               })
-              .slice(0, 10)
+              .slice(0, 5)
       }
     },
     methods: {
@@ -69,6 +71,8 @@
         */
         addToLocalStorage('careCompany', company)
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
+
+        this.disableAutocomplete()
       },
       enableAutocomplete() {
         this.autocompleteIsEnabled = true
@@ -76,7 +80,7 @@
       disableAutocomplete() {
         this.autocompleteIsEnabled = false
       }
-    }
+    },
   }
 
   function addToLocalStorage(key, data) {
@@ -92,5 +96,28 @@
 </script>
 
 <style lang="scss">
+  $company-search-height: 43px;
 
+  .company-search {
+    position: relative;
+  }
+
+  .company-search__autocomplete {
+    position: absolute;
+    top: $company-search-height;
+    left: 0;
+    right: 0;
+    background: $color-white;
+    box-shadow: 0px 0px 3px rgba($color-darkest, .6)
+  }
+
+  .company-search__autocomplete-item {
+    display: block;
+    width: 100%;
+    padding: $spacing-small;
+    border-bottom: 1px solid $color-gray;
+    font-size: $font-size-default;
+    font-family: $font-stack-body;
+    text-align: left;
+  }
 </style>
