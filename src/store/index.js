@@ -25,7 +25,7 @@ export const getters = {
     return state.selectedDutchData
   },
   budget(state, getters) {
-    return state.selectedData.winst
+    return state.selectedData && state.selectedData.winst
       ? state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
       : 0
   },

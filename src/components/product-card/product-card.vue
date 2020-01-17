@@ -1,12 +1,14 @@
 <template>
-  <div class="product-card">
+  <div
+    class="product-card"
+    :class="{ 'product-card--is-disabled': !hasEnoughBudget }"
+  >
     <figure class="product-card__image-container">
       <fixed-ratio :height="1" :width="1">
         <img
           :src="product.mediaLink"
           :alt="product.naam"
           class="product-card__image"
-          :class="{ 'product-card__image--is-blurred': !hasEnoughBudget }"
         >
       </fixed-ratio>
       <figcaption class="product-card__price">
@@ -96,10 +98,6 @@
     background: $color-gray;
   }
 
-  .product-card__image--is-blurred {
-    filter: blur(3px);
-  }
-
   .product-card__price {
     position: absolute;
     bottom: 0;
@@ -108,5 +106,15 @@
     color: $color-highlight-purple;
     font-weight: $font-weight-bold;
     background: $color-gray;
+  }
+
+  .product-card--is-disabled .product-card__image {
+    filter: blur(3px);
+  }
+
+  .product-card--is-disabled .product-card__price,
+  .product-card--is-disabled .product-details__button:last-child,
+  .product-card--is-disabled .product-details__title {
+    opacity: .6;
   }
 </style>

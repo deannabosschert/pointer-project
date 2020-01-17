@@ -7,7 +7,7 @@
       class="product-details__button"
     >
       <span class="sr-only">Voeg toe aan winkelmandje</span>
-      <app-icon name="plus_black" />
+      <app-icon :name="addToCartIcon" />
     </button>
 
     <div
@@ -28,7 +28,7 @@
         :disabled="!hasEnoughBudget"
       >
         <span class="sr-only">Voeg één toe aan winkelmandje</span>
-        <app-icon name="plus_black" />
+        <app-icon :name="addToCartIcon" />
       </button>
     </div>
   </div>
@@ -58,6 +58,9 @@
     computed: {
       hasEnoughBudget() {
         return this.budget > this.product.prijs
+      },
+      addToCartIcon() {
+        return this.hasEnoughBudget ? 'plus_black' : 'cross_black'
       }
     }
   }
@@ -114,9 +117,5 @@
     border-radius: 50%;
     font-size: $font-size-default;
     background: $color-highlight-yellow;
-  }
-
-  .product-details__button:disabled {
-    background: grey;
   }
 </style>
