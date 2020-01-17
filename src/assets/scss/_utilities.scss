@@ -8,3 +8,12 @@
   width: 1px;
   overflow: hidden;
 }
+
+.correct-casing {
+  text-transform: capitalize;
+}
+
+.pull-right {
+  display: flex;
+  justify-content: flex-end;
+}

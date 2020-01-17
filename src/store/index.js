@@ -3,9 +3,9 @@ import * as types from './mutation-types'
 // The default state
 export const state = () => ({
   selectedCareCompany: null,
-  shoppingBag: [],
   careCompanies: null,
   selectedData: null,
+  autoCompleteIsEnabled: false,
   selectedDutchData: null
 })
 
@@ -15,9 +15,6 @@ export const getters = {
   selectedCareCompany(state) {
     return state.selectedCareCompany
   },
-  shoppingBag(state) {
-    return state.shoppingBag
-  },
   careCompanies(state) {
     return state.careCompanies
   },
@@ -26,6 +23,14 @@ export const getters = {
   },
   selectedDutchData(state) {
     return state.selectedDutchData
+  },
+  budget(state, getters) {
+    return state.selectedData && state.selectedData.winst
+      ? state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
+      : 0
+  },
+  autoCompleteIsEnabled(state) {
+    return state.autoCompleteIsEnabled
   }
 }
 
@@ -40,21 +45,14 @@ export const mutations = {
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
     state.shoppingBag = [...state.shoppingBag, payload.product]
   },
-  [types.REMOVE_FROM_SHOPPING_BAG](state, payload) {
-    // Find payload's product
-
-    // Set state to shoppingBag without that product
-  },
-  [types.CHANGE_AMOUNT_OF_PRODUCT](state, payload) {
-    // Find product
-
-    // Set amount to ++ or --
-  },
   [types.SET_CARECOMPANIES](state, payload) {
     state.careCompanies = payload.careCompanies
   },
   [types.SET_SELECTED_DATA](state, payload) {
     state.selectedData = payload.selectedData
+  },
+  [types.TOGGLE_AUTOCOMPLETE](state, payload) {
+    state.autoCompleteIsEnabled = payload.autoCompleteIsEnabled
   },
   [types.SET_SELECTED_DUTCH_DATA](state, payload) {
     state.selectedDutchData = payload.data

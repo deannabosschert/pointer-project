@@ -1,1 +1,97 @@
+body {
+  color: $color-darkest;
+  background: $color-lightest;
+  background-image: radial-gradient($color-gray 10%, transparent 0);
+  background-size: 20px 20px;
+  font-family: $font-stack-body;
+}
 
+p {
+  line-height: 1.25;
+}
+
+p + p {
+  margin-top: $spacing-default;
+}
+
+h1,
+.h1 {
+  font-family: $font-stack-headings;
+  font-size: $font-size-huge;
+  font-weight: $font-weight-bold;
+}
+
+h2,
+.h2 {
+  font-family: $font-stack-headings;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+}
+
+input,
+select {
+  // Remove default styles
+  appearance: none;
+  --webkit-appearance: none;
+
+  // Add our own styles
+  width: 100%;
+  padding: $spacing-small $spacing-default;
+  border: 2px solid $color-darkest;
+  border-radius: 0;
+  background: #fff;
+  font-size: $font-size-default;
+  font-family: $font-stack-body;
+}
+
+select {
+  background-image: url('~static/icons/year-dropdown.svg');
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  padding-right: $spacing-large;
+}
+
+.button {
+  display: block;
+  padding: $spacing-default 0;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 0;
+  background: $color-darkest;
+  color: $color-lightest;
+  text-align: center;
+  font-family: $font-stack-headings;
+  font-weight: 500;
+  font-size: $font-size-default;
+
+  &:hover,
+  &:focus {
+    background: $color-white;
+    color: $color-darkest;
+  }
+
+  &:disabled {
+    background: rgba($color-darkest, .6);
+    color: rgba($color-lightest, .8)
+  }
+}
+
+a.button {
+  text-decoration: none;
+}
+
+.button--secondary {
+  background: $color-white;
+  color: $color-darkest;
+
+  &:hover,
+  &:focus {
+    background: $color-darkest;
+    color: $color-lightest;
+  }
+
+  &:disabled {
+    background: rgba($color-white, .8);
+    color: rgba($color-darkest, .6);
+  }
+}
