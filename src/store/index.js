@@ -5,7 +5,8 @@ export const state = () => ({
   selectedCareCompany: null,
   careCompanies: null,
   selectedData: null,
-  autoCompleteIsEnabled: false
+  autoCompleteIsEnabled: false,
+  selectedDutchData: null
 })
 
 // Things you want to get out of the state, you can also use
@@ -19,6 +20,9 @@ export const getters = {
   },
   selectedData(state) {
     return state.selectedData
+  },
+  selectedDutchData(state) {
+    return state.selectedDutchData
   },
   budget(state, getters) {
     return state.selectedData.winst
@@ -49,5 +53,8 @@ export const mutations = {
   },
   [types.TOGGLE_AUTOCOMPLETE](state, payload) {
     state.autoCompleteIsEnabled = payload.autoCompleteIsEnabled
+  },
+  [types.SET_SELECTED_DUTCH_DATA](state, payload) {
+    state.selectedDutchData = payload.data
   }
 }
