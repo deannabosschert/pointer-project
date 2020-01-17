@@ -21,7 +21,9 @@ export const getters = {
     return state.selectedData
   },
   budget(state, getters) {
-    return state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
+    return state.selectedData.winst
+      ? state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
+      : 0
   },
   autoCompleteIsEnabled(state) {
     return state.autoCompleteIsEnabled
