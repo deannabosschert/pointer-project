@@ -9,7 +9,7 @@
     </p>
     <p class="shop-page__budget" v-if="selectedData">
       <span class="shop-page__budget-intro">Jouw budget:</span>
-      <span class="shop-page__budget-budget">€{{ selectedData.winst.toLocaleString() }}</span>
+      <span class="shop-page__budget-budget">€{{ formattedBudget }}</span>
     </p>
     <product-list :products="shopItems" />
     <nuxt-link
@@ -47,11 +47,15 @@
     computed: {
       ...mapGetters({
         selectedData: 'selectedData',
-        shoppingBagItemsQuantity: 'shop/shoppingBagItemsQuantity'
+        shoppingBagItemsQuantity: 'shop/shoppingBagItemsQuantity',
+        budget: 'budget'
       }),
       ...mapState({
         shopItems: state => state.shop.shopItems
-      })
+      }),
+      formattedBudget() {
+        return this.budget.toLocaleString()
+      }
     },
     methods: {
       redirectToCart() {
