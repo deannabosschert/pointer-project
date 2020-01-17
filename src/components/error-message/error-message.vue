@@ -2,7 +2,7 @@
   <div class="error-message">
     <section class="error-message__section">
       <h2 class="error-message__title">Oh, helaas</h2>
-      <p>Je kunt niet shoppen. Het winstpercentage is namelijk niet hoog genoeg.</p>
+      <p>Je kunt niet shoppen. Het winstpercentage en de winst zijn namelijk niet hoog genoeg.</p>
     </section>
     <section class="error-message__section">
       <h2 class="error-message__title">Maar gelukkig!</h2>
@@ -12,9 +12,7 @@
 </template>
 
 <script>
-  export default {
-
-  }
+  export default {}
 </script>
 
 <style lang="scss">
