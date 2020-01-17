@@ -14,6 +14,7 @@
         <year-selection
           required
           :selected-company="selectedCareCompany"
+          :dutch-data="dutchData"
           class="home-page__input"
         />
         <p
@@ -42,6 +43,8 @@
 </template>
 
 <script>
+  import dutchDataJson from '~/static/data/dutch-stats'
+
   import { mapGetters } from 'vuex'
   import { SET_CARECOMPANIES } from '~/store/mutation-types'
 
@@ -53,11 +56,16 @@
       CompanySearch,
       YearSelection
     },
+    data() {
+      return {
+        dutchData: dutchDataJson
+      }
+    },
     computed: {
       ...mapGetters({
         careCompanies: 'careCompanies',
         selectedCareCompany: 'selectedCareCompany',
-        selectedData: 'selectedData'
+        selectedData: 'selectedData',
       }),
       async rawCompanies() {
         const module = await import('~/static/data/pointer-raw')
