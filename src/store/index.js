@@ -4,7 +4,8 @@ import * as types from './mutation-types'
 export const state = () => ({
   selectedCareCompany: null,
   careCompanies: null,
-  selectedData: null
+  selectedData: null,
+  autoCompleteIsEnabled: false
 })
 
 // Things you want to get out of the state, you can also use
@@ -21,6 +22,9 @@ export const getters = {
   },
   selectedData(state) {
     return state.selectedData
+  },
+  autoCompleteIsEnabled(state) {
+    return state.autoCompleteIsEnabled
   }
 }
 
@@ -40,5 +44,8 @@ export const mutations = {
   },
   [types.SET_SELECTED_DATA](state, payload) {
     state.selectedData = payload.selectedData
+  },
+  [types.TOGGLE_AUTOCOMPLETE](state, payload) {
+    state.autoCompleteIsEnabled = payload.autoCompleteIsEnabled
   }
 }

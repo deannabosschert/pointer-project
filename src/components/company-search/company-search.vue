@@ -29,7 +29,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import { SET_CURRENT_CARECOMPANY } from '~/store/mutation-types'
+  import { SET_CURRENT_CARECOMPANY, TOGGLE_AUTOCOMPLETE } from '~/store/mutation-types'
 
   export default {
     props: {
@@ -43,13 +43,13 @@
         this.$store.getters.selectedCareCompany.naam
 
       return {
-        input: selectedCompanyName || '',
-        autocompleteIsEnabled: false,
+        input: selectedCompanyName || ''
       }
     },
     computed: {
       ...mapGetters({
         careCompanies: 'careCompanies',
+        autoCompleteIsEnabled: 'autoCompleteIsEnabled'
       }),
       matchingCompanies() {
         return this.careCompanies &&
@@ -75,10 +75,14 @@
         this.disableAutocomplete()
       },
       enableAutocomplete() {
-        this.autocompleteIsEnabled = true
+        this.$store.commit(TOGGLE_AUTOCOMPLETE, {
+          autoCompleteIsEnabled: true
+        })
       },
       disableAutocomplete() {
-        this.autocompleteIsEnabled = false
+        this.$store.commit(TOGGLE_AUTOCOMPLETE, {
+          autoCompleteIsEnabled: false
+        })
       }
     },
   }
