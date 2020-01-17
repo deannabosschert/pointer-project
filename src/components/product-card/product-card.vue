@@ -6,6 +6,7 @@
           :src="product.mediaLink"
           :alt="product.naam"
           class="product-card__image"
+          :class="{ 'product-card__image--is-blurred': !hasEnoughBudget }"
         >
       </fixed-ratio>
       <figcaption class="product-card__price">
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
 
   import FixedRatio from '../fixed-ratio/fixed-ratio'
   import ProductDetails from '../product-details/product-details'
@@ -45,12 +46,18 @@
       ...mapState({
         shoppingBag: state => state.shop.shoppingBag
       }),
+      ...mapGetters({
+        budget: 'budget'
+      }),
       formattedPrice() {
         return `€ ${this.product.prijs.toLocaleString()}`
       },
       amount() {
         return this.shoppingBag[this.product.naam] &&
           this.shoppingBag[this.product.naam].amount || 0
+      },
+      hasEnoughBudget() {
+        return this.budget > this.product.prijs
       }
     },
     methods: {
@@ -78,6 +85,7 @@
   .product-card__image-container {
     width: 100%;
     position: relative;
+    background: $color-white;
   }
 
   .product-card__image {
@@ -85,6 +93,10 @@
     height: 100%;
     object-fit: cover;
     background: $color-gray;
+  }
+
+  .product-card__image--is-blurred {
+    filter: blur(3px);
   }
 
   .product-card__price {

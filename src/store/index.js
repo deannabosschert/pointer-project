@@ -14,14 +14,14 @@ export const getters = {
   selectedCareCompany(state) {
     return state.selectedCareCompany
   },
-  shoppingBag(state) {
-    return state.shoppingBag
-  },
   careCompanies(state) {
     return state.careCompanies
   },
   selectedData(state) {
     return state.selectedData
+  },
+  budget(state, getters) {
+    return state.selectedData.winst - getters['shop/shoppingBagTotalPrice']
   },
   autoCompleteIsEnabled(state) {
     return state.autoCompleteIsEnabled

@@ -49,7 +49,7 @@
     computed: {
       ...mapGetters({
         careCompanies: 'careCompanies',
-        autoCompleteIsEnabled: 'autoCompleteIsEnabled'
+        autocompleteIsEnabled: 'autoCompleteIsEnabled'
       }),
       matchingCompanies() {
         return this.careCompanies &&
