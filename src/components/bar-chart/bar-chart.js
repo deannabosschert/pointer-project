@@ -2,25 +2,25 @@ import { Bar } from 'vue-chartjs'
 
 export default {
   extends: Bar,
-  // props: {
-  //   selectedData: {
-  //     type: Object,
-  //     required: true
-  //   },
-  //   dutchData: {
-  //     type: Object,
-  //     required: true
-  //   },
-  //   property: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   title: {
-  //     type: String,
-  //     required: true
-  //   }
-  // },
-    props: ['data', 'options'],
+  props: {
+    data: ['data', 'options'],
+    selectedData: {
+      type: Object,
+      required: true
+    },
+    dutchData: {
+      type: Object,
+      required: true
+    },
+    property: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Bar
   },
@@ -33,13 +33,21 @@ export default {
     }
   },
   mounted() {
+    let nederlandL = this.dutchData.naam
+    let bedrijfL = this.selectedData.naam
+
+
+    let nederlandV = this.dutchData.percentageWinst
+    let gemiddeldV = 5
+    let bedrijfV = this.selectedData.percentageWinst
+
     this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      labels: [nederlandL, 'gemiddeld', bedrijfL],
       datasets: [
         {
           label: 'GitHub Commits',
           backgroundColor: '#f87979',
-          data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+          data: [nederlandV, gemiddeldV, bedrijfV]
         }
       ]
     })
