@@ -56,14 +56,15 @@ export default {
       },
       {
         hover: {
-          animationDuration: 0
+          animationDuration: 1
         },
         animation: {
           duration: 1,
-          onComplete: function showPercentage() {
-            var chartInstance = this.chart
-            ctx = chartInstance.ctx
+          onComplete: function() {
+            var chartInstance = this.chart,
+              ctx = chartInstance.ctx
             ctx.textAlign = "center"
+            ctx.fillStyle = "rgba(0, 0, 0, 1)"
             ctx.textBaseline = "bottom"
 
             this.data.datasets.forEach(function(dataset, i) {
@@ -75,7 +76,7 @@ export default {
             })
           }
         },
-        responsive: false,
+        responsive: true,
         scales: {
           yAxes: [
             {
@@ -106,7 +107,7 @@ export default {
           display: false
         },
         tooltips: {
-          enabled: false
+          enabled: true
         },
         maintainAspectRatio: false,
         height: 200
