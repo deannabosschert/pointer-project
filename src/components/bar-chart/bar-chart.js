@@ -82,7 +82,7 @@ export default {
             {
               display: true,
               gridLines: {
-                display: false
+                display: true
               },
               ticks: {
                 // max: Math.max(... datasets[0].data) + 10,
