@@ -36,20 +36,30 @@ export const state = () => ({
   ],
   substituteItems: [
     {
-      naam: 'Injecties',
-      prijs: 2.00,
+      naam: 'Uur persoonlijke verzorging',
+      prijs: 39.68,
       amount: 0
     },
     {
-      naam: 'Uur fysio',
-      prijs: 90,
+      naam: 'Uur verpleging',
+      prijs: 59.12,
       amount: 0
     },
     {
-      naam: 'Jaar ouderenzorg',
-      prijs: 100.000,
+      naam: 'Uur maaltijd verzorging',
+      prijs: 7.51,
       amount: 0
-    }
+    },
+    {
+      naam: 'Uur psychologische ondersteuning',
+      prijs: 95,
+      amount: 0
+    },
+    {
+      naam: 'Uur huishoudelijke hulp',
+      prijs: 21.62,
+      amount: 0
+    },
   ]
 })
 
