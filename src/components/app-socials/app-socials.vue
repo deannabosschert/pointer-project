@@ -5,20 +5,22 @@
       <h2 class="app-socials__title">Deel jouw aankopen!</h2>
     </div>
     <div class="app-socials__buttons">
-      <button
-        class="app-socials__button"
-        @click="shareToTwitter"
-      >
-        <app-icon name="facebook_purple" />
-        <span class="sr-only">Deel op Twitter</span>
-      </button>
-      <button
-        @click="shareToFacebook"
+      <a
+        :href="twitterLink"
+        target="_blank"
         class="app-socials__button"
       >
         <app-icon name="twitter_purple" />
+        <span class="sr-only">Deel op Twitter</span>
+      </a>
+      <a
+        :href="facebookLink"
+        target="_blank"
+        class="app-socials__button"
+      >
+        <app-icon name="facebook_purple" />
         <span class="sr-only">Deel op Facebook</span>
-      </button>
+      </a>
     </div>
   </section>
 </template>
@@ -42,17 +44,10 @@
 
         return `https://twitter.com/intent/tweet`
       },
-    },
-    methods: {
-      shareToTwitter() {
-        console.log('sharing to twitter')
-      },
-      shareToFacebook() {
-        // TODO: find a solid FB solution
-
-        console.log('sharing to facebook')
+      facebookLink() {
+        return `https://www.facebook.com/sharer/sharer.php?u=example.org`
       }
-    }
+    },
   }
 </script>
 
