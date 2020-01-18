@@ -20,11 +20,26 @@
         <p
           v-if="selectedData"
           class="home-page__budget"
-        >Jouw budget: <span>€{{ selectedData.winst.toLocaleString() }}</span></p>
+        >
+          Jouw budget:
+          <s
+            v-if="!hasEnoughProfit"
+            class="home-page__budget-text"
+          >
+            €{{ selectedData.winst.toLocaleString() }}
+          </s>
+          <span
+            v-else
+            class="home-page__budget-text"
+          >
+            €{{ selectedData.winst.toLocaleString() }}
+          </span>
+        </p>
+        <error-message v-if="selectedData && !hasEnoughProfit" />
         <div class="home-page__buttons">
           <button
             type="submit"
-            :disabled="!selectedCareCompany"
+            :disabled="!selectedCareCompany || !hasEnoughProfit"
             class="button"
           >
             Shop met de winst
@@ -50,11 +65,13 @@
 
   import CompanySearch from '~/components/company-search/company-search'
   import YearSelection from '~/components/year-selection/year-selection'
+  import ErrorMessage from '~/components/error-message/error-message'
 
   export default {
     components: {
       CompanySearch,
-      YearSelection
+      YearSelection,
+      ErrorMessage
     },
     data() {
       return {
@@ -71,6 +88,11 @@
         const module = await import('~/static/data/pointer-raw')
 
         return module.default
+      },
+      hasEnoughProfit() {
+        return this.selectedData &&
+          this.selectedData.winst &&
+          this.selectedData.winst >= 1000
       }
     },
     async mounted() {
@@ -127,12 +149,17 @@
     justify-content: space-between;
     font-weight: $font-weight-bold;
     font-size: $font-size-medium;
+  }
 
-    & > span {
-      margin-left: $spacing-tiny;
-      font-weight: $font-weight-bold;
-      font-size: $font-size-large;
-    }
+  .home-page__budget-text {
+    margin-left: $spacing-tiny;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-large;
+  }
+
+  .home-page .error-message {
+    margin-bottom: $spacing-large;
+    margin-top: $spacing-default;
   }
 
   .home-page__buttons {

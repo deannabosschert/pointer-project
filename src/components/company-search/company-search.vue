@@ -20,6 +20,7 @@
         v-for="(company, i) in matchingCompanies"
         :key="`${company.id}-${i}`"
         @click="onCompanyClick(company)"
+        :disabled="isPending"
       >
         {{ company.naam }}
       </button>
@@ -29,7 +30,11 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import { SET_CURRENT_CARECOMPANY, TOGGLE_AUTOCOMPLETE } from '~/store/mutation-types'
+  import {
+    SET_CURRENT_CARECOMPANY,
+    SET_SELECTED_DATA,
+    TOGGLE_AUTOCOMPLETE
+  } from '~/store/mutation-types'
 
   export default {
     props: {
@@ -43,7 +48,8 @@
         this.$store.getters.selectedCareCompany.naam
 
       return {
-        input: selectedCompanyName || ''
+        input: selectedCompanyName || '',
+        isPending: false
       }
     },
     computed: {
@@ -52,25 +58,42 @@
         autocompleteIsEnabled: 'autoCompleteIsEnabled'
       }),
       matchingCompanies() {
-        return this.careCompanies &&
+        const matches = this.careCompanies &&
           typeof this.careCompanies === 'object' &&
           Object.values(this.careCompanies)
               .filter(item => {
                 return item.naam.includes(this.input)
               })
+              .sort((currentItem, nextItem) => {
+                const currentItemFirstProfit = getLatestProfit(currentItem.jaarVerslagen)
+                const nextItemFirstProfit = getLatestProfit(nextItem.jaarVerslagen)
+
+                return currentItemFirstProfit > nextItemFirstProfit
+                  ? -1
+                  : 1
+              })
               .slice(0, 5)
+
+          return matches
       }
     },
     methods: {
       onCompanyClick(company) {
         this.input = company.naam
 
+        this.isPending = true
+
         /*
           We also add the selectedCompany to localStorage. If a user refreshes
           the page the selected company won't be lost this way.
         */
+
         addToLocalStorage('careCompany', company)
+
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
+        this.$store.commit(SET_SELECTED_DATA, { selectedData: getLatestYearData(company.jaarVerslagen) })
+
+        this.isPending = false
 
         this.disableAutocomplete()
       },
@@ -96,6 +119,18 @@
     }
 
     return storage.setItem(key, JSON.stringify(data))
+  }
+
+  function getLatestProfit(yearReport) {
+    const correctedYearReport = Object.values(yearReport)
+
+    return correctedYearReport[correctedYearReport.length - 1].winst || 0
+  }
+
+  function getLatestYearData(yearReport) {
+    const correctedYearReport = Object.values(yearReport)
+
+    return correctedYearReport[correctedYearReport.length - 1]
   }
 </script>
 
@@ -123,5 +158,9 @@
     font-size: $font-size-default;
     font-family: $font-stack-body;
     text-align: left;
+  }
+
+  .company-search__autocomplete-item:disabled {
+    color: $color-gray;
   }
 </style>
