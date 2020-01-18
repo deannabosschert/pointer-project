@@ -1,9 +1,9 @@
-import { Bar } from 'vue-chartjs'
+import { Bar } from "vue-chartjs"
 
 export default {
   extends: Bar,
   props: {
-    data: ['data', 'options'],
+    data: ["data", "options"],
     selectedData: {
       type: Object,
       required: true
@@ -36,20 +36,28 @@ export default {
     let nederlandL = this.dutchData.naam
     let bedrijfL = this.selectedData.naam
 
-
     let nederlandV = this.dutchData.percentageWinst
     let gemiddeldV = 5
     let bedrijfV = this.selectedData.percentageWinst
 
+    console.log(this.selectedData)
+
     this.renderChart({
-      labels: [nederlandL, 'gemiddeld', bedrijfL],
+      labels: [nederlandL, "gemiddeld", bedrijfL],
       datasets: [
         {
-          label: 'GitHub Commits',
-          backgroundColor: '#f87979',
+          label: "Winstpercentage",
+          backgroundColor: ["#1beaae", "rgba(255, 255, 255, 0)", "#6b38e8"],
+          borderColor: [
+        '',
+        '#f65645',
+        ''
+      ],
+    borderWidth: [0, 2, 0],
           data: [nederlandV, gemiddeldV, bedrijfV]
         }
-      ]
+      ],
+
     })
   }
 }
