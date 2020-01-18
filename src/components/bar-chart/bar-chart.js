@@ -3,7 +3,7 @@ import { Bar } from "vue-chartjs"
 export default {
   extends: Bar,
   props: {
-    data: ["data", "options"],
+    data: ['data', 'options'],
     selectedData: {
       type: Object,
       required: true
@@ -39,8 +39,6 @@ export default {
     let nederlandV = this.dutchData.percentageWinst
     let gemiddeldV = 5
     let bedrijfV = this.selectedData.percentageWinst
-
-    console.log(this.selectedData)
 
     this.renderChart({
       labels: [nederlandL, "gemiddeld", bedrijfL],

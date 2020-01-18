@@ -23,14 +23,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import { SET_CARECOMPANIES, SET_DUTCH_DATA } from '~/store/mutation-types'
-
 import dutchDataJson from '~/static/data/dutch-stats'
-
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
 import BarChart from '~/components/bar-chart/bar-chart'
-
-
 export default {
   components: {
     CompanySearch,
@@ -51,7 +47,6 @@ export default {
     }),
     async rawCompanies() {
       const module = await import('~/static/data/pointer-raw')
-
       return module.default
     },
   },
@@ -64,5 +59,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>
