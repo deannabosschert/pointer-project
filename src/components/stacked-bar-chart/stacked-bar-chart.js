@@ -42,7 +42,8 @@ export default {
     let nederlandPercentageLoon = this.dutchData.percentageLoon
     let bedrijfPercentageLoon = this.selectedData.percentageLoon
 
-    
+    let nederlandOverig = 100 - nederlandPercentageLoon - nederlandWinst
+    let bedrijfOverig = 100 - bedrijfPercentageLoon - bedrijfWinst
 
     this.renderChart(
       {
@@ -59,6 +60,12 @@ export default {
             label: 'Personeelskosten',
             backgroundColor: '#d8cedb',
             data: [nederlandPercentageLoon, bedrijfPercentageLoon]
+          },
+          {
+            type: 'bar',
+            label: 'Overige kosten',
+            backgroundColor: '#1beaae',
+            data: [nederlandOverig, bedrijfOverig]
           }
         ]
 
