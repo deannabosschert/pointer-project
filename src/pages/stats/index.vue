@@ -9,7 +9,7 @@
     />
 
     <bar-chart
-      v-if="selectedData"
+      v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
       :dutch-data="selectedDutchData"
       property="omzet"
