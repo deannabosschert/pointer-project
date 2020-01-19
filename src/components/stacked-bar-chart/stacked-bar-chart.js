@@ -1,9 +1,10 @@
-import { Bar } from "vue-chartjs"
+import { Bar } from "vue-chartjs";
 // import { Chart } from 'chart.js'
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
+import ChartJSPluginDatalabels from "chartjs-plugin-datalabels";
 
 export default {
-  extends: Bar, ChartJSPluginDatalabels,
+  extends: Bar,
+  ChartJSPluginDatalabels,
   props: {
     data: ["data", "options"],
     selectedData: {
@@ -24,38 +25,49 @@ export default {
     }
   },
   components: {
-    Bar, ChartJSPluginDatalabels
+    Bar,
+    ChartJSPluginDatalabels
   },
   computed: {
     dutchValue() {
-      return this.dutchData[this.property]
+      return this.dutchData[this.property];
     },
     selectedDataValue() {
-      return this.selectedData[this.property]
+      return this.selectedData[this.property];
     }
   },
   mounted() {
-    let nederland = this.dutchData.naam
-    let bedrijf = this.selectedData.naam
+    let nederland = this.dutchData.naam;
+    let bedrijf = this.selectedData.naam;
 
-    let nederlandWinst = this.dutchData.percentageWinst
-    let bedrijfWinst = this.selectedData.percentageWinst
+    let nederlandOmzet = this.dutchData.omzet;
+    let bedrijfOmzet = this.selectedData.omzet;
+    let nederlandWinst = this.dutchData.winst;
+    let bedrijfWinst = this.selectedData.winst;
+    let nederlandPersKosten = this.dutchData.personeelskosten;
+    let bedrijfPersKosten = this.selectedData.personeelskosten;
 
-    let nederlandPercentageLoon = this.dutchData.percentageLoon
-    let bedrijfPercentageLoon = this.selectedData.percentageLoon
-    //
-    // let nederlandPercentageLoon = (nederlandPercentageLoon_v1).toFixed([1])
-    // let bedrijfPercentageLoon = (bedrijfPercentageLoon_v1).toFixed([1])
+    let nederlandPercWinst = this.dutchData.percentageWinst;
+    let bedrijfPercWinst = this.selectedData.percentageWinst;
 
-    let nederlandOverig = 100 - nederlandPercentageLoon - nederlandWinst
-    let bedrijfOverig = 100 - bedrijfPercentageLoon - bedrijfWinst
-    // let nederlandOverig =  nederlandOverig1.toFixed([1])
-    // let bedrijfOverig = bedrijfOverig1.toFixed([1])
+    let nederlandPercLoon = this.dutchData.percentageLoon;
+    let bedrijfPercLoon = this.selectedData.percentageLoon;
 
-    Chart.defaults.global.defaultFontColor = "#1d2939"
-    Chart.defaults.global.defaultFontFamily = "ZillaSlab"
-    Chart.defaults.global.defaultFontSize = 16
-    Chart.defaults.global.defaultFontWeight = 600
+    let nederlandOverig = nederlandOmzet - nederlandPersKosten - nederlandWinst;
+    let bedrijfOverig = bedrijfOmzet - bedrijfPersKosten - bedrijfWinst;
+
+    console.log(this.selectedData);
+    console.log(this.dutchData);
+
+    let nederlandO = "test";
+
+    let nederlandPercOverig = 100 - nederlandPercLoon - nederlandPercWinst;
+    let bedrijfPercOverig = 100 - bedrijfPercLoon - bedrijfPercWinst;
+
+    Chart.defaults.global.defaultFontColor = "#1d2939";
+    Chart.defaults.global.defaultFontFamily = "ZillaSlab";
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontWeight = 600;
 
     this.renderChart(
       {
@@ -65,35 +77,53 @@ export default {
             type: "bar",
             label: "Winstpercentage",
             backgroundColor: "#faff2e",
-            data: [nederlandWinst, bedrijfWinst]
+            data: [nederlandPercWinst, bedrijfPercWinst]
           },
           {
             type: "bar",
             label: "Overige kosten",
             backgroundColor: "#1beaae",
-            data: [nederlandOverig, bedrijfOverig]
+            datalabels: {
+              // color: ['#FFCE56', '#d8cedb'],
+              formatter: function(value) {
+                return Math.round(value) + "%";
+              }
+            },
+            data: [nederlandPercOverig, bedrijfPercOverig]
           },
           {
             type: "bar",
             label: "Personeelskosten",
             backgroundColor: "#d8cedb",
-            data: [nederlandPercentageLoon, bedrijfPercentageLoon]
+            // datalabels: {
+            //   label:{
+            //    // color: ['#FFCE56', '#d8cedb'],
+            //    formatter: function(value) {
+            //      return Math.round(value) + "yeet"
+            //    }
+            //  }},
+            data: [nederlandPercLoon, bedrijfPercLoon]
           }
         ]
       },
       {
         plugins: {
           datalabels: {
-            // color: "white",
             textAlign: "center",
-           formatter: function(value) {
-             return Math.round(value) + "%";
-            },
             font: {
               family: "Tenso",
               weight: 900,
               size: 18
-            }
+            },
+            labels: [
+              {
+                render: nederland,
+
+              },
+              {
+                render: bedrijf
+              }
+            ]
           }
         },
         // hover: {
@@ -165,6 +195,6 @@ export default {
         maintainAspectRatio: false,
         height: 200
       }
-    )
+    );
   }
-}
+};
