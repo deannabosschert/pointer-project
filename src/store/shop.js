@@ -127,5 +127,24 @@ export const mutations = {
     items[payload.item.naam] = { ...currentItem, amount: amount - 1 }
 
     state.shoppingBag = { ...items }
+  },
+  // TODO: fix this:
+  /**
+   * We have to find a more valuable solution here,
+   * right now we just divide the total by the number of
+   * substitutes which is not ideal.
+   *
+   * For now it works but we have to find a more solid
+   * solution for v2.0
+   */
+  [types.SET_SUBSTITUTE_ITEMS](state, payload) {
+    state.substituteItems = state.substituteItems.map((item, index, self) => {
+      const part = payload.total / self.length
+
+      return {
+        ...item,
+        amount: Math.floor(part / item.prijs)
+      }
+    })
   }
 }
