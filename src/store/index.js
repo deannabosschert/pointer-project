@@ -6,7 +6,8 @@ export const state = () => ({
   careCompanies: null,
   selectedData: null,
   autoCompleteIsEnabled: false,
-  selectedDutchData: null
+  selectedDutchData: null,
+  menuIsOpen: false
 })
 
 // Things you want to get out of the state, you can also use
@@ -56,5 +57,8 @@ export const mutations = {
   },
   [types.SET_SELECTED_DUTCH_DATA](state, payload) {
     state.selectedDutchData = payload.data
+  },
+  [types.TOGGLE_MENU](state, payload) {
+    state.menuIsOpen = payload.isOpen
   }
 }

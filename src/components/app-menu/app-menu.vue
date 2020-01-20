@@ -1,5 +1,8 @@
 <template>
-  <nav class="app-menu">
+  <nav
+    v-if="menuIsOpen"
+    class="app-menu"
+  >
     <ul
       class="app-menu__list"
       ref="app-menu-list"
@@ -33,7 +36,15 @@
 </template>
 
 <script>
-  export default {}
+  import { mapState } from 'vuex'
+
+  export default {
+    computed: {
+      ...mapState({
+        menuIsOpen: state => state.menuIsOpen
+      })
+    }
+  }
 </script>
 
 <style lang="scss">
