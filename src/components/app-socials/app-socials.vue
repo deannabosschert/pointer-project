@@ -71,7 +71,7 @@
 
   function generateText(shoppingBagItems, substituteItem) {
     const names = Object.entries(shoppingBagItems).map(([key, object]) => {
-      if (object.naam === 'Moët') {
+      if (key === 'Moët') {
         if (object.amount > 1) {
           return 'een aantal flessen Moët'
         }
