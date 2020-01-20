@@ -26,6 +26,10 @@
 </template>
 
 <script>
+  import queryString from 'query-string'
+
+  import { mapState } from 'vuex'
+
   import AppIcon from '../app-icon/app-icon'
 
   export default {
@@ -39,15 +43,54 @@
       }
     },
     computed: {
+      ...mapState({
+        shoppingBag: state => state.shop.shoppingBag,
+        substituteItems: state => state.shop.substituteItems
+      }),
       twitterLink() {
-        // TODO: add text with link to our site
+        const url = 'https://twitter.com/intent/tweet'
+        const params = queryString.stringify({
+          text: generateText(this.shoppingBag, this.substituteItems[0]),
+          url: 'https://www.pointer-project.netlify.com'
+        })
 
-        return `https://twitter.com/intent/tweet`
+        return `${url}?${params}`
       },
       facebookLink() {
-        return `https://www.facebook.com/sharer/sharer.php?u=example.org`
+        const url = 'https://www.facebook.com/dialog/share'
+        const params = queryString.stringify({
+          app_id: 164432231515850,
+          href: 'https://www.pointer-project.netlify.com',
+          quote: generateText(this.shoppingBag, this.substituteItems[0])
+        })
+
+        return `${url}?${params}`
       }
     },
+  }
+
+  function generateText(shoppingBagItems, substituteItem) {
+    const names = Object.entries(shoppingBagItems).map(([key, object]) => {
+      if (object.naam === 'Moët') {
+        if (object.amount > 1) {
+          return 'een aantal flessen Moët'
+        }
+
+        return 'een fles Moët'
+      }
+
+      if (object.amount > 1) {
+        return `${object.amount} ${key}'s`
+      }
+
+      return `een ${key}`
+    })
+
+    const correctedItems = names.length > 1
+      ? names.slice(0, 2).join(' en ')
+      : names[0]
+
+    return `Wow! Ik heb zojuist ${correctedItems} gekocht, hiervan had ik ook ${substituteItem.amount} ${substituteItem.naam.toLowerCase()} kunnen kopen.\n\nHoe besteed jij dit geld?\n\n`
   }
 </script>
 
