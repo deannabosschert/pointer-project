@@ -16,7 +16,7 @@
     >
       <button
         type="button"
-        class="company-search__autocomplete-item"
+        class="company-search__autocomplete-item correct-casing"
         v-for="(company, i) in matchingCompanies"
         :key="`${company.id}-${i}`"
         @click="onCompanyClick(company)"
@@ -62,7 +62,7 @@
           typeof this.careCompanies === 'object' &&
           Object.values(this.careCompanies)
               .filter(item => {
-                return item.naam.includes(this.input)
+                return item.naam.includes(this.input.toLowerCase())
               })
               .sort((currentItem, nextItem) => {
                 const currentItemFirstProfit = getLatestProfit(currentItem.jaarVerslagen)
