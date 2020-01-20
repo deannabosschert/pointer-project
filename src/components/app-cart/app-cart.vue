@@ -46,6 +46,7 @@
     <app-table
       :products="substituteProducts"
       :total="totalSubstitutePrice"
+      has-highlighted-total
     />
     <p class="app-cart__title--special pull-right">... kunnen betalen</p>
 
