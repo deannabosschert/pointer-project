@@ -7,13 +7,6 @@
     </div>
     <div class="app-header__triangle"></div>
     <div class="app-header__icons">
-      <button class="app-header__button app-header__button--search">
-        <app-icon
-          class="app-header__icon"
-          name="search-icon"
-        />
-        <span class="sr-only">Zoek een zorginstelling</span>
-      </button>
       <nuxt-link to="/shopping-bag" class="app-header__button app-header__button--shop">
         <app-icon-with-counter
           name="shop_white"
@@ -21,19 +14,23 @@
           message="Aantal producten in winkelmandje"
         />
       </nuxt-link>
-      <button class="app-header__button">
+      <button
+        @click="toggleMenu"
+        class="app-header__button"
+      >
         <app-icon
           class="app-header__icon"
-          name="menu-icon"
+          :name="menuIcon"
         />
-        <span class="sr-only">Open het menu</span>
+        <span class="sr-only">{{ menuText }}</span>
       </button>
     </div>
   </header>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
+  import { TOGGLE_MENU } from '~/store/mutation-types'
 
   import AppIcon from '../app-icon/app-icon'
   import AppIconWithCounter from '../app-icon-with-counter/app-icon-with-counter'
@@ -44,9 +41,25 @@
       AppIconWithCounter
     },
     computed: {
+      ...mapState({
+        menuIsOpen: state => state.menuIsOpen
+      }),
       ...mapGetters({
         shoppingBagItemsQuantity: 'shop/shoppingBagItemsQuantity'
-      })
+      }),
+      menuText() {
+        return this.menuIsOpen ? 'Sluit het menu' : 'Open het menu'
+      },
+      menuIcon() {
+        return this.menuIsOpen ? 'cross_white' : 'menu-icon'
+      }
+    },
+    methods: {
+      toggleMenu() {
+        return this.menuIsOpen
+          ? this.$store.commit(TOGGLE_MENU, { isOpen: false })
+          : this.$store.commit(TOGGLE_MENU, { isOpen: true })
+      }
     }
   }
 </script>
@@ -94,10 +107,6 @@
 
   .app-header__button {
     margin-left: 0.625rem;
-  }
-
-  .app-header__button--search {
-    display: block;
   }
 
   .app-header__button--shop {
