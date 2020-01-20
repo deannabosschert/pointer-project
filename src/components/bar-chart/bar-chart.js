@@ -84,7 +84,8 @@ export default {
             },
             formatter: function(value) {
               return checkProperty(value)
-            }
+            },
+            color: "black"
           },
           annotation: {
        annotations: [{
@@ -120,7 +121,9 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                display: true
+                display: true,
+                maxRotation: 0
+
               }
             }
           ]
