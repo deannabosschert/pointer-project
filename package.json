@@ -16,7 +16,8 @@
     "csvtojson": "^2.0.10",
     "d3": "^5.14.2",
     "mkdirp": "^0.5.1",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "query-string": "^6.10.1"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
