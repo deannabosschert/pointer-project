@@ -5,25 +5,31 @@
       <h2 class="app-socials__title">Deel jouw aankopen!</h2>
     </div>
     <div class="app-socials__buttons">
-      <button
-        class="app-socials__button"
-        @click="shareToTwitter"
-      >
-        <app-icon name="facebook_purple" />
-        <span class="sr-only">Deel op Twitter</span>
-      </button>
-      <button
-        @click="shareToFacebook"
+      <a
+        :href="twitterLink"
+        target="_blank"
         class="app-socials__button"
       >
         <app-icon name="twitter_purple" />
+        <span class="sr-only">Deel op Twitter</span>
+      </a>
+      <a
+        :href="facebookLink"
+        target="_blank"
+        class="app-socials__button"
+      >
+        <app-icon name="facebook_purple" />
         <span class="sr-only">Deel op Facebook</span>
-      </button>
+      </a>
     </div>
   </section>
 </template>
 
 <script>
+  import queryString from 'query-string'
+
+  import { mapState } from 'vuex'
+
   import AppIcon from '../app-icon/app-icon'
 
   export default {
@@ -37,22 +43,54 @@
       }
     },
     computed: {
+      ...mapState({
+        shoppingBag: state => state.shop.shoppingBag,
+        substituteItems: state => state.shop.substituteItems
+      }),
       twitterLink() {
-        // TODO: add text with link to our site
+        const url = 'https://twitter.com/intent/tweet'
+        const params = queryString.stringify({
+          text: generateText(this.shoppingBag, this.substituteItems[0]),
+          url: 'https://www.pointer-project.netlify.com'
+        })
 
-        return `https://twitter.com/intent/tweet`
+        return `${url}?${params}`
       },
-    },
-    methods: {
-      shareToTwitter() {
-        console.log('sharing to twitter')
-      },
-      shareToFacebook() {
-        // TODO: find a solid FB solution
+      facebookLink() {
+        const url = 'https://www.facebook.com/dialog/share'
+        const params = queryString.stringify({
+          app_id: 164432231515850,
+          href: 'https://www.pointer-project.netlify.com',
+          quote: generateText(this.shoppingBag, this.substituteItems[0])
+        })
 
-        console.log('sharing to facebook')
+        return `${url}?${params}`
       }
-    }
+    },
+  }
+
+  function generateText(shoppingBagItems, substituteItem) {
+    const names = Object.entries(shoppingBagItems).map(([key, object]) => {
+      if (key === 'Moët') {
+        if (object.amount > 1) {
+          return `${object.amount} flessen Moët`
+        }
+
+        return 'een fles Moët'
+      }
+
+      if (object.amount > 1) {
+        return `${object.amount} ${key}'s`
+      }
+
+      return `een ${key}`
+    })
+
+    const correctedItems = names.length > 1
+      ? names.slice(0, 2).join(' en ')
+      : names[0]
+
+    return `Wow! Ik heb zojuist ${correctedItems} gekocht, hiervan had ik ook ${substituteItem.amount} ${substituteItem.naam.toLowerCase()} kunnen kopen.\n\nHoe besteed jij dit geld?\n\n`
   }
 </script>
 

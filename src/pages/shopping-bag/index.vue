@@ -32,7 +32,8 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { SET_SUBSTITUTE_ITEMS } from '~/store/mutation-types'
+  import { mapState, mapGetters } from 'vuex'
 
   import ProductList from '~/components/product-list/product-list'
 
@@ -44,6 +45,9 @@
       ...mapState({
         shoppingBag: state => state.shop.shoppingBag
       }),
+      ...mapGetters({
+        shoppingBagTotalPrice: state => state.shoppingBagTotalPrice
+      }),
       correctedShoppingBag() {
         return Object.entries(this.shoppingBag).map(([key, value]) => {
           return { naam: key, ...value }
@@ -52,6 +56,8 @@
     },
     methods: {
       redirectToCart() {
+        this.$store.commit(`shop/${SET_SUBSTITUTE_ITEMS}`, { total: this.shoppingBagTotalPrice })
+
         return this.$router.push({
           path: '/cart'
         })
