@@ -1,16 +1,19 @@
 <template>
   <div class="layout">
     <app-header />
+    <app-menu />
     <nuxt />
   </div>
 </template>
 
 <script>
   import AppHeader from '../components/app-header/app-header'
+  import AppMenu from '../components/app-menu/app-menu'
 
   export default {
     components: {
-      AppHeader
+      AppHeader,
+      AppMenu
     },
     head() {
       return {
