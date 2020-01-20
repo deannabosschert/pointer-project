@@ -23,6 +23,13 @@
       ...mapGetters({
         selectedCareCompany: 'selectedCareCompany'
       })
+    },
+    head() {
+      return {
+        htmlAttrs: {
+          class: 'is-cart-page'
+        }
+      }
     }
   }
 </script>
@@ -34,5 +41,13 @@
 
   .cart-page .app-cart {
     margin-bottom: $spacing-large;
+  }
+
+  .is-cart-page .app-header__button--search {
+    display: none;
+  }
+
+  .is-cart-page .app-header__button--shop {
+    display: block;
   }
 </style>
