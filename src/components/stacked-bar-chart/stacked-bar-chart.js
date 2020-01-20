@@ -85,9 +85,6 @@ export default {
             backgroundColor: "#1beaae",
             datalabels: {
               // color: ['#FFCE56', '#d8cedb'],
-              formatter: function(value) {
-                return Math.round(value) + "%";
-              }
             },
             data: [nederlandPercOverig, bedrijfPercOverig]
           },
@@ -115,15 +112,9 @@ export default {
               weight: 900,
               size: 18
             },
-            labels: [
-              {
-                render: nederland,
-
-              },
-              {
-                render: bedrijf
-              }
-            ]
+            formatter: function(value) {
+              return Math.round(value) + "%"
+            }
           }
         },
         // hover: {
