@@ -138,7 +138,6 @@
   $zig-zag-size-y: 15px;
   $zig-zag-spacing: 20px;
 
-
   .app-cart {
     background: $color-white;
     padding: $spacing-large $spacing-medium;
