@@ -7,13 +7,6 @@
     </div>
     <div class="app-header__triangle"></div>
     <div class="app-header__icons">
-      <button class="app-header__button app-header__button--search">
-        <app-icon
-          class="app-header__icon"
-          name="search-icon"
-        />
-        <span class="sr-only">Zoek een zorginstelling</span>
-      </button>
       <nuxt-link to="/shopping-bag" class="app-header__button app-header__button--shop">
         <app-icon-with-counter
           name="shop_white"
@@ -94,10 +87,6 @@
 
   .app-header__button {
     margin-left: 0.625rem;
-  }
-
-  .app-header__button--search {
-    display: block;
   }
 
   .app-header__button--shop {
