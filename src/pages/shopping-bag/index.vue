@@ -56,6 +56,13 @@
           path: '/cart'
         })
       }
+    },
+    head() {
+      return {
+        htmlAttrs: {
+          class: 'is-shopping-bag-page'
+        }
+      }
     }
   }
 </script>
@@ -87,5 +94,13 @@
 
   .shopping-bag-page .product-card--is-disabled .product-card__price {
     opacity: 1;
+  }
+
+  .is-shopping-bag-page .app-header__button--search {
+    display: none;
+  }
+
+  .is-shopping-bag-page .app-header__button--shop {
+    display: block;
   }
 </style>
