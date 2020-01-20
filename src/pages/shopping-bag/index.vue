@@ -62,6 +62,13 @@
           path: '/cart'
         })
       }
+    },
+    head() {
+      return {
+        htmlAttrs: {
+          class: 'is-shopping-bag-page'
+        }
+      }
     }
   }
 </script>
@@ -84,5 +91,22 @@
 
   .shopping-bag-page .button + .button {
     margin-top: $spacing-small;
+  }
+
+  // Don't look disabled when in the shopping bag
+  .shopping-bag-page .product-card--is-disabled .product-card__image {
+    filter: blur(0);
+  }
+
+  .shopping-bag-page .product-card--is-disabled .product-card__price {
+    opacity: 1;
+  }
+
+  .is-shopping-bag-page .app-header__button--search {
+    display: none;
+  }
+
+  .is-shopping-bag-page .app-header__button--shop {
+    display: block;
   }
 </style>

@@ -19,7 +19,7 @@
         class="product-details__button"
       >
         <span class="sr-only">Verwijder één uit winkelmandje</span>
-        <app-icon name="min_black" />
+        <app-icon name="min_white" />
       </button>
       <p class="product-details__amount">{{ amount || 'onbekend' }}</p>
       <button
@@ -60,7 +60,7 @@
         return this.budget > this.product.prijs
       },
       addToCartIcon() {
-        return this.hasEnoughBudget ? 'plus_black' : 'cross_black'
+        return this.hasEnoughBudget ? 'plus_white' : 'cross_white'
       }
     }
   }
@@ -75,8 +75,8 @@
     justify-content: space-between;
     align-items: center;
     padding: $spacing-small;
-    background: $color-darkest;
-    color: $color-white;
+    background: $color-white;
+    color: $color-darkest;
   }
 
   .product-details {
@@ -89,11 +89,11 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba($color-darkest, .8);
+    background: rgba($color-white, .8);
   }
 
   .product-details__amount {
-    background: $color-white;
+    background: $color-gray;
     color: $color-darkest;
     height: 100%;
     min-width: 45px;
@@ -116,6 +116,6 @@
     width: 1.5em;
     border-radius: 50%;
     font-size: $font-size-default;
-    background: $color-highlight-yellow;
+    background: $color-darkest;
   }
 </style>

@@ -46,6 +46,7 @@
     <app-table
       :products="substituteProducts"
       :total="totalSubstitutePrice"
+      has-highlighted-total
     />
     <p class="app-cart__title--special pull-right">... kunnen betalen</p>
 
@@ -124,10 +125,40 @@
 </script>
 
 <style lang="scss">
+  $zig-zag-size-x: 25px;
+  $zig-zag-size-y: 15px;
+  $zig-zag-spacing: 20px;
+
   .app-cart {
     background: $color-white;
     padding: $spacing-large $spacing-medium;
     position: relative;
+  }
+
+  .app-cart:after {
+    content: "";
+    height: $spacing-default;
+    position: absolute;
+    bottom: -#{$spacing-default};
+    left: 0;
+    right: 0;
+    background: linear-gradient(-45deg, transparent $zig-zag-spacing, $color-white 0), linear-gradient(45deg, transparent $zig-zag-spacing, $color-white 0);
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    background-size: $zig-zag-size-x $zig-zag-size-y;
+  }
+
+  .app-cart:before {
+    content: "";
+    height: $spacing-default;
+    position: absolute;
+    top: -#{$spacing-default};
+    left: 0;
+    right: 0;
+    background: linear-gradient(45deg, $color-white $zig-zag-spacing, transparent 0), linear-gradient(-45deg, $color-white $zig-zag-spacing, transparent 0);
+    background-repeat: repeat-x;
+    background-position: left top;
+    background-size: $zig-zag-size-x calc(#{$zig-zag-size-y} * 2);
   }
 
   .app-cart__header {
