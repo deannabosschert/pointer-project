@@ -9,6 +9,7 @@
       @focus="enableAutocomplete"
       v-model="input"
       :required="required"
+      ref="company-search-input"
     />
     <div
       v-if="autocompleteIsEnabled"
@@ -101,11 +102,27 @@
         this.$store.commit(TOGGLE_AUTOCOMPLETE, {
           autoCompleteIsEnabled: true
         })
+
+        /*
+          Ugly fix to disable the autocomplete when the user clicks somewhere
+          then on the button itself or in the input
+        */
+        const inputNode = this.$refs['company-search-input']
+
+        document.body.addEventListener('click', event => {
+          if (event.target !== inputNode) {
+            return this.disableAutocomplete()
+          }
+
+          return
+        }, false)
       },
       disableAutocomplete() {
         this.$store.commit(TOGGLE_AUTOCOMPLETE, {
           autoCompleteIsEnabled: false
         })
+
+        document.body.removeEventListener('click', this.disableAutocomplete)
       }
     },
   }
