@@ -45,6 +45,7 @@ export default {
 
     let selectedProperty = this.property
 
+
     function checkProperty(value) {
       if (selectedProperty === 'omzetPerFte'){
         return "€" + Math.round(value/1000) + "K"
@@ -106,10 +107,7 @@ export default {
                 display: false
               },
               ticks: {
-                // max: function(value) {
-                //   return Math.max(value) + 10
-                // },
-                // max: Math.max(... datasets[0].data) + 10,
+                // max: Math.max(... [nederlandV, bedrijfV]) + 20,
                 display: true,
                 beginAtZero: true
               }
