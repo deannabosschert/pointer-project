@@ -1,7 +1,9 @@
 import { Bar } from "vue-chartjs"
+import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
+import ChartJSPluginAnnotation from "chartjs-plugin-annotation"
 
 export default {
-  extends: Bar,
+  extends: Bar, ChartJSPluginDatalabels, ChartJSPluginAnnotation,
   props: {
     data: ["data", "options"],
     selectedData: {
@@ -22,7 +24,7 @@ export default {
     }
   },
   components: {
-    Bar
+    Bar, ChartJSPluginDatalabels, ChartJSPluginAnnotation
   },
   computed: {
     dutchValue() {
@@ -33,58 +35,69 @@ export default {
     }
   },
   mounted() {
+
     let nederland = this.dutchData.naam
     let bedrijf = this.selectedData.naam
 
-    let nederlandV = this.dutchData.percentageWinst
+    let nederlandV = this.dutchData[this.property]
     let gemiddeldV = 5
-    let test = -4
-    let bedrijfV = this.selectedData.percentageWinst
+    let bedrijfV = this.selectedData[this.property]
+
 
     this.renderChart(
       {
-        labels: [nederland, "gemiddeld", bedrijf],
+        labels: [nederland, bedrijf],
         datasets: [
           {
-            data: [nederlandV, gemiddeldV, test],
+            data: [nederlandV, bedrijfV],
             label: "Winstpercentage",
-            backgroundColor: ["#1beaae", "rgba(255, 255, 255, 0)", "#6b38e8"],
-            borderColor: ["", "#f65645", ""],
-            borderWidth: [0, 2, 0]
+            backgroundColor: ["#6b38e8", "#1beaae"],
+            borderColor: ["", ""],
+            borderWidth: [0, 0]
           }
         ]
       },
       {
-        hover: {
-          animationDuration: 1
-        },
-        animation: {
-          duration: 1,
-          onComplete: function() {
-            var chartInstance = this.chart,
-              ctx = chartInstance.ctx
-            ctx.textAlign = "center"
-            ctx.fillStyle = "rgba(0, 0, 0, 1)"
-            ctx.textBaseline = "bottom"
-
-            this.data.datasets.forEach(function(dataset, i) {
-              var meta = chartInstance.controller.getDatasetMeta(i)
-              meta.data.forEach(function(bar, index) {
-                var data = dataset.data[index]
-                ctx.fillText(data, bar._model.x, bar._model.y - 5)
-              })
-            })
-          }
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: -90,
+            // offset: 8,
+            textAlign: "top",
+            font: {
+              family: "Tenso",
+              weight: 900,
+              size: 18,
+              color: "black"
+            },
+            formatter: function(value) {
+              return  Math.round(value) +  "%"
+            }
+          },
+          annotation: {
+       annotations: [{
+           type: 'line',
+           mode: 'horizontal',
+           scaleID: 'y-axis-0',
+           value: '2',
+           borderColor: '#f65645',
+           borderWidth: 1
+       }],
+       drawTime: "afterDraw" // (default)
+   },
         },
         responsive: true,
         scales: {
           yAxes: [
             {
-              display: true,
+              display: false,
               gridLines: {
-                display: true
+                display: false
               },
               ticks: {
+                // max: function(value) {
+                //   return Math.max(value) + 10
+                // },
                 // max: Math.max(... datasets[0].data) + 10,
                 display: true,
                 beginAtZero: true
@@ -106,10 +119,13 @@ export default {
         legend: {
           display: false
         },
+        title:{
+          display: true
+        },
         tooltips: {
           enabled: true
         },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         height: 200
       }
     )

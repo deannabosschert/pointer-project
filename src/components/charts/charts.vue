@@ -4,8 +4,22 @@
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
       :dutch-data="selectedDutchData"
-      property="omzet"
-      title="My awesome bar chart"
+      property="percentageWinst"
+      title="Percentage winst"
+    />
+    <bar-chart
+      v-if="selectedData && selectedDutchData"
+      :selected-data="selectedData"
+      :dutch-data="selectedDutchData"
+      property="percentageLoon"
+      title="Percentage loon"
+    />
+    <bar-chart
+      v-if="selectedData && selectedDutchData"
+      :selected-data="selectedData"
+      :dutch-data="selectedDutchData"
+      property="omzetPerFte"
+      title="Omzet per FTE"
     />
 
     <stacked-bar-chart
