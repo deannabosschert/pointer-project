@@ -1,5 +1,6 @@
 <template>
   <main>
+    <h2 class="chart-title">Percentage winst</h2>
     <bar-chart
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
@@ -7,6 +8,8 @@
       property="percentageWinst"
       title="Percentage winst"
     />
+
+    <h2 class="chart-title">Percentage loon </h2>
     <bar-chart
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
@@ -14,6 +17,8 @@
       property="percentageLoon"
       title="Percentage loon"
     />
+
+    <h2 class="chart-title">Omzet per FTE</h2>
     <bar-chart
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
@@ -56,4 +61,11 @@ export default {
 </script>
 
 <style lang="scss">
+.chart-title{
+  margin-top: $spacing-large;
+}
+
+bar-chart{
+}
+
 </style>
