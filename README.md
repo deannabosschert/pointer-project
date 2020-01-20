@@ -1,6 +1,8 @@
 # Pointer project
 > Project for KRO-NCRV Pointer.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a7051b30-5d80-41f2-ad42-0121a4c43777/deploy-status)](https://app.netlify.com/sites/pointer-project/deploys)
+
 ## Getting started
 ```bash
 # Install dependencies
