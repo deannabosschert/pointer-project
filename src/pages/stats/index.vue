@@ -8,12 +8,20 @@
       :dutch-data="dutchData"
     />
 
-    <bar-chart
+    <!-- <bar-chart
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
       :dutch-data="selectedDutchData"
       property="omzet"
       title="My awesome bar chart"
+    /> -->
+
+    <stacked-bar-chart
+      v-if="selectedData && selectedDutchData"
+      :selected-data="selectedData"
+      :dutch-data="selectedDutchData"
+      property="omzet"
+      title="Stacken met die barzz"
     />
 
     <nuxt-link to="/">To the shop</nuxt-link>
@@ -27,11 +35,15 @@ import dutchDataJson from '~/static/data/dutch-stats'
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
 import BarChart from '~/components/bar-chart/bar-chart'
+import StackedBarChart from '~/components/stacked-bar-chart/stacked-bar-chart'
+
+
 export default {
   components: {
     CompanySearch,
     YearSelection,
-    BarChart
+    BarChart,
+    StackedBarChart
   },
   data() {
     return {
