@@ -164,7 +164,8 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                display: true
+                display: true,
+                maxRotation: 0
               }
             }
           ]
