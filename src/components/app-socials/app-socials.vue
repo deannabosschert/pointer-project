@@ -73,7 +73,7 @@
     const names = Object.entries(shoppingBagItems).map(([key, object]) => {
       if (key === 'Moët') {
         if (object.amount > 1) {
-          return 'een aantal flessen Moët'
+          return `${object.amount} flessen Moët`
         }
 
         return 'een fles Moët'
