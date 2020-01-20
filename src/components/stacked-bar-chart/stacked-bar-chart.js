@@ -1,6 +1,6 @@
-import { Bar } from "vue-chartjs";
+import { Bar } from "vue-chartjs"
 // import { Chart } from 'chart.js'
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels";
+import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
 
 export default {
   extends: Bar,
@@ -30,44 +30,44 @@ export default {
   },
   computed: {
     dutchValue() {
-      return this.dutchData[this.property];
+      return this.dutchData[this.property]
     },
     selectedDataValue() {
-      return this.selectedData[this.property];
+      return this.selectedData[this.property]
     }
   },
   mounted() {
-    let nederland = this.dutchData.naam;
-    let bedrijf = this.selectedData.naam;
+    let nederland = this.dutchData.naam
+    let bedrijf = this.selectedData.naam
 
-    let nederlandOmzet = this.dutchData.omzet;
-    let bedrijfOmzet = this.selectedData.omzet;
-    let nederlandWinst = this.dutchData.winst;
-    let bedrijfWinst = this.selectedData.winst;
-    let nederlandPersKosten = this.dutchData.personeelskosten;
-    let bedrijfPersKosten = this.selectedData.personeelskosten;
+    let nederlandOmzet = this.dutchData.omzet
+    let bedrijfOmzet = this.selectedData.omzet
+    let nederlandWinst = this.dutchData.winst
+    let bedrijfWinst = this.selectedData.winst
+    let nederlandPersKosten = this.dutchData.personeelskosten
+    let bedrijfPersKosten = this.selectedData.personeelskosten
 
-    let nederlandPercWinst = this.dutchData.percentageWinst;
-    let bedrijfPercWinst = this.selectedData.percentageWinst;
+    let nederlandPercWinst = this.dutchData.percentageWinst
+    let bedrijfPercWinst = this.selectedData.percentageWinst
 
-    let nederlandPercLoon = this.dutchData.percentageLoon;
-    let bedrijfPercLoon = this.selectedData.percentageLoon;
+    let nederlandPercLoon = this.dutchData.percentageLoon
+    let bedrijfPercLoon = this.selectedData.percentageLoon
 
-    let nederlandOverig = nederlandOmzet - nederlandPersKosten - nederlandWinst;
-    let bedrijfOverig = bedrijfOmzet - bedrijfPersKosten - bedrijfWinst;
+    let nederlandOverig = nederlandOmzet - nederlandPersKosten - nederlandWinst
+    let bedrijfOverig = bedrijfOmzet - bedrijfPersKosten - bedrijfWinst
 
-    console.log(this.selectedData);
-    console.log(this.dutchData);
+    console.log(this.selectedData)
+    console.log(this.dutchData)
 
-    let nederlandO = "test";
+    let nederlandO = "test"
 
-    let nederlandPercOverig = 100 - nederlandPercLoon - nederlandPercWinst;
-    let bedrijfPercOverig = 100 - bedrijfPercLoon - bedrijfPercWinst;
+    let nederlandPercOverig = 100 - nederlandPercLoon - nederlandPercWinst
+    let bedrijfPercOverig = 100 - bedrijfPercLoon - bedrijfPercWinst
 
-    Chart.defaults.global.defaultFontColor = "#1d2939";
-    Chart.defaults.global.defaultFontFamily = "ZillaSlab";
-    Chart.defaults.global.defaultFontSize = 16;
-    Chart.defaults.global.defaultFontWeight = 600;
+    Chart.defaults.global.defaultFontColor = "#1d2939"
+    Chart.defaults.global.defaultFontFamily = "ZillaSlab"
+    Chart.defaults.global.defaultFontSize = 16
+    Chart.defaults.global.defaultFontWeight = 600
 
     this.renderChart(
       {
@@ -186,6 +186,6 @@ export default {
         maintainAspectRatio: false,
         height: 200
       }
-    );
+    )
   }
-};
+}
