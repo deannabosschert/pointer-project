@@ -43,6 +43,17 @@ export default {
     let gemiddeldV = 5
     let bedrijfV = this.selectedData[this.property]
 
+    let selectedProperty = this.property
+
+    function checkProperty(value) {
+      if (selectedProperty === 'omzetPerFte'){
+        return "€" + Math.round(value/1000) + "K"
+      }
+      else {
+        return Math.round(value) +  "%"
+      }
+
+    }
 
     this.renderChart(
       {
@@ -71,7 +82,7 @@ export default {
               color: "black"
             },
             formatter: function(value) {
-              return  Math.round(value) +  "%"
+              return checkProperty(value)
             }
           },
           annotation: {
