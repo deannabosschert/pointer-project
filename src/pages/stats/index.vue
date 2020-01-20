@@ -8,21 +8,14 @@
       :dutch-data="dutchData"
     />
 
-    <!-- <bar-chart
+    <charts
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
       :dutch-data="selectedDutchData"
       property="omzet"
-      title="My awesome bar chart"
-    /> -->
-
-    <stacked-bar-chart
-      v-if="selectedData && selectedDutchData"
-      :selected-data="selectedData"
-      :dutch-data="selectedDutchData"
-      property="omzet"
-      title="Stacken met die barzz"
+      title="Charts toggle"
     />
+
 
     <nuxt-link to="/">To the shop</nuxt-link>
   </main>
@@ -34,16 +27,14 @@ import { SET_CARECOMPANIES, SET_DUTCH_DATA } from '~/store/mutation-types'
 import dutchDataJson from '~/static/data/dutch-stats'
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
-import BarChart from '~/components/bar-chart/bar-chart'
-import StackedBarChart from '~/components/stacked-bar-chart/stacked-bar-chart'
+import Charts from '~/components/charts/charts'
 
 
 export default {
   components: {
     CompanySearch,
     YearSelection,
-    BarChart,
-    StackedBarChart
+    Charts
   },
   data() {
     return {
