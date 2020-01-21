@@ -17,3 +17,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.off-screen {
+  position: absolute;
+  transform: translateX(-999999px);
+}
