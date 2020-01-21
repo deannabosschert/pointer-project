@@ -49,4 +49,12 @@
       flex: 0 0 calc(33.3333333% - #{$spacing-small})
     }
   }
+
+  // Style every product card except the third in a row
+  // when media is equal to or wider then $layout-small
+  .product-list .product-card:not(:nth-child(3n + 3)) {
+    @media (min-width: $layout-small) {
+      margin-right: $spacing-default;
+    }
+  }
 </style>
