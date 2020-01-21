@@ -52,10 +52,10 @@
 
   .app-menu {
     position: fixed;
-    bottom: 0;
+    top: $app-header-height;
     left: 0;
     width: 100%;
-    min-height: calc(100vh - #{$app-header-height});
+    min-height: calc(100% - #{$app-header-height});
     z-index: 99;
     overflow-y: scroll;
     background: $color-darkest;
