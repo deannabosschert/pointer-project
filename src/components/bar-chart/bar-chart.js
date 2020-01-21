@@ -66,7 +66,9 @@ export default {
     })
 
     let nederland = this.dutchData.naam
-    let bedrijf = this.selectedData.naam
+    let bedrijfV1 = this.selectedData.naam
+    var bedrijf = bedrijfV1.substring(0, 8) + '...'
+
 
     let nederlandV = this.dutchData[this.property]
     let gemiddeldV = 5
@@ -83,16 +85,24 @@ export default {
       }
     }
 
+    // function checkLabel(value) {
+    //   if (labels[0] === "gemiddeldeL") {
+    //     return "test1"
+    //   } else {
+    //     return "test2"
+    //   }
+    // }
+
     this.renderChart(
       {
-        labels: [nederland, bedrijf],
+        labels: [nederland, ["Normale","bovengrens"], bedrijf],
         datasets: [
           {
-            data: [nederlandV, bedrijfV],
+            data: [nederlandV, gemiddelde, bedrijfV],
             label: this.title,
-            backgroundColor: ["#6b38e8", "#1beaae"],
-            borderColor: ["", ""],
-            borderWidth: [0, 0]
+            backgroundColor: ["#6b38e8", "rgb(246,86,69,0)", "#1beaae"],
+            borderColor: ["", "", ""],
+            borderWidth: [0, 0, 0]
           }
         ]
       },
@@ -159,7 +169,11 @@ export default {
               ticks: {
                 beginAtZero: true,
                 display: true,
-                maxRotation: 0
+                maxRotation: 0,
+                fontColor: ["black", "yellow", "black"]
+                // callback: function(value, index, values) {
+                //   return "$" + value
+                // }
               }
             }
           ]
