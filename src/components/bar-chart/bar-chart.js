@@ -1,6 +1,5 @@
 import { Bar } from "vue-chartjs"
 import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
-import ChartJSPluginAnnotation from "chartjs-plugin-annotation"
 
 export default {
   extends: Bar,
@@ -22,7 +21,7 @@ export default {
       type: String,
       required: true
     },
-    gemiddelde: {
+    average: {
       type: String,
       required: true
     }
@@ -39,71 +38,56 @@ export default {
     }
   },
   mounted() {
-    this.addPlugin({
-      id: "horizontalLine",
-      afterDraw: function(chart) {
-        if (typeof chart.config.options.lineAt != "undefined") {
-          var lineAt = chart.config.options.lineAt
-          var ctxPlugin = chart.chart.ctx
-          var xAxe = chart.scales[chart.config.options.scales.xAxes[0].id]
-          var yAxe = chart.scales[chart.config.options.scales.yAxes[0].id]
+    // lots of variables for better readability later on
+    let dutch = capitalize(this.dutchData.naam)
+    let company_v1 = capitalize(this.selectedData.naam)
+    let company = company_v1.substring(0, 8) + "..."
 
-          if (yAxe.min != 0) return
+    let average = this.average
+    let selectedProperty = this.property
+    let dutchValue = this.dutchData[selectedProperty]
+    let companyValue = this.selectedData[selectedProperty]
 
-          ctxPlugin.strokeStyle = "#f65645"
-          ctxPlugin.lineWidth = 2
-          ctxPlugin.setLineDash([5, 3])
-
-          ctxPlugin.beginPath()
-          lineAt = (lineAt - yAxe.min) * (100 / yAxe.max)
-          lineAt = ((100 - lineAt) / 100) * yAxe.height + yAxe.top
-          ctxPlugin.moveTo(xAxe.left, lineAt)
-          ctxPlugin.lineTo(xAxe.right, lineAt)
-          ctxPlugin.stroke()
-        }
-      }
-    })
-
-    const capitalize = (label) => {
+    // will move this funciton to libs
+    function capitalize(label) {
       return label.charAt(0).toUpperCase() + label.slice(1)
     }
 
-    let nederland = capitalize(this.dutchData.naam)
-    // let nederland = capitalize(nederlandV1)
-
-    let bedrijfV1 = capitalize(this.selectedData.naam)
-    var bedrijf = bedrijfV1.substring(0, 8) + '...'
-
-
-    let nederlandV = this.dutchData[this.property]
-    let gemiddeldV = 5
-    let bedrijfV = this.selectedData[this.property]
-
-    let selectedProperty = this.property
-    let gemiddelde = this.gemiddelde
-
-    function checkProperty(value) {
+    function checkProperty(datalabel) {
       if (selectedProperty === "omzetPerFte") {
-        return "€" + Math.round(value / 1000) + "K"
+        return "€" + Math.round(datalabel / 1000) + "K"
       } else {
-        return Math.round(value) + "%"
+        return Math.round(datalabel) + "%"
       }
     }
 
-    // function checkLabel(value) {
-    //   if (labels[0] === "gemiddeldeL") {
-    //     return "test1"
-    //   } else {
-    //     return "test2"
-    //   }
-    // }
+    // ugly fix because the annotations-plugin wouldn't work properly
+    this.addPlugin({
+      afterDraw: function(chart) {
+        let lineAt = chart.config.options.lineAt
+        let ctxPlugin = chart.chart.ctx
+        let xAxe = chart.scales[chart.config.options.scales.xAxes[0].id]
+        let yAxe = chart.scales[chart.config.options.scales.yAxes[0].id]
+
+        ctxPlugin.strokeStyle = "#f65645"
+        ctxPlugin.lineWidth = 2
+        ctxPlugin.setLineDash([5, 3])
+
+        ctxPlugin.beginPath()
+        lineAt = (lineAt - yAxe.min) * (100 / yAxe.max)
+        lineAt = ((100 - lineAt) / 100) * yAxe.height + yAxe.top
+        ctxPlugin.moveTo(xAxe.left, lineAt)
+        ctxPlugin.lineTo(xAxe.right, lineAt)
+        ctxPlugin.stroke()
+      }
+    })
 
     this.renderChart(
       {
-        labels: [nederland, ["Normale","bovengrens"], bedrijf],
+        labels: [dutch, ["Normale", "bovengrens"], company],
         datasets: [
           {
-            data: [nederlandV, gemiddelde, bedrijfV],
+            data: [dutchValue, average, companyValue],
             label: this.title,
             backgroundColor: ["#6b38e8", "rgb(246,86,69,0)", "#1beaae"],
             borderColor: ["", "", ""],
@@ -126,29 +110,8 @@ export default {
             },
             formatter: function(value) {
               return checkProperty(value)
-            },
-            color: "black"
+            }
           }
-          // annotation: {
-          //   annotations: [
-          //     {
-          //       drawTime: "afterDatasetsDraw",
-          //       id: "hline",
-          //       type: "line",
-          //       mode: "horizontal",
-          //       scaleID: "y-axis-0",
-          //       value: 45,
-          //       borderColor: "red",
-          //       borderWidth: 2,
-          //       borderDash: [2, 2],
-          //       label: {
-          //         fontColor: "red",
-          //         content: "Normale bovengrens",
-          //         enabled: true
-          //       },
-          //     },
-          //   ]
-          // }
         },
         responsive: true,
         scales: {
@@ -159,7 +122,6 @@ export default {
                 display: false
               },
               ticks: {
-                // max: Math.max(... [nederlandV, bedrijfV]) + 20,
                 display: true,
                 beginAtZero: true,
                 min: 0
@@ -175,13 +137,16 @@ export default {
                 beginAtZero: true,
                 display: true,
                 maxRotation: 0,
-                fontColor: ["black", "yellow", "black"],
+                fontColor: "black",
                 fontFamily: "ZillaSlab",
                 fontSize: 13,
                 fontStyle: 600
+                // will remove these comments once the labels are 'fully' fixed
                 // callback: function(value, index, values) {
-                //   return "$" + value
-                // }
+                //     if (values[1] === ["Normale", "bovengrens"]){
+                //     }
+                //
+                // },
               }
             }
           ]
@@ -189,17 +154,15 @@ export default {
         legend: {
           display: false
         },
+        // workaround to prevent the datalabels from being cut off at y-max
         title: {
           display: true
         },
         tooltips: {
           enabled: true
-          // mode: 'index',
-          // intersect: true
         },
         maintainAspectRatio: true,
-        lineAt: gemiddelde,
-        height: 200
+        lineAt: average
       }
     )
   }
