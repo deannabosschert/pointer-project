@@ -11,5 +11,7 @@
 </script>
 
 <style lang="scss">
-
+  .about-page {
+    padding: $spacing-default $spacing-medium;
+  }
 </style>

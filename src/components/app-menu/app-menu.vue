@@ -15,22 +15,6 @@
           Over dit project
         </nuxt-link>
       </li>
-      <li class="app-menu__item">
-        <nuxt-link
-          to="/privacy-policy"
-          class="app-menu__link"
-        >
-          Privacy policy
-        </nuxt-link>
-      </li>
-      <li class="app-menu__item">
-        <nuxt-link
-          to="/algemene-voorwaarden"
-          class="app-menu__link"
-        >
-          Algemene voorwaarden
-        </nuxt-link>
-      </li>
     </ul>
   </nav>
 </template>
