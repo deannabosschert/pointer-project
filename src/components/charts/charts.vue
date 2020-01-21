@@ -1,5 +1,7 @@
 <template>
   <main>
+
+    <div>
     <h2 class="chart-title">Percentage winst</h2>
     <bar-chart
       v-if="selectedData && selectedDutchData"
@@ -30,7 +32,9 @@
       title="Omzet per FTE"
       gemiddelde = '125000'
     />
+  </div>
 
+  <div>
     <stacked-bar-chart
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
@@ -38,6 +42,7 @@
       property="omzet"
       title="Stacken met die barzz"
     />
+  </div>
   </main>
 </template>
 
