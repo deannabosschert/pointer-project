@@ -26,9 +26,15 @@
 
 <style lang="scss">
   .product-list {
+    max-width: $layout-medium;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    @media (min-width: $layout-small) {
+      justify-content: flex-start;
+    }
   }
 
   .product-list .product-card {
@@ -37,6 +43,10 @@
 
     @media (min-width: $layout-tiny) {
       flex: 0 0 calc(50% - #{$spacing-small})
+    }
+
+    @media (min-width: $layout-small) {
+      flex: 0 0 calc(33.3333333% - #{$spacing-small})
     }
   }
 </style>

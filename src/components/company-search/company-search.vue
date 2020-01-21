@@ -164,7 +164,9 @@
     left: 0;
     right: 0;
     background: $color-white;
-    box-shadow: 0px 0px 3px rgba($color-darkest, .6)
+    box-shadow: 0px 0px 3px rgba($color-darkest, .6);
+    max-width: $layout-small;
+    margin: 0 auto;
   }
 
   .company-search__autocomplete-item {

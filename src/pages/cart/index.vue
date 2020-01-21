@@ -5,7 +5,7 @@
       to="/stats"
       class="button"
     >
-      Check de cijfers
+      Waar komt de winst vandaan?
     </nuxt-link>
   </main>
 </template>

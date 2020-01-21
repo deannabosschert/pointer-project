@@ -50,7 +50,7 @@
             :disabled="!selectedCareCompany"
             class="button button--secondary"
           >
-            Check de cijfers
+            Waar komt de winst vandaan?
           </button>
         </div>
       </form>

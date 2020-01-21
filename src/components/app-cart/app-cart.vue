@@ -133,6 +133,8 @@
     background: $color-white;
     padding: $spacing-large $spacing-medium;
     position: relative;
+    max-width: $layout-smaller;
+    margin: 0 auto;
   }
 
   .app-cart:after {
