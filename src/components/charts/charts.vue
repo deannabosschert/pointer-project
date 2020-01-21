@@ -4,6 +4,10 @@
       @compare-click="choice = 'compare'"
       @see-click="choice = 'see'"
     />
+    <h2 class="charts_title"> {{ selectedData.naam }} </h2>
+    <p> {{ selectedData.plaats }} </p>
+    <p> {{ selectedData.soortenZorg[0] }} </p>
+
     <div v-if="choice === 'compare'">
       <h2 class="chart-title">Percentage winst</h2>
       <p>
