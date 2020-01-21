@@ -6,6 +6,9 @@
     />
     <div v-if="choice === 'compare'">
       <h2 class="chart-title">Percentage winst</h2>
+      <p>
+     Het winstpercentage is de omzet gedeeld door de winst keer honderd. Dit is verdacht boven de 4%.
+   </p>
       <bar-chart
         v-if="selectedData && selectedDutchData"
         :selected-data="selectedData"
@@ -16,6 +19,7 @@
       />
 
       <h2 class="chart-title">Percentage loon </h2>
+       <p>Het percentage loon is het totale aantal personeelskosten gedeeld door de omzet. Een normaal percentage ligt rond de 40%.</p>
       <bar-chart
         v-if="selectedData && selectedDutchData"
         :selected-data="selectedData"
@@ -27,6 +31,7 @@
       />
 
       <h2 class="chart-title">Omzet per FTE</h2>
+          <p>Omzet per FTE geeft aan hoeveel omzet een full-time medewerker van een bedrijf oplevert. Het is verdacht als een zorgbedrijf een hoge FTE heeft aangezien het alleen meer omzet kan maken door meer medewerkers aan te nemen.</p>
       <bar-chart
         v-if="selectedData && selectedDutchData"
         :selected-data="selectedData"
@@ -38,6 +43,7 @@
     </div>
 
     <div v-else-if="choice === 'see'">
+      <h2 class="chart-title">Verdeling van de omzet</h2>
       <stacked-bar-chart
         v-if="selectedData && selectedDutchData"
         :selected-data="selectedData"
