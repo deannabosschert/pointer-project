@@ -7,6 +7,7 @@
       :dutch-data="selectedDutchData"
       property="percentageWinst"
       title="Percentage winst"
+      gemiddelde = '4'
     />
 
     <h2 class="chart-title">Percentage loon </h2>
@@ -16,6 +17,8 @@
       :dutch-data="selectedDutchData"
       property="percentageLoon"
       title="Percentage loon"
+      gemiddelde = '40'
+
     />
 
     <h2 class="chart-title">Omzet per FTE</h2>
@@ -25,6 +28,7 @@
       :dutch-data="selectedDutchData"
       property="omzetPerFte"
       title="Omzet per FTE"
+      gemiddelde = '125000'
     />
 
     <stacked-bar-chart
@@ -66,6 +70,10 @@ export default {
 }
 
 bar-chart{
+  overflow: hidden;
+}
+canvas {
+  overflow: hidden;
 }
 
 </style>
