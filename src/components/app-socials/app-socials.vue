@@ -90,7 +90,11 @@
       ? names.slice(0, 2).join(' en ')
       : names[0]
 
-    return `Wow! Ik heb zojuist ${correctedItems} gekocht, hiervan had ik ook ${substituteItem.amount} ${substituteItem.naam.toLowerCase()} kunnen kopen.\n\nHoe besteed jij dit geld?\n\n`
+    const amount = substituteItem.amount
+      ? substituteItem.amount.toLocaleString()
+      : 'heel veel'
+
+    return `Wow! Ik heb zojuist ${correctedItems} gekocht, hiervan had ik ook ${amount} ${substituteItem.naam.toLowerCase()} kunnen kopen.\n\nHoe besteed jij dit geld?\n\n`
   }
 </script>
 
