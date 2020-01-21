@@ -1,10 +1,8 @@
 import { Bar } from "vue-chartjs"
-// import { Chart } from 'chart.js'
 import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
 
 export default {
   extends: Bar,
-  ChartJSPluginDatalabels,
   props: {
     data: ["data", "options"],
     selectedData: {
@@ -25,8 +23,7 @@ export default {
     }
   },
   components: {
-    Bar,
-    ChartJSPluginDatalabels
+    Bar
   },
   computed: {
     dutchValue() {
@@ -37,61 +34,76 @@ export default {
     }
   },
   mounted() {
-    let nederland = this.dutchData.naam
-    let bedrijf = this.selectedData.naam
+    // lots of variables for better readability later on
+    // has to be put in computed or methods..
+    let dutch = this.dutchData
+    let company = this.selectedData
+    let average = this.average
+    let selectedProperty = this.property
 
-    let nederlandOmzet = this.dutchData.omzet
-    let bedrijfOmzet = this.selectedData.omzet
-    let nederlandWinst = this.dutchData.winst
-    let bedrijfWinst = this.selectedData.winst
-    let nederlandPersKosten = this.dutchData.personeelskosten
-    let bedrijfPersKosten = this.selectedData.personeelskosten
+    let dutchLabel = capitalize(dutch.naam)
+    let companyLabel_v1 = capitalize(company.naam)
+    let companyLabel = companyLabel_v1.substring(0, 8) + "..."
 
-    let nederlandPercWinst = this.dutchData.percentageWinst
-    let bedrijfPercWinst = this.selectedData.percentageWinst
+    let dutchOmzet = dutch.omzet
+    let companyOmzet = company.omzet
 
-    let nederlandPercLoon = this.dutchData.percentageLoon
-    let bedrijfPercLoon = this.selectedData.percentageLoon
+    let dutchProfit = dutch.winst
+    let companyProfit = company.winst
 
-    let nederlandOverig = nederlandOmzet - nederlandPersKosten - nederlandWinst
-    let bedrijfOverig = bedrijfOmzet - bedrijfPersKosten - bedrijfWinst
+    let dutchstaffCosts = dutch.personeelskosten
+    let companystaffCosts = company.personeelskosten
 
-    console.log(this.selectedData)
-    console.log(this.dutchData)
+    let dutchProfitP = dutch.percentageWinst
+    let companyProfitP = company.percentageWinst
 
-    let nederlandO = "test"
+    let dutchStaffCostsP = dutch.percentageLoon
+    let companyStaffCostsP = company.percentageLoon
 
-    let nederlandPercOverig = 100 - nederlandPercLoon - nederlandPercWinst
-    let bedrijfPercOverig = 100 - bedrijfPercLoon - bedrijfPercWinst
+    let dutchOverig = dutchOmzet - dutchstaffCosts - dutchProfit
+    let companyOverig = companyOmzet - companystaffCosts - companyProfit
+
+    let dutchOverigP = 100 - dutchStaffCostsP - dutchProfitP
+    let companyOverigP = 100 - companyStaffCostsP - companyProfitP
 
     Chart.defaults.global.defaultFontColor = "#1d2939"
     Chart.defaults.global.defaultFontFamily = "ZillaSlab"
     Chart.defaults.global.defaultFontSize = 16
     Chart.defaults.global.defaultFontWeight = 600
 
+    function capitalize(label) {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
+
     this.renderChart(
       {
-        labels: [nederland, bedrijf],
+        labels: [dutchLabel, companyLabel],
         datasets: [
           {
             type: "bar",
-            label: "Winstpercentage",
+            label: "Winst",
             backgroundColor: "#faff2e",
-            data: [nederlandPercWinst, bedrijfPercWinst]
+            borderWidth: 5,
+            borderColor: "#F2F2F2",
+            data: [dutchProfitP, companyProfitP]
           },
           {
             type: "bar",
             label: "Overige kosten",
             backgroundColor: "#1beaae",
+            borderWidth: 5,
+            borderColor: "#F2F2F2",
             datalabels: {
               // color: ['#FFCE56', '#d8cedb'],
             },
-            data: [nederlandPercOverig, bedrijfPercOverig]
+            data: [dutchOverigP, companyOverigP]
           },
           {
             type: "bar",
             label: "Personeelskosten",
             backgroundColor: "#d8cedb",
+            borderWidth: 5,
+            borderColor: "#F2F2F2",
             // datalabels: {
             //   label:{
             //    // color: ['#FFCE56', '#d8cedb'],
@@ -99,7 +111,7 @@ export default {
             //      return Math.round(value) + "yeet"
             //    }
             //  }},
-            data: [nederlandPercLoon, bedrijfPercLoon]
+            data: [dutchStaffCostsP, companyStaffCostsP]
           }
         ]
       },
@@ -110,36 +122,14 @@ export default {
             font: {
               family: "Tenso",
               weight: 900,
-              size: 18
+              size: 18,
+              color: "black"
             },
             formatter: function(value) {
               return Math.round(value) + "%"
             }
           }
         },
-        // hover: {
-        //   animationDuration: 1
-        // },
-        // animation: {
-        //   duration: 1,
-        //   onComplete: function() {
-        //     var chartInstance = this.chart,
-        //     ctx = chartInstance.ctx
-        //     ctx.textAlign = "center"
-        //     ctx.fillStyle = "rgba(29,41,57,1)"
-        //     ctx.textBaseline = "bottom"
-        //     ctx.font = "900 18px Tenso"
-        //
-        //
-        //     this.data.datasets.forEach(function(dataset, i) {
-        //       var meta = chartInstance.controller.getDatasetMeta(i)
-        //       meta.data.forEach(function(bar, index) {
-        //         var data = dataset.data[index]
-        //         ctx.fillText(data, bar._model.x, bar._model.y - 5)
-        //       })
-        //     })
-        //   }
-        // },
         responsive: true,
         scales: {
           yAxes: [
@@ -150,7 +140,6 @@ export default {
                 display: false
               },
               ticks: {
-                // max: Math.max(... data) + 10,
                 display: false,
                 beginAtZero: true
               }
@@ -171,7 +160,7 @@ export default {
           ]
         },
         legend: {
-          display: false
+          display: true
         },
         //        layout: {
         //    padding: {
@@ -184,8 +173,7 @@ export default {
         tooltips: {
           enabled: true
         },
-        maintainAspectRatio: false,
-        height: 200
+        maintainAspectRatio: true,
       }
     )
   }
