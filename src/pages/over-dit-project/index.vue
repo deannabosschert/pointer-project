@@ -3,7 +3,7 @@
     <article>
       <section>
         <h1 class="about-page__title">Over dit project</h1>
-        <p><i>Shoppen met zorggeld</i> is opgezet door vier studenten van de opleiding Communication and Multimedia Design van de Hogeschool van Amsterdam in opdracht van Pointer.</p>
+        <p><i>Shoppen met zorggeld</i> is opgezet door vier studenten van de opleiding Communication and Multimedia Design van de Hogeschool van Amsterdam in opdracht van <a href="https://pointer.kro-ncrv.nl/">Pointer</a>.</p>
         <ul class="about-page__list">
           <li><a href="https://www.linkedin.com/in/lisacbot/">Lisa Bot</a> (design)</li>
           <li><a href="https://www.linkedin.com/in/lizz-moraal-b7b01662/">Lizz Moraal</a> (design)</li>
