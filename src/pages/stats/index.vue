@@ -1,6 +1,7 @@
 <template>
-  <main>
-    <h1>Pointer! Homepage</h1>
+  <main class="stats-page">
+    <h1 class="sr-only">Pointer! Homepage</h1>
+    <h2>Jouw zorginstelling</h2>
 
     <company-search />
     <year-selection
@@ -16,8 +17,13 @@
       title="Charts toggle"
     />
 
-
-    <nuxt-link to="/">To the shop</nuxt-link>
+    <nuxt-link to="/" class="button button--primary" >Opnieuw beginnen</nuxt-link>
+    <nuxt-link
+      to="/shop"
+      class="button button--secondary"
+    >
+      Naar webshop
+    </nuxt-link>
   </main>
 </template>
 
@@ -62,4 +68,13 @@ export default {
 </script>
 
 <style lang="scss">
+.stats-page{
+  padding: $spacing-small $spacing-medium;
+}
+
+.stats-page_title{
+first-letter {text-transform: uppercase};
+}
+
+
 </style>
