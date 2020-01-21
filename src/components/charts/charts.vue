@@ -22,7 +22,7 @@
         :dutch-data="selectedDutchData"
         property="percentageWinst"
         title="Percentage winst"
-        gemiddelde="4"
+        average="4"
       />
 
       <h2 class="app-charts-title">Percentage loon</h2>
@@ -36,7 +36,7 @@
         :dutch-data="selectedDutchData"
         property="percentageLoon"
         title="Percentage loon"
-        gemiddelde="40"
+        average="40"
       />
 
       <h2 class="app-charts-title">Omzet per FTE</h2>
@@ -52,7 +52,7 @@
         :dutch-data="selectedDutchData"
         property="omzetPerFte"
         title="Omzet per FTE"
-        gemiddelde="125000"
+        average="125000"
       />
     </div>
 
