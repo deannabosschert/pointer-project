@@ -39,7 +39,6 @@ export default {
     }
   },
   mounted() {
-    // this.addPlugin toevoegen voor plugin met de annotations
     this.addPlugin({
       id: "horizontalLine",
       afterDraw: function(chart) {
@@ -65,8 +64,14 @@ export default {
       }
     })
 
-    let nederland = this.dutchData.naam
-    let bedrijfV1 = this.selectedData.naam
+    const capitalize = (label) => {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
+
+    let nederland = capitalize(this.dutchData.naam)
+    // let nederland = capitalize(nederlandV1)
+
+    let bedrijfV1 = capitalize(this.selectedData.naam)
     var bedrijf = bedrijfV1.substring(0, 8) + '...'
 
 
@@ -116,7 +121,7 @@ export default {
             font: {
               family: "Tenso",
               weight: 900,
-              size: 18,
+              size: 22,
               color: "black"
             },
             formatter: function(value) {
@@ -170,7 +175,10 @@ export default {
                 beginAtZero: true,
                 display: true,
                 maxRotation: 0,
-                fontColor: ["black", "yellow", "black"]
+                fontColor: ["black", "yellow", "black"],
+                fontFamily: "ZillaSlab",
+                fontSize: 13,
+                fontStyle: 600
                 // callback: function(value, index, values) {
                 //   return "$" + value
                 // }
