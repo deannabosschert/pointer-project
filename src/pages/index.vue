@@ -21,7 +21,7 @@
           v-if="selectedData"
           class="home-page__budget"
         >
-          Jouw budget:
+          Jouw winst:
           <s
             v-if="!hasEnoughProfit"
             class="home-page__budget-text"
