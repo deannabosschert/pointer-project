@@ -45,6 +45,7 @@
             Shop met de winst
           </button>
           <button
+            type="button"
             @click="onNumbersButtonClick"
             :disabled="!selectedCareCompany"
             class="button button--secondary"
