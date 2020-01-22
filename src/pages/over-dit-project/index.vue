@@ -13,7 +13,7 @@
       </section>
       <section>
         <h2 class="about-page__title">Opdrachtomschrijving</h2>
-        <p>De opdrachtomschrijving luidde voorafgaand aan het project als volgt:</p>
+        <p>De opdrachtomschrijving van dit project luidde als volgt:</p>
         <blockquote class="about-page__quote">
           “Maak een interactieve datavisualisatie waarmee je door de winstcijfers van de zorginstellingen kunt zoeken zodat Pointer nieuwe verhalen kan vinden en/of lezers organisaties kunnen controleren.”
         </blockquote>
