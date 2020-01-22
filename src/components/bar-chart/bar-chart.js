@@ -52,10 +52,15 @@ export default {
     let dutchValue = dutch[selectedProperty]
     let companyValue = company[selectedProperty]
 
-    // will move this funciton to libs
-    function capitalize(label) {
-      return label.charAt(0).toUpperCase() + label.slice(1)
-    }
+    const colorDarkest = '#1D2939'
+    const colorHighlightYellow = '#FAFF2E'
+    const colorHighlightRed = '#F65645'
+    const colorHighlightGreen = '#1BEAAE'
+    const colorHighlightPurple = '#6b38e8'
+    const colorWhite = '#fff'
+
+    const numberFont = 'Tenso'
+    const labelFont = 'ZillaSlab'
 
     function checkProperty(datalabel) {
       if (selectedProperty === 'omzetPerFte') {
@@ -73,7 +78,7 @@ export default {
         let xAxe = chart.scales[chart.config.options.scales.xAxes[0].id]
         let yAxe = chart.scales[chart.config.options.scales.yAxes[0].id]
 
-        ctxPlugin.strokeStyle = '#f65645'
+        ctxPlugin.strokeStyle = colorHighlightRed
         ctxPlugin.lineWidth = 2
         ctxPlugin.setLineDash([5, 3])
 
@@ -93,7 +98,7 @@ export default {
           {
             data: [dutchValue, average, companyValue],
             label: this.title,
-            backgroundColor: ['#6b38e8', 'rgb(246,86,69,0)', '#1beaae'],
+            backgroundColor: [colorHighlightPurple, 'rgb(246,86,69,0)', colorHighlightGreen],
             borderColor: ['', '', ''],
             borderWidth: [0, 0, 0]
           }
@@ -107,10 +112,10 @@ export default {
             // offset: 8,
             textAlign: 'top',
             font: {
-              family: 'Tenso',
+              family: numberFont,
               weight: 900,
               size: 22,
-              color: '#1d2939'
+              color: colorDarkest
             },
             formatter: function(value) {
               return checkProperty(value)
@@ -142,7 +147,7 @@ export default {
                 display: true,
                 maxRotation: 0,
                 fontColor: 'black',
-                fontFamily: 'ZillaSlab',
+                fontFamily: labelFont,
                 fontSize: 13,
                 fontStyle: 600
                 // will remove these comments once the labels are 'fully' fixed
@@ -170,5 +175,10 @@ export default {
         lineAt: average
       }
     )
+
+    // will move this funciton to libs
+    function capitalize(label) {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
   }
 }

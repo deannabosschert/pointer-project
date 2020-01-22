@@ -69,8 +69,8 @@ export default {
     const colorHighlightGreen = '#1BEAAE'
     const colorWhite = '#fff'
 
-    const numberFont = 'numberFont'
-    const labelFont = 'labelFont'
+    const numberFont = 'Tenso'
+    const labelFont = 'ZillaSlab'
 
     this.renderChart(
       {
@@ -116,7 +116,7 @@ export default {
           datalabels: {
             textAlign: 'center',
             font: {
-              family: 'numberFont',
+              family: numberFont,
               weight: 900,
               size: 18,
               color: colorDarkest
@@ -148,7 +148,7 @@ export default {
               stacked: true,
               gridLines: {
               display: false,
-              fontFamily: 'labelFont',
+              fontFamily: labelFont,
               fontSize: 16,
               fontStyle: 600
               },
