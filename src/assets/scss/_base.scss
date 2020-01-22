@@ -8,6 +8,8 @@ body {
 
 p {
   line-height: 1.25;
+  max-width: $layout-small;
+  margin: 0 auto;
 }
 
 p + p {
@@ -19,6 +21,8 @@ h1,
   font-family: $font-stack-headings;
   font-size: $font-size-huge;
   font-weight: $font-weight-bold;
+  max-width: $layout-small;
+  margin: 0 auto;
 }
 
 h2,
@@ -26,6 +30,8 @@ h2,
   font-family: $font-stack-headings;
   font-size: $font-size-large;
   font-weight: $font-weight-bold;
+  max-width: $layout-small;
+  margin: 0 auto;
 }
 
 input,
@@ -33,6 +39,7 @@ select {
   // Remove default styles
   appearance: none;
   --webkit-appearance: none;
+  display: block;
 
   // Add our own styles
   width: 100%;
@@ -42,6 +49,8 @@ select {
   background: #fff;
   font-size: $font-size-default;
   font-family: $font-stack-body;
+  max-width: $layout-small;
+  margin: 0 auto;
 }
 
 select {
@@ -49,12 +58,13 @@ select {
   background-repeat: no-repeat;
   background-position: 98% center;
   padding-right: $spacing-large;
+
 }
 
 .button {
   display: block;
   padding: $spacing-default 0;
-  width: 200px;
+  width: 270px;
   margin: 0 auto;
   border-radius: 0;
   background: $color-darkest;

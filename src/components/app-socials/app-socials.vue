@@ -115,12 +115,16 @@
   .app-socials__intro-text {
     font-family: $font-stack-headings;
     line-height: 1.25;
+    margin: 0;
+    max-width: 100%;
   }
 
   .app-socials__title {
     font-size: $font-size-default;
     font-weight: $font-weight-default;
     line-height: 1.25;
+    margin: 0;
+    max-width: 100%;
   }
 
   .app-socials__buttons {
