@@ -10,6 +10,7 @@
       v-model="input"
       :required="required"
       ref="company-search-input"
+      data-referrer="company-search-input"
     />
     <div
       v-if="autocompleteIsEnabled"
@@ -58,7 +59,8 @@
 
       return {
         input: selectedCompanyName || '',
-        isPending: false
+        isPending: false,
+        hasClickListener: false
       }
     },
     computed: {
@@ -117,13 +119,29 @@
         */
         const inputNode = this.$refs['company-search-input']
 
-        document.body.addEventListener('click', event => {
-          if (event.target !== inputNode) {
-            return this.disableAutocomplete()
-          }
+        /*
+          For some awkward reason checking just the HTML node is event.target
+          would not suffice here, that's the reason I put a data-referrer attribute
+          on the input itself so we can check the data-referrer attribute of the
+          target against the one on the input
+        */
+        const referrer = inputNode.getAttribute('data-referrer')
 
-          return
-        }, false)
+        if (inputNode && !this.hasClickListener) {
+          document.body.addEventListener('click', event => {
+            const targetReferrer = event.target.getAttribute('data-referrer')
+
+            return setTimeout(() => {
+              if (referrer !== targetReferrer) {
+                return this.disableAutocomplete()
+              }
+
+              return
+            }, 100)
+          }, false)
+
+          this.hasClickListener = true
+        }
       },
       disableAutocomplete() {
         this.$store.commit(TOGGLE_AUTOCOMPLETE, {
@@ -131,8 +149,13 @@
         })
 
         document.body.removeEventListener('click', this.disableAutocomplete)
+
+        this.hasClickListener = false
       }
     },
+    beforeDestroy() {
+      return this.disableAutocomplete()
+    }
   }
 
   function addToLocalStorage(key, data) {
