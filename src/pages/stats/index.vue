@@ -18,10 +18,16 @@
       title="Charts toggle"
     />
 
-    <nuxt-link to="/" class="button button--primary"
-      >Opnieuw beginnen</nuxt-link
+    <nuxt-link
+      to="/"
+      class="button button--primary"
     >
-    <nuxt-link to="/shop" class="button button--secondary">
+      Opnieuw beginnen
+    </nuxt-link>
+    <nuxt-link
+      to="/shop"
+      class="button button--secondary"
+    >
       Naar webshop
     </nuxt-link>
   </main>
@@ -79,6 +85,18 @@ export default {
 }
 
 .stats-page__controls {
+  margin-bottom: $spacing-large;
+}
+
+.stats-page .app-charts {
+  margin-bottom: $spacing-large;
+}
+
+.stats-page .button--primary {
+  margin-bottom: $spacing-small;
+}
+
+.stats-page .button--secondary {
   margin-bottom: $spacing-large;
 }
 </style>
