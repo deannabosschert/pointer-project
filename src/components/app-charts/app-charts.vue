@@ -15,10 +15,10 @@
     </div>
 
     <div v-if="choice === 'compare'">
+      <section class="app-charts_bar">
       <h2 class="app-charts_title">Percentage winst</h2>
       <p>
-        Het winstpercentage is de omzet gedeeld door de winst keer honderd. Dit
-        is verdacht boven de 4%.
+        Het winstpercentage is de omzet gedeeld door de winst, keer honderd. Dit percentage maakt een zorginstelling verdacht wanneer het boven de 4% is.
       </p>
       <bar-chart
         v-if="selectedData && selectedDutchData"
@@ -28,10 +28,11 @@
         title="Percentage winst"
         average="4"
       />
-
+    </section>
+    <section class="app-charts_bar">
       <h2 class="app-charts_title">Percentage loon</h2>
       <p>
-        Het percentage loon is het totale aantal personeelskosten gedeeld door
+        Het percentage loon is het totale aantal personeelskosten, gedeeld door
         de omzet. Een normaal percentage ligt rond de 40%.
       </p>
       <bar-chart
@@ -42,25 +43,28 @@
         title="Percentage loon"
         average="40"
       />
-
+    </section>
+    <section class="app-charts_bar">
       <h2 class="app-charts_title">Omzet per FTE</h2>
       <p>
-        Omzet per FTE geeft aan hoeveel omzet een full-time medewerker van een
-        bedrijf oplevert. Het is verdacht als een zorgbedrijf een hoge FTE heeft
-        aangezien het alleen meer omzet kan maken door meer medewerkers aan te
-        nemen.
+        Omzet per FTE geeft aan hoeveel € omzet een full-time medewerker de zorginstelling per jaar oplevert. Het is verdacht als een zorgbedrijf een hoge FTE heeft
+        aangezien de werkzaamheden in de zorgsector vaak arbeidsintensief zijn en dit proces dan ook niet veel efficiënter zal worden.
       </p>
       <bar-chart
-        v-if="selectedData && selectedDutchData"
+        v-if="selectedData && selectedDutchData.omzetPerFte"
         :selected-data="selectedData"
         :dutch-data="selectedDutchData"
         property="omzetPerFte"
         title="Omzet per FTE"
         average="125000"
       />
+      <p v-else>
+        De omzet per FTE is alleen beschikbaar voor sommige bedrijven, in de jaren 2017 en 2018.
+      </p>
+    </section>
     </div>
 
-    <div v-else-if="choice === 'see'">
+    <div class ="app-charts-stacked" v-else-if="choice === 'see'">
       <h2 class="app-charts_title">Verdeling van de omzet</h2>
       <stacked-bar-chart
         v-if="selectedData && selectedDutchData"
@@ -115,5 +119,15 @@ export default {
 }
 
 .app-charts_title {
+}
+
+.app-charts_bar{
+  background-color: $color-white;
+}
+
+.app-charts-stacked{
+ background-color: $color-white;
+ // margin: $spacing-medium;
+
 }
 </style>

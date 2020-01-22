@@ -84,7 +84,7 @@ export default {
             label: "Winst",
             backgroundColor: "#faff2e",
             borderWidth: 5,
-            borderColor: "#F2F2F2",
+            borderColor: "#fff",
             data: [dutchProfitP, companyProfitP]
           },
           {
@@ -92,7 +92,7 @@ export default {
             label: "Overige kosten",
             backgroundColor: "#1beaae",
             borderWidth: 5,
-            borderColor: "#F2F2F2",
+            borderColor: "#fff",
             datalabels: {
               // color: ['#FFCE56', '#d8cedb'],
             },
@@ -103,7 +103,7 @@ export default {
             label: "Personeelskosten",
             backgroundColor: "#d8cedb",
             borderWidth: 5,
-            borderColor: "#F2F2F2",
+            borderColor: "#fff",
             // datalabels: {
             //   label:{
             //    // color: ['#FFCE56', '#d8cedb'],
@@ -160,7 +160,10 @@ export default {
           ]
         },
         legend: {
-          display: true
+          display: true,
+          position: "bottom",
+          fullWidth: true,
+          // type: "column",
         },
         //        layout: {
         //    padding: {
