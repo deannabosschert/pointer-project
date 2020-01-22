@@ -39,14 +39,18 @@ export default {
   },
   mounted() {
     // lots of variables for better readability later on
-    let dutch = capitalize(this.dutchData.naam)
-    let company_v1 = capitalize(this.selectedData.naam)
-    let company = company_v1.substring(0, 8) + "..."
-
+    // has to be put in computed or methods..
+    let dutch = this.dutchData
+    let company = this.selectedData
     let average = this.average
     let selectedProperty = this.property
-    let dutchValue = this.dutchData[selectedProperty]
-    let companyValue = this.selectedData[selectedProperty]
+
+    let dutchLabel = capitalize(dutch.naam)
+    let companyLabel_v1 = capitalize(company.naam)
+    let companyLabel = companyLabel_v1.substring(0, 8) + "..."
+
+    let dutchValue = dutch[selectedProperty]
+    let companyValue = company[selectedProperty]
 
     // will move this funciton to libs
     function capitalize(label) {
@@ -84,7 +88,7 @@ export default {
 
     this.renderChart(
       {
-        labels: [dutch, ["Normale", "bovengrens"], company],
+        labels: [dutchLabel, ["Normale", "bovengrens"], companyLabel],
         datasets: [
           {
             data: [dutchValue, average, companyValue],
@@ -106,7 +110,7 @@ export default {
               family: "Tenso",
               weight: 900,
               size: 22,
-              color: "black"
+              color: "#1d2939"
             },
             formatter: function(value) {
               return checkProperty(value)
