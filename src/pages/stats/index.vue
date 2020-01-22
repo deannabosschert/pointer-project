@@ -1,26 +1,26 @@
 <template>
-  <main class='stats-page'>
-    <h1 class='sr-only'>Pointer! Homepage</h1>
+  <main class="stats-page">
+    <h1 class="sr-only">Pointer! Homepage</h1>
     <h2>Jouw zorginstelling</h2>
 
     <company-search />
     <year-selection
-      :selected-company='selectedCareCompany'
-      :dutch-data='dutchData'
+      :selected-company="selectedCareCompany"
+      :dutch-data="dutchData"
     />
 
     <app-charts
-      v-if='selectedData && selectedDutchData'
-      :selected-data='selectedData'
-      :dutch-data='selectedDutchData'
-      property='omzet'
-      title='Charts toggle'
+      v-if="selectedData && selectedDutchData"
+      :selected-data="selectedData"
+      :dutch-data="selectedDutchData"
+      property="omzet"
+      title="Charts toggle"
     />
 
-    <nuxt-link to='/' class='button button--primary'
+    <nuxt-link to="/" class="button button--primary"
       >Opnieuw beginnen</nuxt-link
     >
-    <nuxt-link to='/shop' class='button button--secondary'>
+    <nuxt-link to="/shop" class="button button--secondary">
       Naar webshop
     </nuxt-link>
   </main>
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 .stats-page {
   padding: $spacing-small $spacing-medium;
 }
