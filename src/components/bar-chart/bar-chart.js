@@ -66,7 +66,7 @@ export default {
       if (selectedProperty === 'omzetPerFte') {
         return '€' + Math.round(datalabel / 1000) + 'K'
       } else {
-        return Math.round(datalabel) + '%'
+        return ((Math.round(datalabel*100)/100).toFixed(1) + '%')
       }
     }
 
