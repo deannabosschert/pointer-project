@@ -9,26 +9,10 @@
     >
       <li class="app-menu__item">
         <nuxt-link
-          to="/about"
+          to="/over-dit-project"
           class="app-menu__link"
         >
           Over dit project
-        </nuxt-link>
-      </li>
-      <li class="app-menu__item">
-        <nuxt-link
-          to="/privacy-policy"
-          class="app-menu__link"
-        >
-          Privacy policy
-        </nuxt-link>
-      </li>
-      <li class="app-menu__item">
-        <nuxt-link
-          to="/terms-and-conditions"
-          class="app-menu__link"
-        >
-          Algemene voorwaarden
         </nuxt-link>
       </li>
     </ul>
@@ -37,12 +21,20 @@
 
 <script>
   import { mapState } from 'vuex'
+  import { TOGGLE_MENU } from '~/store/mutation-types'
 
   export default {
     computed: {
       ...mapState({
         menuIsOpen: state => state.menuIsOpen
       })
+    },
+    watch: {
+      $route() {
+        if (this.menuIsOpen) {
+          this.$store.commit(TOGGLE_MENU, { isOpen: false })
+        }
+      }
     }
   }
 </script>
