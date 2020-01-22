@@ -1,9 +1,10 @@
-import { Bar } from "vue-chartjs"
+import { Bar } from 'vue-chartjs'
+import ChartJSPluginDatalabels from 'chartjs-plugin-datalabels'
 
 export default {
   extends: Bar,
   props: {
-    data: ["data", "options"],
+    data: ['data', 'options'],
     selectedData: {
       type: Object,
       required: true
@@ -17,6 +18,10 @@ export default {
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    average: {
       type: String,
       required: true
     }
@@ -33,61 +38,102 @@ export default {
     }
   },
   mounted() {
-    let nederland = this.dutchData.naam
-    let bedrijf = this.selectedData.naam
+    // lots of variables for better readability later on
+    // has to be put in computed or methods..
+    let dutch = this.dutchData
+    let company = this.selectedData
+    let average = this.average
+    let selectedProperty = this.property
 
-    let nederlandV = this.dutchData.percentageWinst
-    let gemiddeldV = 5
-    let test = -4
-    let bedrijfV = this.selectedData.percentageWinst
+    let dutchLabel = capitalize(dutch.naam)
+    let companyLabel_v1 = capitalize(company.naam)
+    let companyLabel = companyLabel_v1.substring(0, 8) + '...'
+
+    let dutchValue = dutch[selectedProperty]
+    let companyValue = company[selectedProperty]
+
+    const colorDarkest = '#1D2939'
+    const colorHighlightYellow = '#FAFF2E'
+    const colorHighlightRed = '#F65645'
+    const colorHighlightGreen = '#1BEAAE'
+    const colorHighlightPurple = '#6b38e8'
+    const colorWhite = '#fff'
+
+    const numberFont = 'Tenso'
+    const labelFont = 'ZillaSlab'
+
+    function checkProperty(datalabel) {
+      if (selectedProperty === 'omzetPerFte') {
+        return '€' + Math.round(datalabel / 1000) + 'K'
+      } else {
+        return Math.round(datalabel) + '%'
+      }
+    }
+
+    // ugly fix because the annotations-plugin wouldn't work properly
+    this.addPlugin({
+      afterDraw: function(chart) {
+        let lineAt = chart.config.options.lineAt
+        let ctxPlugin = chart.chart.ctx
+        let xAxe = chart.scales[chart.config.options.scales.xAxes[0].id]
+        let yAxe = chart.scales[chart.config.options.scales.yAxes[0].id]
+
+        ctxPlugin.strokeStyle = colorHighlightRed
+        ctxPlugin.lineWidth = 2
+        ctxPlugin.setLineDash([5, 3])
+
+        ctxPlugin.beginPath()
+        lineAt = (lineAt - yAxe.min) * (100 / yAxe.max)
+        lineAt = ((100 - lineAt) / 100) * yAxe.height + yAxe.top
+        ctxPlugin.moveTo(xAxe.left, lineAt)
+        ctxPlugin.lineTo(xAxe.right, lineAt)
+        ctxPlugin.stroke()
+      }
+    })
 
     this.renderChart(
       {
-        labels: [nederland, "gemiddeld", bedrijf],
+        labels: [dutchLabel, ['Normale', 'bovengrens'], companyLabel],
         datasets: [
           {
-            data: [nederlandV, gemiddeldV, test],
-            label: "Winstpercentage",
-            backgroundColor: ["#1beaae", "rgba(255, 255, 255, 0)", "#6b38e8"],
-            borderColor: ["", "#f65645", ""],
-            borderWidth: [0, 2, 0]
+            data: [dutchValue, average, companyValue],
+            label: this.title,
+            backgroundColor: [colorHighlightPurple, 'rgb(246,86,69,0)', colorHighlightGreen],
+            borderColor: ['', '', ''],
+            borderWidth: [0, 0, 0]
           }
         ]
       },
       {
-        hover: {
-          animationDuration: 1
-        },
-        animation: {
-          duration: 1,
-          onComplete: function() {
-            var chartInstance = this.chart,
-              ctx = chartInstance.ctx
-            ctx.textAlign = "center"
-            ctx.fillStyle = "rgba(0, 0, 0, 1)"
-            ctx.textBaseline = "bottom"
-
-            this.data.datasets.forEach(function(dataset, i) {
-              var meta = chartInstance.controller.getDatasetMeta(i)
-              meta.data.forEach(function(bar, index) {
-                var data = dataset.data[index]
-                ctx.fillText(data, bar._model.x, bar._model.y - 5)
-              })
-            })
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: -90,
+            // offset: 8,
+            textAlign: 'top',
+            font: {
+              family: numberFont,
+              weight: 900,
+              size: 22,
+              color: colorDarkest
+            },
+            formatter: function(value) {
+              return checkProperty(value)
+            }
           }
         },
         responsive: true,
         scales: {
           yAxes: [
             {
-              display: true,
+              display: false,
               gridLines: {
-                display: true
+                display: false
               },
               ticks: {
-                // max: Math.max(... datasets[0].data) + 10,
                 display: true,
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0
               }
             }
           ],
@@ -98,7 +144,18 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                display: true
+                display: true,
+                maxRotation: 0,
+                fontColor: 'black',
+                fontFamily: labelFont,
+                fontSize: 13,
+                fontStyle: 600
+                // will remove these comments once the labels are 'fully' fixed
+                // callback: function(value, index, values) {
+                //     if (values[1] === ['Normale', 'bovengrens']){
+                //     }
+                //
+                // },
               }
             }
           ]
@@ -106,12 +163,22 @@ export default {
         legend: {
           display: false
         },
+        // workaround to prevent the datalabels from being cut off at y-max
+        // TODO: add function at y-axis-options, stating that the min-height is Math.max([data]) + 5
+        title: {
+          display: true
+        },
         tooltips: {
           enabled: true
         },
-        maintainAspectRatio: false,
-        height: 200
+        maintainAspectRatio: true,
+        lineAt: average
       }
     )
+
+    // will move this funciton to libs
+    function capitalize(label) {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
   }
 }

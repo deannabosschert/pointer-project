@@ -1,6 +1,7 @@
 <template>
-  <main>
-    <h1>Pointer! Homepage</h1>
+  <main class="stats-page">
+    <h1 class="sr-only">Pointer! Homepage</h1>
+    <h2>Jouw zorginstelling</h2>
 
     <company-search />
     <year-selection
@@ -8,23 +9,20 @@
       :dutch-data="dutchData"
     />
 
-    <!-- <bar-chart
+    <app-charts
       v-if="selectedData && selectedDutchData"
       :selected-data="selectedData"
       :dutch-data="selectedDutchData"
       property="omzet"
-      title="My awesome bar chart"
-    /> -->
-
-    <stacked-bar-chart
-      v-if="selectedData && selectedDutchData"
-      :selected-data="selectedData"
-      :dutch-data="selectedDutchData"
-      property="omzet"
-      title="Stacken met die barzz"
+      title="Charts toggle"
     />
 
-    <nuxt-link to="/">To the shop</nuxt-link>
+    <nuxt-link to="/" class="button button--primary"
+      >Opnieuw beginnen</nuxt-link
+    >
+    <nuxt-link to="/shop" class="button button--secondary">
+      Naar webshop
+    </nuxt-link>
   </main>
 </template>
 
@@ -34,16 +32,13 @@ import { SET_CARECOMPANIES, SET_DUTCH_DATA } from '~/store/mutation-types'
 import dutchDataJson from '~/static/data/dutch-stats'
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
-import BarChart from '~/components/bar-chart/bar-chart'
-import StackedBarChart from '~/components/stacked-bar-chart/stacked-bar-chart'
-
+import AppCharts from '~/components/app-charts/app-charts'
 
 export default {
   components: {
     CompanySearch,
     YearSelection,
-    BarChart,
-    StackedBarChart
+    AppCharts
   },
   data() {
     return {
@@ -60,15 +55,26 @@ export default {
     async rawCompanies() {
       const module = await import('~/static/data/pointer-raw')
       return module.default
-    },
+    }
   },
   async mounted() {
     if (!this.careCompanies) {
-      this.$store.commit(SET_CARECOMPANIES, { careCompanies: await this.rawCompanies })
+      this.$store.commit(SET_CARECOMPANIES, {
+        careCompanies: await this.rawCompanies
+      })
     }
   }
 }
 </script>
 
 <style lang="scss">
+.stats-page {
+  padding: $spacing-small $spacing-medium;
+}
+
+.stats-page_title {
+  // first-letter {
+  //   text-transform: uppercase;
+  // }
+}
 </style>

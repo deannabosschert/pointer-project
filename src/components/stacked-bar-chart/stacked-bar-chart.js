@@ -1,12 +1,10 @@
-import { Bar } from "vue-chartjs"
-// import { Chart } from 'chart.js'
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
+import { Bar } from 'vue-chartjs'
+import ChartJSPluginDatalabels from 'chartjs-plugin-datalabels'
 
 export default {
   extends: Bar,
-  ChartJSPluginDatalabels,
   props: {
-    data: ["data", "options"],
+    data: ['data', 'options'],
     selectedData: {
       type: Object,
       required: true
@@ -25,8 +23,7 @@ export default {
     }
   },
   components: {
-    Bar,
-    ChartJSPluginDatalabels
+    Bar
   },
   computed: {
     dutchValue() {
@@ -37,120 +34,109 @@ export default {
     }
   },
   mounted() {
-    let nederland = this.dutchData.naam
-    let bedrijf = this.selectedData.naam
+    // lots of variables for better readability later on
+    // has to be put in computed or methods..
+    const dutch = this.dutchData
+    const company = this.selectedData
+    const average = this.average
+    const selectedProperty = this.property
 
-    let nederlandOmzet = this.dutchData.omzet
-    let bedrijfOmzet = this.selectedData.omzet
-    let nederlandWinst = this.dutchData.winst
-    let bedrijfWinst = this.selectedData.winst
-    let nederlandPersKosten = this.dutchData.personeelskosten
-    let bedrijfPersKosten = this.selectedData.personeelskosten
+    const companyLabel_v1 = uppercaseFirstLetter(company.naam)
+    const companyLabel = companyLabel_v1.substring(0, 8) + '...'
+    const DUTCH_LABEL = 'Hoe hoort het?'
 
-    let nederlandPercWinst = this.dutchData.percentageWinst
-    let bedrijfPercWinst = this.selectedData.percentageWinst
+    const dutchOmzet = dutch.omzet
+    const companyOmzet = company.omzet
 
-    let nederlandPercLoon = this.dutchData.percentageLoon
-    let bedrijfPercLoon = this.selectedData.percentageLoon
+    const dutchProfit = dutch.winst
+    const companyProfit = company.winst
 
-    let nederlandOverig = nederlandOmzet - nederlandPersKosten - nederlandWinst
-    let bedrijfOverig = bedrijfOmzet - bedrijfPersKosten - bedrijfWinst
+    const dutchstaffCosts = dutch.personeelskosten
+    const companystaffCosts = company.personeelskosten
 
-    console.log(this.selectedData)
-    console.log(this.dutchData)
+    const dutchProfitPercentage = dutch.percentageWinst
+    const companyProfitPercentage = company.percentageWinst
 
-    let nederlandO = "test"
+    const dutchStaffCostsP = dutch.percentageLoon
+    const companyStaffCostsP = company.percentageLoon
 
-    let nederlandPercOverig = 100 - nederlandPercLoon - nederlandPercWinst
-    let bedrijfPercOverig = 100 - bedrijfPercLoon - bedrijfPercWinst
+    const dutchOverigP = 100 - dutchStaffCostsP - dutchProfitPercentage
+    const companyOverigP = 100 - companyStaffCostsP - companyProfitPercentage
 
-    Chart.defaults.global.defaultFontColor = "#1d2939"
-    Chart.defaults.global.defaultFontFamily = "ZillaSlab"
-    Chart.defaults.global.defaultFontSize = 16
-    Chart.defaults.global.defaultFontWeight = 600
+    const colorDarkest = '#1D2939'
+    const colorHighlightYellow = '#FAFF2E'
+    const colorHighlightRed = '#F65645'
+    const colorHighlightGreen = '#1BEAAE'
+    const colorWhite = '#fff'
+
+    const numberFont = 'Tenso'
+    const labelFont = 'ZillaSlab'
 
     this.renderChart(
       {
-        labels: [nederland, bedrijf],
+        labels:[DUTCH_LABEL, companyLabel],
         datasets: [
           {
-            type: "bar",
-            label: "Winstpercentage",
-            backgroundColor: "#faff2e",
-            data: [nederlandPercWinst, bedrijfPercWinst]
+            type: 'bar',
+            label: 'Winst',
+            backgroundColor: colorHighlightYellow,
+            borderWidth: 7,
+            borderColor: colorWhite,
+            data: [dutchProfitPercentage, companyProfitPercentage]
           },
           {
-            type: "bar",
-            label: "Overige kosten",
-            backgroundColor: "#1beaae",
+            type: 'bar',
+            label: 'Overige kosten',
+            backgroundColor: colorHighlightGreen,
+            borderWidth: 7,
+            borderColor: colorWhite,
             datalabels: {
-              // color: ['#FFCE56', '#d8cedb'],
             },
-            data: [nederlandPercOverig, bedrijfPercOverig]
+            data: [dutchOverigP, companyOverigP]
           },
           {
-            type: "bar",
-            label: "Personeelskosten",
-            backgroundColor: "#d8cedb",
+            type: 'bar',
+            label: 'Personeelskosten',
+            backgroundColor: '#d8cedb',
+            borderWidth: 7,
+            borderColor: colorWhite,
             // datalabels: {
             //   label:{
             //    // color: ['#FFCE56', '#d8cedb'],
             //    formatter: function(value) {
-            //      return Math.round(value) + "yeet"
+            //      return Math.round(value) + 'yeet'
             //    }
             //  }},
-            data: [nederlandPercLoon, bedrijfPercLoon]
+            data: [dutchStaffCostsP, companyStaffCostsP]
           }
         ]
       },
       {
         plugins: {
           datalabels: {
-            textAlign: "center",
+            textAlign: 'center',
             font: {
-              family: "Tenso",
+              family: numberFont,
               weight: 900,
-              size: 18
+              size: 18,
+              color: colorDarkest
             },
-            formatter: function(value) {
-              return Math.round(value) + "%"
+            formatter: value => {
+              return Math.round(value) + '%'
             }
           }
         },
-        // hover: {
-        //   animationDuration: 1
-        // },
-        // animation: {
-        //   duration: 1,
-        //   onComplete: function() {
-        //     var chartInstance = this.chart,
-        //     ctx = chartInstance.ctx
-        //     ctx.textAlign = "center"
-        //     ctx.fillStyle = "rgba(29,41,57,1)"
-        //     ctx.textBaseline = "bottom"
-        //     ctx.font = "900 18px Tenso"
-        //
-        //
-        //     this.data.datasets.forEach(function(dataset, i) {
-        //       var meta = chartInstance.controller.getDatasetMeta(i)
-        //       meta.data.forEach(function(bar, index) {
-        //         var data = dataset.data[index]
-        //         ctx.fillText(data, bar._model.x, bar._model.y - 5)
-        //       })
-        //     })
-        //   }
-        // },
         responsive: true,
         scales: {
           yAxes: [
             {
               display: false,
               stacked: true,
+              margin: 30,
               gridLines: {
                 display: false
               },
               ticks: {
-                // max: Math.max(... data) + 10,
                 display: false,
                 beginAtZero: true
               }
@@ -158,19 +144,31 @@ export default {
           ],
           xAxes: [
             {
+              position: 'top',
               stacked: true,
               gridLines: {
-                display: false
+              display: false,
+              fontFamily: labelFont,
+              fontSize: 16,
+              fontStyle: 600
               },
               ticks: {
                 beginAtZero: true,
-                display: true
+                display: true,
+                maxRotation: 0
               }
             }
           ]
         },
+        // trying to have them displayed as columns
         legend: {
-          display: false
+          display: true,
+          position: 'bottom',
+          fullWidth: true,
+          fontFamily: 'labelFont',
+          fontSize: 16,
+          fontStyle: 600
+          // type: 'column',
         },
         //        layout: {
         //    padding: {
@@ -183,9 +181,12 @@ export default {
         tooltips: {
           enabled: true
         },
-        maintainAspectRatio: false,
-        height: 200
+        maintainAspectRatio: true,
       }
     )
+
+    function uppercaseFirstLetter(label) {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
   }
 }
