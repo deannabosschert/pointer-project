@@ -1,13 +1,14 @@
 <template>
   <main class="stats-page">
-    <h1 class="sr-only">Pointer! Homepage</h1>
-    <h2>Jouw zorginstelling</h2>
+    <h1 class="h2 stats-page__title">Jouw zorginstelling</h1>
 
-    <company-search />
-    <year-selection
-      :selected-company="selectedCareCompany"
-      :dutch-data="dutchData"
-    />
+    <div class="stats-page__controls">
+      <company-search />
+      <year-selection
+        :selected-company="selectedCareCompany"
+        :dutch-data="dutchData"
+      />
+    </div>
 
     <app-charts
       v-if="selectedData && selectedDutchData"
@@ -17,10 +18,16 @@
       title="Charts toggle"
     />
 
-    <nuxt-link to="/" class="button button--primary"
-      >Opnieuw beginnen</nuxt-link
+    <nuxt-link
+      to="/"
+      class="button button--primary"
     >
-    <nuxt-link to="/shop" class="button button--secondary">
+      Opnieuw beginnen
+    </nuxt-link>
+    <nuxt-link
+      to="/shop"
+      class="button button--secondary"
+    >
       Naar webshop
     </nuxt-link>
   </main>
@@ -72,9 +79,24 @@ export default {
   padding: $spacing-small $spacing-medium;
 }
 
-.stats-page_title {
-  // first-letter {
-  //   text-transform: uppercase;
-  // }
+.stats-page__title,
+.stats-page .company-search {
+  margin-bottom: $spacing-small;
+}
+
+.stats-page__controls {
+  margin-bottom: $spacing-large;
+}
+
+.stats-page .app-charts {
+  margin-bottom: $spacing-large;
+}
+
+.stats-page .button--primary {
+  margin-bottom: $spacing-small;
+}
+
+.stats-page .button--secondary {
+  margin-bottom: $spacing-large;
 }
 </style>

@@ -6,13 +6,13 @@
       class="app-toggle__radio off-screen"
       name="app-toggle-input"
       value="compare"
-      selected
+      checked
     >
     <label
       for="compare-profit-input"
       class="app-toggle__label"
     >
-      Vergelijk omzet
+      vergelijk omzet
     </label>
     <input
       type="radio"
@@ -25,7 +25,7 @@
       for="see-profit-input"
       class="app-toggle__label"
     >
-      Verdeling omzet
+      verdeling omzet
     </label>
   </form>
 </template>
