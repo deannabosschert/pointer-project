@@ -59,7 +59,8 @@
 
       return {
         input: selectedCompanyName || '',
-        isPending: false
+        isPending: false,
+        hasClickListener: false
       }
     },
     computed: {
@@ -126,7 +127,7 @@
         */
         const referrer = inputNode.getAttribute('data-referrer')
 
-        if (inputNode) {
+        if (inputNode && !this.hasClickListener) {
           document.body.addEventListener('click', event => {
             const targetReferrer = event.target.getAttribute('data-referrer')
 
@@ -138,6 +139,8 @@
               return
             }, 100)
           }, false)
+
+          this.hasClickListener = true
         }
       },
       disableAutocomplete() {
@@ -146,6 +149,8 @@
         })
 
         document.body.removeEventListener('click', this.disableAutocomplete)
+
+        this.hasClickListener = false
       }
     },
     beforeDestroy() {
