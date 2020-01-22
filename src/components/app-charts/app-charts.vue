@@ -109,6 +109,11 @@ export default {
 </script>
 
 <style lang="scss">
+  .app-charts {
+    max-width: $layout-small;
+    margin: 0 auto;
+  }
+
   .app-charts__company-name {
     margin-bottom: $spacing-default;
     line-height: 1.25;
