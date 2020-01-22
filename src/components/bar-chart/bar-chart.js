@@ -1,10 +1,10 @@
-import { Bar } from "vue-chartjs"
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
+import { Bar } from 'vue-chartjs'
+import ChartJSPluginDatalabels from 'chartjs-plugin-datalabels'
 
 export default {
   extends: Bar,
   props: {
-    data: ["data", "options"],
+    data: ['data', 'options'],
     selectedData: {
       type: Object,
       required: true
@@ -47,7 +47,7 @@ export default {
 
     let dutchLabel = capitalize(dutch.naam)
     let companyLabel_v1 = capitalize(company.naam)
-    let companyLabel = companyLabel_v1.substring(0, 8) + "..."
+    let companyLabel = companyLabel_v1.substring(0, 8) + '...'
 
     let dutchValue = dutch[selectedProperty]
     let companyValue = company[selectedProperty]
@@ -58,10 +58,10 @@ export default {
     }
 
     function checkProperty(datalabel) {
-      if (selectedProperty === "omzetPerFte") {
-        return "€" + Math.round(datalabel / 1000) + "K"
+      if (selectedProperty === 'omzetPerFte') {
+        return '€' + Math.round(datalabel / 1000) + 'K'
       } else {
-        return Math.round(datalabel) + "%"
+        return Math.round(datalabel) + '%'
       }
     }
 
@@ -73,7 +73,7 @@ export default {
         let xAxe = chart.scales[chart.config.options.scales.xAxes[0].id]
         let yAxe = chart.scales[chart.config.options.scales.yAxes[0].id]
 
-        ctxPlugin.strokeStyle = "#f65645"
+        ctxPlugin.strokeStyle = '#f65645'
         ctxPlugin.lineWidth = 2
         ctxPlugin.setLineDash([5, 3])
 
@@ -88,13 +88,13 @@ export default {
 
     this.renderChart(
       {
-        labels: [dutchLabel, ["Normale", "bovengrens"], companyLabel],
+        labels: [dutchLabel, ['Normale', 'bovengrens'], companyLabel],
         datasets: [
           {
             data: [dutchValue, average, companyValue],
             label: this.title,
-            backgroundColor: ["#6b38e8", "rgb(246,86,69,0)", "#1beaae"],
-            borderColor: ["", "", ""],
+            backgroundColor: ['#6b38e8', 'rgb(246,86,69,0)', '#1beaae'],
+            borderColor: ['', '', ''],
             borderWidth: [0, 0, 0]
           }
         ]
@@ -102,15 +102,15 @@ export default {
       {
         plugins: {
           datalabels: {
-            anchor: "end",
+            anchor: 'end',
             align: -90,
             // offset: 8,
-            textAlign: "top",
+            textAlign: 'top',
             font: {
-              family: "Tenso",
+              family: 'Tenso',
               weight: 900,
               size: 22,
-              color: "#1d2939"
+              color: '#1d2939'
             },
             formatter: function(value) {
               return checkProperty(value)
@@ -141,13 +141,13 @@ export default {
                 beginAtZero: true,
                 display: true,
                 maxRotation: 0,
-                fontColor: "black",
-                fontFamily: "ZillaSlab",
+                fontColor: 'black',
+                fontFamily: 'ZillaSlab',
                 fontSize: 13,
                 fontStyle: 600
                 // will remove these comments once the labels are 'fully' fixed
                 // callback: function(value, index, values) {
-                //     if (values[1] === ["Normale", "bovengrens"]){
+                //     if (values[1] === ['Normale', 'bovengrens']){
                 //     }
                 //
                 // },
@@ -159,6 +159,7 @@ export default {
           display: false
         },
         // workaround to prevent the datalabels from being cut off at y-max
+        // TODO: add function at y-axis-options, stating that the min-height is Math.max([data]) + 5
         title: {
           display: true
         },

@@ -1,10 +1,10 @@
-import { Bar } from "vue-chartjs"
-import ChartJSPluginDatalabels from "chartjs-plugin-datalabels"
+import { Bar } from 'vue-chartjs'
+import ChartJSPluginDatalabels from 'chartjs-plugin-datalabels'
 
 export default {
   extends: Bar,
   props: {
-    data: ["data", "options"],
+    data: ['data', 'options'],
     selectedData: {
       type: Object,
       required: true
@@ -36,74 +36,75 @@ export default {
   mounted() {
     // lots of variables for better readability later on
     // has to be put in computed or methods..
-    let dutch = this.dutchData
-    let company = this.selectedData
-    let average = this.average
-    let selectedProperty = this.property
+    const dutch = this.dutchData
+    const company = this.selectedData
+    const average = this.average
+    const selectedProperty = this.property
 
-    let dutchLabel = capitalize(dutch.naam)
-    let companyLabel_v1 = capitalize(company.naam)
-    let companyLabel = companyLabel_v1.substring(0, 8) + "..."
+    const companyLabel_v1 = uppercaseFirstLetter(company.naam)
+    const companyLabel = companyLabel_v1.substring(0, 8) + '...'
+    const DUTCH_LABEL = 'Hoe hoort het?'
 
-    let dutchOmzet = dutch.omzet
-    let companyOmzet = company.omzet
+    const dutchOmzet = dutch.omzet
+    const companyOmzet = company.omzet
 
-    let dutchProfit = dutch.winst
-    let companyProfit = company.winst
+    const dutchProfit = dutch.winst
+    const companyProfit = company.winst
 
-    let dutchstaffCosts = dutch.personeelskosten
-    let companystaffCosts = company.personeelskosten
+    const dutchstaffCosts = dutch.personeelskosten
+    const companystaffCosts = company.personeelskosten
 
-    let dutchProfitP = dutch.percentageWinst
-    let companyProfitP = company.percentageWinst
+    const dutchProfitPercentage = dutch.percentageWinst
+    const companyProfitPercentage = company.percentageWinst
 
-    let dutchStaffCostsP = dutch.percentageLoon
-    let companyStaffCostsP = company.percentageLoon
+    const dutchStaffCostsP = dutch.percentageLoon
+    const companyStaffCostsP = company.percentageLoon
 
-    let dutchOverig = dutchOmzet - dutchstaffCosts - dutchProfit
-    let companyOverig = companyOmzet - companystaffCosts - companyProfit
+    const dutchOverigP = 100 - dutchStaffCostsP - dutchProfitPercentage
+    const companyOverigP = 100 - companyStaffCostsP - companyProfitPercentage
 
-    let dutchOverigP = 100 - dutchStaffCostsP - dutchProfitP
-    let companyOverigP = 100 - companyStaffCostsP - companyProfitP
+    const colorDarkest = '#1D2939'
+    const colorHighlightYellow = '#FAFF2E'
+    const colorHighlightRed = '#F65645'
+    const colorHighlightGreen = '#1BEAAE'
+    const colorWhite = '#fff'
 
-    function capitalize(label) {
-      return label.charAt(0).toUpperCase() + label.slice(1)
-    }
+    const numberFont = 'numberFont'
+    const labelFont = 'labelFont'
 
     this.renderChart(
       {
-        labels:["Hoe hoort het?", companyLabel],
+        labels:[DUTCH_LABEL, companyLabel],
         datasets: [
           {
-            type: "bar",
-            label: "Winst",
-            backgroundColor: "#faff2e",
+            type: 'bar',
+            label: 'Winst',
+            backgroundColor: colorHighlightYellow,
             borderWidth: 7,
-            borderColor: "#fff",
-            data: [dutchProfitP, companyProfitP]
+            borderColor: colorWhite,
+            data: [dutchProfitPercentage, companyProfitPercentage]
           },
           {
-            type: "bar",
-            label: "Overige kosten",
-            backgroundColor: "#1beaae",
+            type: 'bar',
+            label: 'Overige kosten',
+            backgroundColor: colorHighlightGreen,
             borderWidth: 7,
-            borderColor: "#fff",
+            borderColor: colorWhite,
             datalabels: {
-              // color: ['#FFCE56', '#d8cedb'],
             },
             data: [dutchOverigP, companyOverigP]
           },
           {
-            type: "bar",
-            label: "Personeelskosten",
-            backgroundColor: "#d8cedb",
+            type: 'bar',
+            label: 'Personeelskosten',
+            backgroundColor: '#d8cedb',
             borderWidth: 7,
-            borderColor: "#fff",
+            borderColor: colorWhite,
             // datalabels: {
             //   label:{
             //    // color: ['#FFCE56', '#d8cedb'],
             //    formatter: function(value) {
-            //      return Math.round(value) + "yeet"
+            //      return Math.round(value) + 'yeet'
             //    }
             //  }},
             data: [dutchStaffCostsP, companyStaffCostsP]
@@ -113,15 +114,15 @@ export default {
       {
         plugins: {
           datalabels: {
-            textAlign: "center",
+            textAlign: 'center',
             font: {
-              family: "Tenso",
+              family: 'numberFont',
               weight: 900,
               size: 18,
-              color: "#1d2939"
+              color: colorDarkest
             },
-            formatter: function(value) {
-              return Math.round(value) + "%"
+            formatter: value => {
+              return Math.round(value) + '%'
             }
           }
         },
@@ -143,11 +144,11 @@ export default {
           ],
           xAxes: [
             {
-              position: "top",
+              position: 'top',
               stacked: true,
               gridLines: {
               display: false,
-              fontFamily: "ZillaSlab",
+              fontFamily: 'labelFont',
               fontSize: 16,
               fontStyle: 600
               },
@@ -162,12 +163,12 @@ export default {
         // trying to have them displayed as columns
         legend: {
           display: true,
-          position: "bottom",
+          position: 'bottom',
           fullWidth: true,
-          fontFamily: "ZillaSlab",
+          fontFamily: 'labelFont',
           fontSize: 16,
           fontStyle: 600
-          // type: "column",
+          // type: 'column',
         },
         //        layout: {
         //    padding: {
@@ -183,5 +184,9 @@ export default {
         maintainAspectRatio: true,
       }
     )
+
+    function uppercaseFirstLetter(label) {
+      return label.charAt(0).toUpperCase() + label.slice(1)
+    }
   }
 }
