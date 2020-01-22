@@ -66,24 +66,19 @@ export default {
     let dutchOverigP = 100 - dutchStaffCostsP - dutchProfitP
     let companyOverigP = 100 - companyStaffCostsP - companyProfitP
 
-    Chart.defaults.global.defaultFontColor = "#1d2939"
-    Chart.defaults.global.defaultFontFamily = "ZillaSlab"
-    Chart.defaults.global.defaultFontSize = 16
-    Chart.defaults.global.defaultFontWeight = 600
-
     function capitalize(label) {
       return label.charAt(0).toUpperCase() + label.slice(1)
     }
 
     this.renderChart(
       {
-        labels: [dutchLabel, companyLabel],
+        labels:["Hoe hoort het?", companyLabel],
         datasets: [
           {
             type: "bar",
             label: "Winst",
             backgroundColor: "#faff2e",
-            borderWidth: 5,
+            borderWidth: 7,
             borderColor: "#fff",
             data: [dutchProfitP, companyProfitP]
           },
@@ -91,7 +86,7 @@ export default {
             type: "bar",
             label: "Overige kosten",
             backgroundColor: "#1beaae",
-            borderWidth: 5,
+            borderWidth: 7,
             borderColor: "#fff",
             datalabels: {
               // color: ['#FFCE56', '#d8cedb'],
@@ -102,7 +97,7 @@ export default {
             type: "bar",
             label: "Personeelskosten",
             backgroundColor: "#d8cedb",
-            borderWidth: 5,
+            borderWidth: 7,
             borderColor: "#fff",
             // datalabels: {
             //   label:{
@@ -123,7 +118,7 @@ export default {
               family: "Tenso",
               weight: 900,
               size: 18,
-              color: "black"
+              color: "#1d2939"
             },
             formatter: function(value) {
               return Math.round(value) + "%"
@@ -136,6 +131,7 @@ export default {
             {
               display: false,
               stacked: true,
+              margin: 30,
               gridLines: {
                 display: false
               },
@@ -147,9 +143,13 @@ export default {
           ],
           xAxes: [
             {
+              position: "top",
               stacked: true,
               gridLines: {
-                display: false
+              display: false,
+              fontFamily: "ZillaSlab",
+              fontSize: 16,
+              fontStyle: 600
               },
               ticks: {
                 beginAtZero: true,
@@ -159,10 +159,14 @@ export default {
             }
           ]
         },
+        // trying to have them displayed as columns
         legend: {
           display: true,
           position: "bottom",
           fullWidth: true,
+          fontFamily: "ZillaSlab",
+          fontSize: 16,
+          fontStyle: 600
           // type: "column",
         },
         //        layout: {
