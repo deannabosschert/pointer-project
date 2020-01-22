@@ -15,16 +15,24 @@
       v-if="autocompleteIsEnabled"
       class="company-search__autocomplete"
     >
-      <button
-        type="button"
-        class="company-search__autocomplete-item correct-casing"
-        v-for="(company, i) in matchingCompanies"
-        :key="`${company.id}-${i}`"
-        @click="onCompanyClick(company)"
-        :disabled="isPending"
+      <div v-if="careCompanies">
+        <button
+          type="button"
+          class="company-search__autocomplete-item correct-casing"
+          v-for="(company, i) in matchingCompanies"
+          :key="`${company.id}-${i}`"
+          @click="onCompanyClick(company)"
+          :disabled="isPending"
+        >
+          {{ company.naam }}
+        </button>
+      </div>
+      <p
+        v-else
+        class="company-search__autocomplete-text"
       >
-        {{ company.naam }}
-      </button>
+        Zorgbedrijven laden...
+      </p>
     </div>
   </div>
 </template>
@@ -179,5 +187,9 @@
 
   .company-search__autocomplete-item:disabled {
     color: $color-gray;
+  }
+
+  .company-search__autocomplete-text {
+    padding: $spacing-default;
   }
 </style>
