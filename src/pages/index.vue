@@ -2,7 +2,7 @@
   <main class="home-page">
     <section class="home-page__intro">
       <h1 class="home-page__title">Shoppen met zorggeld</h1>
-      <p>Zorgcowboys zijn achterbakse ondernemers, gierige consultants en rijke managers. Dit zijn zorginstellingen die de afgelopen vijf jaar misbruik hebben gemaakt van het gebrek aan toezicht en de zorg alleen maar duurder maken.</p>
+      <p class="home-page__intro-text">Zorgcowboys zijn achterbakse ondernemers, gierige consultants en rijke managers. Dit zijn zorginstellingen die de afgelopen vijf jaar misbruik hebben gemaakt van het gebrek aan toezicht en de zorg alleen maar duurder maken.</p>
     </section>
     <section class="home-page__actions">
       <h2 class="home-page__actions-title">Zoek jouw zorginstelling</h2>
@@ -117,15 +117,36 @@
 </script>
 
 <style lang="scss">
+  $intro-text-inset: 75px;
+
   .home-page {
     padding: $spacing-default $spacing-medium;
-    background-image: url('~static/images/money-bag.png');
-    background-repeat: no-repeat;
-    background-position: 120% #{-$spacing-default};
+    padding-top: 0;
   }
 
   .home-page__intro {
+    background-image: url('~static/images/money-bag.png');
+    background-repeat: no-repeat;
+    background-position-x: calc(100% + #{$spacing-large});
+    padding-top: $spacing-default;
+    padding-left: $spacing-medium;
+    padding-right: $spacing-medium;
+    margin-left: -#{$spacing-medium};
+    margin-right: -#{$spacing-medium};
     margin-bottom: $spacing-large;
+
+    @media (min-width: $layout-small) {
+      max-width: $layout-small;
+      margin: 0 auto;
+      margin-bottom: $spacing-large;
+      background-position-x: calc(100% + 50px);
+    }
+  }
+
+  .home-page__intro-text {
+    @media (min-width: $layout-small) {
+      padding-right: $intro-text-inset;
+    }
   }
 
   .home-page__title {
