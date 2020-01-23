@@ -6,6 +6,7 @@ export const state = () => ({
   careCompanies: null,
   selectedData: null,
   autoCompleteIsEnabled: false,
+  dutchData: null,
   selectedDutchData: null,
   menuIsOpen: false
 })
@@ -21,6 +22,9 @@ export const getters = {
   },
   selectedData(state) {
     return state.selectedData
+  },
+  dutchData(state) {
+    return state.dutchData
   },
   selectedDutchData(state) {
     return state.selectedDutchData
@@ -42,6 +46,9 @@ export const actions = {}
 export const mutations = {
   [types.SET_CURRENT_CARECOMPANY](state, payload) {
     state.selectedCareCompany = payload.careCompany
+  },
+  [types.SET_DUTCH_DATA](state, payload) {
+    state.dutchData = payload.dutchData
   },
   [types.ADD_TO_SHOPPING_BAG](state, payload) {
     state.shoppingBag = [...state.shoppingBag, payload.product]
