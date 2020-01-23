@@ -62,14 +62,6 @@ export default {
     const numberFont = 'Tenso'
     const labelFont = 'ZillaSlab'
 
-    function checkProperty(datalabel) {
-      if (selectedProperty === 'omzetPerFte') {
-        return '€' + Math.round(datalabel / 1000) + 'K'
-      } else {
-        return Math.round(datalabel) + '%'
-      }
-    }
-
     // ugly fix because the annotations-plugin wouldn't work properly
     this.addPlugin({
       afterDraw: function(chart) {
@@ -118,7 +110,7 @@ export default {
               color: colorDarkest
             },
             formatter: function(value) {
-              return checkProperty(value)
+              return checkProperty(value, selectedProperty)
             }
           }
         },
@@ -175,10 +167,18 @@ export default {
         lineAt: average
       }
     )
-
-    // will move this funciton to libs
-    function capitalize(label) {
-      return label.charAt(0).toUpperCase() + label.slice(1)
-    }
   }
+}
+
+function checkProperty(datalabel, selectedProperty) {
+  if (selectedProperty === 'omzetPerFte') {
+    return '€' + Math.round(datalabel / 1000) + 'K'
+  } else {
+    return Math.round(datalabel) + '%'
+  }
+}
+
+// will move this funciton to libs (Deanna)
+function capitalize(label) {
+  return label.charAt(0).toUpperCase() + label.slice(1)
 }
