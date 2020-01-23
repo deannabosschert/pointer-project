@@ -183,11 +183,16 @@ export default {
 
 function checkProperty(datalabel, selectedProperty) {
   if (selectedProperty === 'omzetPerFte') {
-    return '€' + Math.round(datalabel / 1000) + 'K'
+    const abbrNumberThousand = Math.round(datalabel / 1000)
+    return '€' + abbrNumberThousand + 'K'
   } else {
-    return Math.round(datalabel) + '%'
+    // multiplied by 100 to prevent Math.round from filtering out the decimals beforehand
+    const roundedPercentage = Math.round(datalabel*100)/100
+    const fixedPercentage = roundedPercentage.toFixed(1)
+    return fixedPercentage + '%'
   }
 }
+
 
 // will move this funciton to libs (Deanna)
 function capitalize(label) {
