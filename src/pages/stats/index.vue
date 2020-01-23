@@ -36,7 +36,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import { SET_CARECOMPANIES, SET_DUTCH_DATA } from '~/store/mutation-types'
-import dutchDataJson from '~/static/data/dutch-stats'
 import CompanySearch from '~/components/company-search/company-search'
 import YearSelection from '~/components/year-selection/year-selection'
 import AppCharts from '~/components/app-charts/app-charts'
@@ -47,17 +46,13 @@ export default {
     YearSelection,
     AppCharts
   },
-  data() {
-    return {
-      dutchData: dutchDataJson
-    }
-  },
   computed: {
     ...mapGetters({
       careCompanies: 'careCompanies',
       selectedCareCompany: 'selectedCareCompany',
       selectedData: 'selectedData',
-      selectedDutchData: 'selectedDutchData'
+      selectedDutchData: 'selectedDutchData',
+      dutchData: 'dutchData'
     }),
     async rawCompanies() {
       const module = await import('~/static/data/pointer-raw')

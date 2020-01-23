@@ -62,7 +62,7 @@
   import dutchDataJson from '~/static/data/dutch-stats'
 
   import { mapGetters } from 'vuex'
-  import { SET_CARECOMPANIES } from '~/store/mutation-types'
+  import { SET_CARECOMPANIES, SET_DUTCH_DATA } from '~/store/mutation-types'
 
   import CompanySearch from '~/components/company-search/company-search'
   import YearSelection from '~/components/year-selection/year-selection'
@@ -74,14 +74,10 @@
       YearSelection,
       ErrorMessage
     },
-    data() {
-      return {
-        dutchData: dutchDataJson
-      }
-    },
     computed: {
       ...mapGetters({
         careCompanies: 'careCompanies',
+        dutchData: 'dutchData',
         selectedCareCompany: 'selectedCareCompany',
         selectedData: 'selectedData',
       }),
@@ -99,6 +95,10 @@
     async mounted() {
       if (!this.careCompanies) {
         this.$store.commit(SET_CARECOMPANIES, { careCompanies: await this.rawCompanies })
+      }
+
+      if (!this.dutchData) {
+        this.$store.commit(SET_DUTCH_DATA, { dutchData: dutchDataJson })
       }
     },
     methods: {

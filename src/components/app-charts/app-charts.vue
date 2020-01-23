@@ -54,7 +54,7 @@
         <p>Omzet per FTE geeft aan hoeveel € omzet een full-time medewerker de zorginstelling per jaar oplevert. Het is verdacht als een zorgbedrijf een hoge FTE heeft
           aangezien de werkzaamheden in de zorgsector vaak arbeidsintensief zijn en dit proces dan ook niet veel efficiënter zal worden.</p>
         <bar-chart
-          v-if="selectedData && selectedDutchData.omzetPerFte"
+          v-if="selectedData && omzetPerFteExists"
           :selected-data="selectedData"
           :dutch-data="selectedDutchData"
           property="omzetPerFte"
@@ -103,7 +103,11 @@ export default {
     ...mapGetters({
       selectedData: 'selectedData',
       selectedDutchData: 'selectedDutchData'
-    })
+    }),
+    omzetPerFteExists() {
+      return this.selectedData
+        && this.selectedData.omzetPerFte
+    }
   },
 }
 </script>
