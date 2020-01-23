@@ -39,10 +39,11 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapState } from 'vuex'
   import {
     SET_CURRENT_CARECOMPANY,
     SET_SELECTED_DATA,
+    SET_SELECTED_DUTCH_DATA,
     TOGGLE_AUTOCOMPLETE
   } from '~/store/mutation-types'
 
@@ -66,7 +67,8 @@
     computed: {
       ...mapGetters({
         careCompanies: 'careCompanies',
-        autocompleteIsEnabled: 'autoCompleteIsEnabled'
+        autocompleteIsEnabled: 'autoCompleteIsEnabled',
+        dutchData: 'dutchData'
       }),
       matchingCompanies() {
         const matches = this.careCompanies &&
@@ -103,6 +105,7 @@
 
         this.$store.commit(SET_CURRENT_CARECOMPANY, { careCompany: company })
         this.$store.commit(SET_SELECTED_DATA, { selectedData: getLatestYearData(company.jaarVerslagen) })
+        this.$store.commit(SET_SELECTED_DUTCH_DATA, { data: getLatestYearData(this.dutchData) })
 
         this.isPending = false
 
