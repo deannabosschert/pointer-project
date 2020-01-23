@@ -15,7 +15,7 @@ export const state = () => ({
     },
     {
       mediaLink: '/images/prive-jet2.jpg',
-      naam: 'Privé jet',
+      naam: 'Privéjet',
       prijs: 12750000.00
     },
     {
@@ -25,7 +25,7 @@ export const state = () => ({
     },
     {
       mediaLink: '/images/diamantring2.jpg',
-      naam: 'Diamantring',
+      naam: 'Diamanten ring',
       prijs: 55600.00
     },
     {
@@ -46,7 +46,7 @@ export const state = () => ({
       amount: 0
     },
     {
-      naam: 'Uur maaltijd verzorging',
+      naam: 'Uur maaltijdverzorging',
       prijs: 7.51,
       amount: 0
     },

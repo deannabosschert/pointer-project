@@ -33,32 +33,35 @@
           :dutch-data="selectedDutchData"
           property="percentageWinst"
           title="Percentage winst"
+          averageLabel="bovengrens"
           average="4"
         />
       </section>
       <section class="app-charts__bar">
         <h2 class="app-charts__title">Percentage loon</h2>
         <p>Het percentage loon is het totale aantal personeelskosten, gedeeld door
-          de omzet. Een normaal percentage ligt rond de 40%.</p>
+          de omzet. Een 'normaal' percentage ligt rond de 40%.</p>
         <bar-chart
           v-if="selectedData && selectedDutchData"
           :selected-data="selectedData"
           :dutch-data="selectedDutchData"
           property="percentageLoon"
           title="Percentage loon"
+          averageLabel="ondergrens"
           average="40"
         />
       </section>
       <section class="app-charts__bar">
         <h2 class="app-charts__title">Omzet per FTE</h2>
-        <p>Omzet per FTE geeft aan hoeveel € omzet een full-time medewerker de zorginstelling per jaar oplevert. Het is verdacht als een zorgbedrijf een hoge FTE heeft
-          aangezien de werkzaamheden in de zorgsector vaak arbeidsintensief zijn en dit proces dan ook niet veel efficiënter zal worden.</p>
+        <p>Omzet per FTE geeft aan hoeveel € omzet een full-time medewerker de zorginstelling per jaar oplevert. Het is verdacht als een zorgbedrijf een hoge omzet per FTE heeft
+          aangezien de zorg een arbeidsintensieve sector is, de werkzaamheden niet veel efficiënter kunnen gebeuren en wat er aan een uur zorgverlening verdiend wordt, dan ook niet zomaar zo hoog kan zijn in vergelijking met de rest van Nederland. Zodra dit boven de €125.000 komt, vinden wij dit verdacht.</p>
         <bar-chart
           v-if="selectedData && omzetPerFteExists"
           :selected-data="selectedData"
           :dutch-data="selectedDutchData"
           property="omzetPerFte"
           title="Omzet per FTE"
+          averageLabel="bovengrens"
           average="125000"
         />
         <p v-else>De omzet per FTE is alleen beschikbaar voor sommige bedrijven, in de jaren 2017 en 2018.</p>
