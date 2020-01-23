@@ -38,37 +38,7 @@ export default {
     }
   },
   mounted() {
-    // lots of variables for better readability later on
-    // has to be put in computed or methods..
-    let dutch = this.dutchData
-    let company = this.selectedData
-    let average = this.average
-    let selectedProperty = this.property
-
-    let dutchLabel = capitalize(dutch.naam)
-    let companyLabel_v1 = capitalize(company.naam)
-    let companyLabel = companyLabel_v1.substring(0, 8) + '...'
-
-    let dutchValue = dutch[selectedProperty]
-    let companyValue = company[selectedProperty]
-
-    const colorDarkest = '#1D2939'
-    const colorHighlightYellow = '#FAFF2E'
     const colorHighlightRed = '#F65645'
-    const colorHighlightGreen = '#1BEAAE'
-    const colorHighlightPurple = '#6b38e8'
-    const colorWhite = '#fff'
-
-    const numberFont = 'Tenso'
-    const labelFont = 'ZillaSlab'
-
-    function checkProperty(datalabel) {
-      if (selectedProperty === 'omzetPerFte') {
-        return '€' + Math.round(datalabel / 1000) + 'K'
-      } else {
-        return Math.round(datalabel) + '%'
-      }
-    }
 
     // ugly fix because the annotations-plugin wouldn't work properly
     this.addPlugin({
@@ -91,94 +61,135 @@ export default {
       }
     })
 
-    this.renderChart(
-      {
-        labels: [dutchLabel, ['Normale', 'bovengrens'], companyLabel],
-        datasets: [
-          {
-            data: [dutchValue, average, companyValue],
-            label: this.title,
-            backgroundColor: [colorHighlightPurple, 'rgb(246,86,69,0)', colorHighlightGreen],
-            borderColor: ['', '', ''],
-            borderWidth: [0, 0, 0]
-          }
-        ]
-      },
-      {
-        plugins: {
-          datalabels: {
-            anchor: 'end',
-            align: -90,
-            // offset: 8,
-            textAlign: 'top',
-            font: {
-              family: numberFont,
-              weight: 900,
-              size: 22,
-              color: colorDarkest
-            },
-            formatter: function(value) {
-              return checkProperty(value)
-            }
-          }
-        },
-        responsive: true,
-        scales: {
-          yAxes: [
+    this.renderBarChart()
+  },
+  methods: {
+    renderBarChart() {
+      // lots of variables for better readability later on
+      // has to be put in computed or methods..
+      let dutch = this.dutchData
+      let company = this.selectedData
+      let average = this.average
+      let selectedProperty = this.property
+
+      let dutchLabel = capitalize(dutch.naam)
+      let companyLabel_v1 = capitalize(company.naam)
+      let companyLabel = companyLabel_v1.substring(0, 8) + '...'
+
+      let dutchValue = dutch[selectedProperty]
+      let companyValue = company[selectedProperty]
+
+      const colorDarkest = '#1D2939'
+      const colorHighlightGreen = '#1BEAAE'
+      const colorHighlightPurple = '#6b38e8'
+      const colorHighlightYellow = '#FAFF2E'
+      const colorWhite = '#fff'
+
+      const numberFont = 'Tenso'
+      const labelFont = 'ZillaSlab'
+
+      this.renderChart(
+        {
+          labels: [dutchLabel, ['Normale', 'bovengrens'], companyLabel],
+          datasets: [
             {
-              display: false,
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                display: true,
-                beginAtZero: true,
-                min: 0
-              }
-            }
-          ],
-          xAxes: [
-            {
-              gridLines: {
-                display: false
-              },
-              ticks: {
-                beginAtZero: true,
-                display: true,
-                maxRotation: 0,
-                fontColor: 'black',
-                fontFamily: labelFont,
-                fontSize: 13,
-                fontStyle: 600
-                // will remove these comments once the labels are 'fully' fixed
-                // callback: function(value, index, values) {
-                //     if (values[1] === ['Normale', 'bovengrens']){
-                //     }
-                //
-                // },
-              }
+              data: [dutchValue, average, companyValue],
+              label: this.title,
+              backgroundColor: [colorHighlightPurple, 'rgb(246,86,69,0)', colorHighlightGreen],
+              borderColor: ['', '', ''],
+              borderWidth: [0, 0, 0]
             }
           ]
         },
-        legend: {
-          display: false
-        },
-        // workaround to prevent the datalabels from being cut off at y-max
-        // TODO: add function at y-axis-options, stating that the min-height is Math.max([data]) + 5
-        title: {
-          display: true
-        },
-        tooltips: {
-          enabled: true
-        },
-        maintainAspectRatio: true,
-        lineAt: average
-      }
-    )
-
-    // will move this funciton to libs
-    function capitalize(label) {
-      return label.charAt(0).toUpperCase() + label.slice(1)
+        {
+          plugins: {
+            datalabels: {
+              anchor: 'end',
+              align: -90,
+              // offset: 8,
+              textAlign: 'top',
+              font: {
+                family: numberFont,
+                weight: 900,
+                size: 22,
+                color: colorDarkest
+              },
+              formatter: (value) => {
+                return checkProperty(value, selectedProperty)
+              }
+            }
+          },
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                display: false,
+                gridLines: {
+                  display: false
+                },
+                ticks: {
+                  display: true,
+                  beginAtZero: true,
+                  min: 0
+                }
+              }
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  display: false
+                },
+                ticks: {
+                  beginAtZero: true,
+                  display: true,
+                  maxRotation: 0,
+                  fontColor: 'black',
+                  fontFamily: labelFont,
+                  fontSize: 13,
+                  fontStyle: 600
+                  // will remove these comments once the labels are 'fully' fixed
+                  // callback: function(value, index, values) {
+                  //     if (values[1] === ['Normale', 'bovengrens']){
+                  //     }
+                  //
+                  // },
+                }
+              }
+            ]
+          },
+          legend: {
+            display: false
+          },
+          // workaround to prevent the datalabels from being cut off at y-max
+          // TODO: add function at y-axis-options, stating that the min-height is Math.max([data]) + 5
+          title: {
+            display: true
+          },
+          tooltips: {
+            enabled: true
+          },
+          maintainAspectRatio: true,
+          lineAt: average
+        }
+      )
+    }
+  },
+  watch: {
+    selectedData() {
+      this.renderBarChart()
     }
   }
+}
+
+function checkProperty(datalabel, selectedProperty) {
+  if (selectedProperty === 'omzetPerFte') {
+    return '€' + Math.round(datalabel / 1000) + 'K'
+  } else {
+    return Math.round(datalabel) + '%'
+  }
+}
+
+// will move this funciton to libs (Deanna)
+function capitalize(label) {
+  return label.charAt(0).toUpperCase() + label.slice(1)
 }
