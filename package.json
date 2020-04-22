@@ -20,7 +20,7 @@
     "d3": "5.14.2",
     "mkdirp": "0.5.1",
     "nuxt": "2.10.2",
-    "query-string": "6.10.1",
+    "query-string": "6.12.1",
     "vue-chartjs": "3.5.0"
   },
   "devDependencies": {
