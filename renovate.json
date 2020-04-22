@@ -1,0 +1,14 @@
+{
+    "schedule": "every weekend",
+    "stabilityDays": 7,
+    "packageRules": [
+        {
+            "groupName": "Dependencies",
+            "depTypeList": ["dependencies"]
+        },
+        {
+            "groupName": "Development dependencies",
+            "depTypeList": ["devDependencies"]
+        }
+    ]
+}
