@@ -13,19 +13,19 @@
     "data": "./scripts/raw-csv-to-json.js"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
-    "chartjs-plugin-annotation": "^0.5.7",
-    "chartjs-plugin-datalabels": "^0.7.0",
-    "csvtojson": "^2.0.10",
-    "d3": "^5.14.2",
-    "mkdirp": "^0.5.1",
-    "nuxt": "^2.0.0",
-    "query-string": "^6.10.1",
-    "vue-chartjs": "^3.5.0"
+    "chart.js": "2.9.3",
+    "chartjs-plugin-annotation": "0.5.7",
+    "chartjs-plugin-datalabels": "0.7.0",
+    "csvtojson": "2.0.10",
+    "d3": "5.14.2",
+    "mkdirp": "0.5.1",
+    "nuxt": "2.10.2",
+    "query-string": "6.10.1",
+    "vue-chartjs": "3.5.0"
   },
   "devDependencies": {
-    "@nuxtjs/style-resources": "^1.0.0",
-    "node-sass": "^4.13.1",
-    "sass-loader": "^8.0.0"
+    "@nuxtjs/style-resources": "1.0.0",
+    "node-sass": "4.13.1",
+    "sass-loader": "8.0.0"
   }
 }
